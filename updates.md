@@ -3,10 +3,10 @@ Test Status: *empty*, *incomplete*, *not final*, *test pending*, *done*
 # UPDATE VERSION 2.1
 
 - In profile.cpp
-  - Updated profile_selection() - *test pending*
-            add_profile() - *test pending*
-            open_profile() - *test pending*
-            delete_profile() - *test pending*
+  - Updated profile_selection() - *test pending*  
+            add_profile() - *test pending*  
+            open_profile() - *test pending*  
+            delete_profile() - *test pending*  
 - Added function declarations in profile.h
 - Added test.cpp for testing purposes
 
@@ -16,11 +16,11 @@ To-Do:
 # UPDATE VERSION 2.0
 
 - Added profile.cpp and profile.h
-  - Added profile_selection() - *not final*
-          add_profile() - *not final*
-          open_profile() - *not final*
-          delete_profile() - *not final*
-          display_profiles() - *not final*
+  - Added profile_selection() - *not final*  
+          add_profile() - *not final*  
+          open_profile() - *not final*  
+          delete_profile() - *not final*  
+          display_profiles() - *not final*  
           search_profile() - *empty*
 - In person_mode.cpp
   - Updated person_mode() - *incomplete*
