@@ -1,33 +1,49 @@
 // contains all functionalities necessary for managing profiles
 
 // NOTES:
-// - file format of a profile file: Profiles/<MODE>/<M>-<PROFILE_NAME>.txt
+
+// - file format of a profile file: Profiles/<MODE>/<PROFILE_NAME>.txt
 //                                  <MODE>: Person / Group
-//                                  <M>   : p / g
-//                                  e.g. Profiles/Person/p-SirNasvin.txt
+//                                  e.g. Profiles/Person/SirNasvin.txt
+
+// - functions that opens and closes a file: add_profile()
+//                                           search_profile()
+//                                           open_profile()
+
+// - when using open_profile(), it is important to ALWAYS PAIR IT WITH FILE.CLOSE() otherwise some terrible stuff will happen
+
 
 #include <iostream>
+#include <filesystem>
+#include <fstream>
 #include <string>
 
-#include "profile.h"
+// namespace for filesystem
+namespace fs = std::filesystem;
 
+void add_profile(char);
+void open_profile(std::fstream*, char);
+void delete_profile(char);
+void display_profiles(char);
+bool search_profile(std::string, char);
+std::string set_directory(char);
+void open_file(std::fstream*, std::string, char);
 
 // asks user to add, open, and delete profiles
-void profile_selection(FILE* profile, char profile_mode, std::string* file_name){
+void profile_selection(std::fstream* profile, char profile_mode, std::string* file_name){
     int option;
 
     while (true){
-        printf("PROFILE SELECTION MENU\n\n");
+        std::cout << "\n\nPROFILE SELECTION MENU\n\n";
         
         // display list of profiles saved in directory
-        //display_profiles(profile_mode);
-        printf("Display\n");
+        display_profiles(profile_mode);
 
-        printf("What do you want to do?\n");
-        printf("1) Create New Profile\n");
-        printf("2) Open Profile\n");
-        printf("3) Delete Profile\n");
-        printf("0) Exit\n");
+        std::cout << "\nWhat do you want to do?\n";
+        std::cout << "1) Create New Profile\n";
+        std::cout << "2) Open Profile\n";
+        std::cout << "3) Delete Profile\n";
+        std::cout << "0) Exit\n";
 
         std::cin >> option;
 
@@ -35,24 +51,25 @@ void profile_selection(FILE* profile, char profile_mode, std::string* file_name)
             case 0:
                 return;
             case 1:
-                add_profile(profile, profile_mode);
+                add_profile(profile_mode);
                 break;
             case 2:
                 open_profile(profile, profile_mode);
                 break;
             case 3:
-                delete_profile(profile, profile_mode);
+                delete_profile(profile_mode);
                 break;
             default:
-                printf("Invalid input. Please try again.\n");
+                std::cout << "Invalid input. Please try again.\n";
                 continue;
         }
     }
 }
 
 // adds a profile
-void add_profile(FILE* profile, char profile_mode){
+void add_profile(char profile_mode){
     // variables for file handling
+    std::fstream file;
     std::string file_name;
     std::string directory;
     
@@ -60,24 +77,27 @@ void add_profile(FILE* profile, char profile_mode){
     std::string profile_name;
     
     // ask user for new profile name
-    printf("Profile Name: ");
+    std::cout << "Profile Name: ";
     std::cin >> profile_name;
 
     // add functionality such that you can't give the new profile a name that already exists
 
     // set name of directory
-    if (profile_mode == 'p'){
-        directory = "Profiles/Person/";
-    } else if (profile_mode == 'g'){
-        directory = "Profiles/Group/";
-    }
+    directory = set_directory(profile_mode);
 
     // set name of file name
-    file_name = directory + profile_mode + '-' + profile_name + ".txt";
+    file_name = directory + profile_name + ".txt";
+
+    open_file(&file, file_name, 'w');
+
+    if (file.is_open() == true){
+        file.close();
+        std::cout << "closed\n";
+    }
 }
 
 // opens a profile
-void open_profile(FILE* profile, char profile_mode){
+void open_profile(std::fstream* profile, char profile_mode){
     // variables for file manipulation
     std::string file_name;
     std::string directory;
@@ -87,7 +107,7 @@ void open_profile(FILE* profile, char profile_mode){
 
     while (true){
         // asks user to enter profile name to open
-        printf("Enter the profile name that you want to open:\n");
+        std::cout << "Enter the profile name that you want to open:\n";
         std::cin >> profile_name;
 
         // search for profile name in list of profiles
@@ -96,59 +116,132 @@ void open_profile(FILE* profile, char profile_mode){
 
         if (found){
             // set name of directory
-            if (profile_mode == 'p'){
-                directory = "Profiles/Person/";
-            } else if (profile_mode == 'g'){
-                directory = "Profiles/Group/";
-            }
+            directory = set_directory(profile_mode);
 
             // set name of file name
-            file_name = directory + profile_mode + '-' + profile_name + ".txt";
+            file_name = directory + profile_name + ".txt";
         } else {
             // FILE NOT FOUND error
-            printf("File not found. Please try again.\n");
+            std::cout << "File not found. Please try again.\n";
         }
     }
 }
 
 // deletes a profile
-void delete_profile(FILE* profile, char profile_mode){
+void delete_profile(char profile_mode){
     // variables for file manipulation
     std::string file_name;
     std::string directory;
     
     std::string profile_name;
     bool found;
+    bool removed;
 
-    while (true){
-        // asks user to input profile name to delete
-        printf("Enter the profile name that you want to delete:\n");
-        std::cin >> profile_name;
+    // asks user to input profile name to delete
+    std::cout << "Enter the profile name that you want to delete:\n";
+    std::cin >> profile_name;
 
-        // search for profile name in list of profiles
-        //found = search_profile(profile_name);
-        found = true;
+    // search for profile name in list of profiles
+    found = search_profile(profile_name, profile_mode);
 
-        if (found){
-            // set name of directory
-            if (profile_mode == 'p'){
-                directory = "Profiles/Person/";
-            } else if (profile_mode == 'g'){
-                directory = "Profiles/Group/";
-            }
+    if (found){
+        // set name of directory
+        directory = set_directory(profile_mode);
 
-            // set name of file name
-            file_name = directory + profile_mode + '-' + profile_name + ".txt";
+        // set name of file name
+        file_name = directory + profile_name + ".txt";
+
+        // deletes the specified file
+        removed = fs::remove(file_name);
+
+        // tells user if file is deleted/not deleted
+        if (removed){
+            std::cout << "File removed succesfully.\n";
         } else {
-            printf("File not found. Please try again.\n");
+            std::cout << "File not removed successfully.\n"; // ERROR HANDLING (File cannot be deleted)
         }
+    } else {
+        std::cout << "File not found.\n"; // ERROR HANDLING (File is not found)
     }
 }
 
-/*void display_profiles(char profile_mode){
+// display list of present profiles
+void display_profiles(char profile_mode){
+    std::string directory;
+    std::string file_name;
+    
+    // set directory based on current profile mode
+    directory = set_directory(profile_mode);
 
+    // obtain file names in mode directory
+    for (const auto &entry: fs::directory_iterator(directory)){
+        // convert path to string
+        file_name = entry.path().generic_string();
+
+        // delete directory name
+        file_name.erase(0, (profile_mode == 'p') ? 16 : 15);
+        
+        // delete .txt extension
+        file_name.erase(file_name.length() - 4, 4);
+
+        // display profile name
+        std::cout << file_name << std::endl;
+    }
 }
 
-bool search_profile(std::string profile_name){
+// returns true if file exists in directory, else return false
+bool search_profile(std::string profile_name, char profile_mode){
+    std::ifstream file;
+    std::string file_name;
+    std::string directory;
 
-}*/
+    // set directory path based on current profile mode
+    directory = set_directory(profile_mode);
+
+    // set file name of profile
+    file_name = directory + profile_name + ".txt";
+
+    // attempt to open file
+    file.open(file_name);
+
+    // file is in directory if file can be opened, thus return true
+    // else then file isn't in directory, thus return false
+    if (file.is_open() == true){
+        file.close();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// set directory path depending on current profile mode
+std::string set_directory(char profile_mode){
+    if (profile_mode == 'p'){
+        return "Profiles/Person/";
+    } else if (profile_mode == 'g'){
+        return "Profiles/Group/";
+    } else {
+        return "";
+    }
+}
+
+// opens a file
+void open_file(std::fstream* file, std::string file_name, char operation){
+    switch(operation){
+        // opens file in read mode
+        case 'r':
+            file->open(file_name, std::ios::in);
+            break;
+        // opens file in write mode
+        case 'w':
+            file->open(file_name, std::ios::out);
+            break;
+        // opens file in append/edit mode
+        case 'a':
+            file->open(file_name, std::ios::app);
+            break;
+        default:
+            return;
+    }
+}
+

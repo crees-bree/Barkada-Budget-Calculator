@@ -1,4 +1,19 @@
-Test Status: *empty*, *incomplete*, *not final*, *test pending*, *done*
+Test Status: *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
+
+# UPDATE VERSION 2.2
+
+- In profile.cpp
+  - Updated profile_selection() - *test pending*
+            add_profile() - *verify testing*
+            delete_profile() - *verify testing*
+            display_profiles() - *done*
+            search_profiles() - *verify testing*
+  - Added open_file() - *verify testing*
+          set_directory() - *done*
+
+To-Do:
+- Implement open_profiles()
+
 
 # UPDATE VERSION 2.1
 
