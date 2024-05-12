@@ -1,18 +1,39 @@
 Test Status: *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+# UPDATE VERSION 3.0
+
+- In person_mode.cpp  
+  - Added class Account  
+    - Added structures Date and Record  
+    - Added instance variables records vector and balance  
+    - Added private methods select_record_type() - *not final*  
+                            display_record() - *not final*  
+                            update_balance() - *empty*  
+    - Added public methods add_record() - *not final*  
+                           modify_record() - *empty*  
+                           display_records() - *empty*  
+  - Updated person_mode() - *incomplete*  
+  - Added get_local_time() - *verify testing*  
+- Updated person_mode.h  
+
+# UPDATE VERSION 2.3
+
+- In profile.cpp  
+  - Updated open_profile() - *verify testing*  
+
 # UPDATE VERSION 2.2
 
 - In profile.cpp
-  - Updated profile_selection() - *test pending*
-            add_profile() - *verify testing*
-            delete_profile() - *verify testing*
-            display_profiles() - *done*
-            search_profiles() - *verify testing*
-  - Added open_file() - *verify testing*
+  - Updated profile_selection() - *test pending*  
+            add_profile() - *verify testing*  
+            delete_profile() - *verify testing*  
+            display_profiles() - *done*  
+            search_profiles() - *verify testing*  
+  - Added open_file() - *verify testing*  
           set_directory() - *done*
 
 To-Do:
-- Implement open_profiles()
+- Implement open_profile()
 
 
 # UPDATE VERSION 2.1

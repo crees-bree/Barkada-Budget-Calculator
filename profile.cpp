@@ -60,7 +60,7 @@ void profile_selection(std::fstream* profile, char profile_mode, std::string* fi
                 delete_profile(profile_mode);
                 break;
             default:
-                std::cout << "Invalid input. Please try again.\n";
+                std::cout << "Invalid input. Please try again.\n"; // ERROR HANDLING (Invalid user input)
                 continue;
         }
     }
@@ -80,7 +80,11 @@ void add_profile(char profile_mode){
     std::cout << "Profile Name: ";
     std::cin >> profile_name;
 
-    // add functionality such that you can't give the new profile a name that already exists
+    // this is to prevent creating two profiles with same name
+    if (search_profile(profile_name, profile_mode) == true){
+        std::cout << "File already exists.\n";
+        return;
+    }
 
     // set name of directory
     directory = set_directory(profile_mode);
@@ -88,11 +92,12 @@ void add_profile(char profile_mode){
     // set name of file name
     file_name = directory + profile_name + ".txt";
 
+    // create file by opening it
     open_file(&file, file_name, 'w');
 
+    // close it if opened
     if (file.is_open() == true){
         file.close();
-        std::cout << "closed\n";
     }
 }
 
@@ -105,25 +110,31 @@ void open_profile(std::fstream* profile, char profile_mode){
     std::string profile_name;
     bool found;
 
-    while (true){
-        // asks user to enter profile name to open
-        std::cout << "Enter the profile name that you want to open:\n";
-        std::cin >> profile_name;
+    // asks user to enter profile name to open
+    std::cout << "Enter the profile name that you want to open:\n";
+    std::cin >> profile_name;
 
-        // search for profile name in list of profiles
-        //found = search_profile(profile_name);
-        found = true;
+    // search for profile name in list of profiles
+    //found = search_profile(profile_name);
+    found = true;
 
-        if (found){
-            // set name of directory
-            directory = set_directory(profile_mode);
+    if (found){
+        // set name of directory
+        directory = set_directory(profile_mode);
 
-            // set name of file name
-            file_name = directory + profile_name + ".txt";
-        } else {
-            // FILE NOT FOUND error
-            std::cout << "File not found. Please try again.\n";
-        }
+        // set name of file name
+        file_name = directory + profile_name + ".txt";
+
+        // open file
+        // the file will be opened in read mode since 
+        // BBC will read the contents of the file when first opened
+        open_file(profile, file_name, 'r'); 
+
+        // perhaps add some functionality to read the contents of a file
+
+        // NOTE: File is not closed. Proceed with caution.
+    } else {
+        std::cout << "File not found.\n"; // ERROR HANDLING (File is not found)
     }
 }
 
@@ -221,7 +232,7 @@ std::string set_directory(char profile_mode){
     } else if (profile_mode == 'g'){
         return "Profiles/Group/";
     } else {
-        return "";
+        return ""; // ERROR HANDLING (Invalid profile mode input)
     }
 }
 
@@ -241,7 +252,7 @@ void open_file(std::fstream* file, std::string file_name, char operation){
             file->open(file_name, std::ios::app);
             break;
         default:
-            return;
+            return; // ERROR HANDLING (Invalid profile mode input)
     }
 }
 
