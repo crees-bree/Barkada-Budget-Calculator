@@ -1,5 +1,8 @@
 # Barkada-Budget-Calculator
 
+For Code Editors:
+- Refer to `updates.md` for code updates.
+
 Main Functionalities:
 - The program can create 10 profiles at max
 
