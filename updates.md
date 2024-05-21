@@ -1,6 +1,102 @@
-Test Status: *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
+# UPDATES
 
-# UPDATE VERSION 3.0
+**Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
+
+## UDPATE VERSION 3.4 (May 21, 2024)
+
+- In account.cpp  
+  - Moved class declaration to account.h  
+  - Class methods defined outside class declaration  
+  - Moved necessary function declarations to account.h  
+  - In Account class  
+    - Added public method serialize() - *not final*
+    - Added public method deserialize() - *not final*
+  - Removed display_account_records()
+    - ERROR 001 didn't emerge, however it could be because the method was called on a singular object
+      and not an array of objects
+- In profile.cpp  
+  - **PROFILE SELECTION READY FOR TESTING**
+  - Removed open_file()  
+  - Moved necessary function declarations to profile.h
+  - Updated add_profile() - *verify testing*
+  - Updated open_profile() - *verify testing*
+  - Updated delete_profile() - *verify testing*
+- Added profile_test.cpp
+  - This is to allow contributors to freely unit test and play around with profile.cpp functionalities
+
+## UPDATE VERSION 3.3 (May 19, 2024)
+
+- In profile.cpp  
+  - Removed read_profile_file()  
+    - Previously sync_profile_file()  
+  - Removed save_profile()  
+  - Changed file extension from .bin to .dat  
+    - .dat is ideal for storing data unlike .bin  
+- In person_mode.cpp  
+  - Added init() - *incomplete*  
+  - Added save() - *empty*  
+
+To-Do:  
+- Continue working on init() in person_mode.cpp  
+- Add new methods serialize() and deserialize() in Account class in accounts.cpp  
+
+## UPDATE VERSION 3.2
+
+- In account.cpp  
+  - In Account class  
+    - Added initialize() public method - *not final*  
+    - Updated modify_record() public method - *test pending*  
+    - Updated select_record_type() private method - *verify testing*  
+    - Updated create_account() - *incomplete*  
+    - Moved private methods definition outside of function, specifically private methods  
+      select_record_type, display_record(), and update_balance()
+    - Updated display_records() public method - *not final*  
+
+  - COMPILATION ERROR (ERROR 001):  
+    - Error Details: Error occurred when compiling test.exe. Error message states it has something to do  
+                     with the Account public method display_records()   
+      - Compilation Command: g++ -o test test.cpp person_mode.cpp account.cpp
+      - It is important to point out that test.exe will compile without errors if the display_records()
+        method is not called in person_mode.cpp  
+      - It is important to point out that other methods of Account class won't result in a compilation  
+        error (e.g. acc_record() public method)  
+    - Error Message: test.cpp account.cpp person_mode.cpp  
+                     /usr/bin/ld: /tmp/ccvhLttZ.o: in function `person_mode()':  
+                     person_mode.cpp:(.text+0x2f): undefined reference to `Account::display_records()'  
+                     collect2: error: ld returned 1 exit status  
+    - Theoretical Fix: Find an alternative compilation method  
+    - Temporary Fix: added a new function in account.cpp named display_account_records()  
+      - It is still recommended to push through the theoretical fix  
+
+  - SEGMENTATION FAULT ERROR (ERROR 002): *FIXED*  
+    - Error Details: Segmentation fault occurred at account.cpp, lines 20 and 54  
+      - At line 20, a segmentation error was raised when modify_records() public method attempted to  
+        add a new record to records vector  
+      - At line 54, a segmentation error was raised when attempting to get user input for account_name  
+        private member using std::cin.getline()  
+    - Possible Cause: Private class members were not properly called by class methods  
+    - Theoretical Fix: Search on how to properly call class members  
+    - **FIX:** Declare necessary private members in account.h  
+
+  - Updated create_account() - *incomplete*  
+    - This is in response to ERROR 001  
+  - Added display_account_records() - *not final*  
+    - In response to ERROR 001  
+
+## UDPATE VERSION 3.1
+
+- In profile.cpp
+  - Changed profile file extension from .txt to .bin
+  - Added sync_profile_file() - *empty*
+          save_profile() - *empty*
+- Created account.cpp & account.h
+  - Transferred class Account to account.cpp   
+  - Transferred get_local_time() to account.cpp  
+
+To-Do:
+- Test add_record() 
+
+## UPDATE VERSION 3.0
 
 - In person_mode.cpp  
   - Added class Account  
@@ -16,12 +112,12 @@ Test Status: *empty*, *incomplete*, *not final*, *test pending*, *verify testing
   - Added get_local_time() - *verify testing*  
 - Updated person_mode.h  
 
-# UPDATE VERSION 2.3
+## UPDATE VERSION 2.3
 
 - In profile.cpp  
   - Updated open_profile() - *verify testing*  
 
-# UPDATE VERSION 2.2
+## UPDATE VERSION 2.2
 
 - In profile.cpp
   - Updated profile_selection() - *test pending*  
@@ -35,8 +131,7 @@ Test Status: *empty*, *incomplete*, *not final*, *test pending*, *verify testing
 To-Do:
 - Implement open_profile()
 
-
-# UPDATE VERSION 2.1
+## UPDATE VERSION 2.1
 
 - In profile.cpp
   - Updated profile_selection() - *test pending*  
@@ -49,7 +144,7 @@ To-Do:
 To-Do:
 - Ask help because i dunno what to do T_T
 
-# UPDATE VERSION 2.0
+## UPDATE VERSION 2.0
 
 - Added profile.cpp and profile.h
   - Added profile_selection() - *not final*  
@@ -67,8 +162,7 @@ To-Do:
 To-Do:
 - Test functions in profile.cpp
 
-
-# UPDAYE VERSION 1.0
+## UPDAYE VERSION 1.0
 
 - Created main.cpp
   - Added main() - *test pending*

@@ -1,8 +1,9 @@
 .gitignore
-c1.c
-main
 .vscode/
-main.c
 main.exe
 test.cpp
 test.exe
+test
+uwu.cpp
+uwu.dat
+uwu.exe

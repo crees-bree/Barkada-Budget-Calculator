@@ -10,8 +10,8 @@
 #include <stdbool.h>
 
 // custom header files
-#include "person_mode.h"
 #include "group_mode.h"
+#include "person_mode.h"
 
 int main(){
     int option;
@@ -40,3 +40,4 @@ int main(){
         }
     }
 }
+
