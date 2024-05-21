@@ -35,4 +35,4 @@ Barkada Budget Calculator (BBC) is a blah blah blah blah
 
 ### Group Mode Features and Functionalities:
 
-HI GUYS WHATS UP THIS IS IN VSCODE
+hi guys this is in vscode um will this work in github
