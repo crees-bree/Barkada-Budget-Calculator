@@ -34,7 +34,3 @@ Barkada Budget Calculator (BBC) is a blah blah blah blah
 - A user can create a maximum of 10 accounts
 
 ### Group Mode Features and Functionalities:
-> 3 cases:
-Case 1 - Bill Splitting
-Case 2 - Payment Checker
-Case 3 - Barkada Budget Limiter
