@@ -34,5 +34,3 @@ Barkada Budget Calculator (BBC) is a blah blah blah blah
 - A user can create a maximum of 10 accounts
 
 ### Group Mode Features and Functionalities:
-
-hi guys this is in vscode um will this work in github
