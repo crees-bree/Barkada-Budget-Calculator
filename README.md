@@ -38,5 +38,3 @@ Barkada Budget Calculator (BBC) is a blah blah blah blah
 - Case 1: Bill-Splitting Mode
 - Case 2: Group Payment Checker
 - Case 3: Group Budget Limiter
-
-test test;
