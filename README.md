@@ -35,4 +35,3 @@ Barkada Budget Calculator (BBC) is a blah blah blah blah
 
 ### Group Mode Features and Functionalities:
 
-niga
