@@ -1,4 +1,6 @@
 # Barkada-Budget-Calculator
+## Announcements
+Ayaw lang sa edit sa code kay ako pa siya iorganize para hapsay na inyong pagcode
 
 ## For Contributors:
 A few things to point out:  
