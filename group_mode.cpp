@@ -32,13 +32,18 @@ void save();
 void group_mode(){
     Member members[20];
     int members_size = 0;
+    std::cout<< "How many members are in your group?: "<< std::endl;
+    std::cin>> members_size;
 
     int option;
 
     
 }
 
-void case_one();
+void case_one(){
+    
+
+}
 void case_two();
 void case_three(){
     std::vector<Member> members;

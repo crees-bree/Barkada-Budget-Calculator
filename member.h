@@ -26,7 +26,6 @@ class Member{
         
         // CASE 1 STRUCTURE
         struct case_one{
-            std::vector<Expense> expenses;
             double expense;
             double bill;
             double change;
