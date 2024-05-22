@@ -41,8 +41,21 @@ void Member::edit_member(int case_type){
 
 }
 
-void Member::display_details(int case_type){
-
+void Member::display_details(int case_type, int members_size, Member members){
+    switch (case_type)
+    {
+    case 1:
+        for (int i = 0; i < members_size; i++)
+        {
+            std::cout<< "Name: ", members[i].name;              //not sure why mag error siya
+            std::cout<< "Bill: ", members[i].
+        }   
+        
+        break;
+    
+    default:
+        break;
+    }
 }
 
 // specific to case 1

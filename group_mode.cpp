@@ -49,11 +49,9 @@ void group_mode(){
         break;
     
     default:
+        std::cout << "Invalid input" << std::endl;
         break;
     }
-
-
-    
 }
 
 void case_one(int *members_size, Member *members){
@@ -64,8 +62,28 @@ void case_one(int *members_size, Member *members){
     {
     case 1:
         members[*members_size].create_member();
+        members[*members_size].initialize(1);
+
+        char verify;
+        std::cout<< "Are you sure you've entered the correct information? Enter Y if yes:" << std::endl;
+        std::cin >> verify;
+        if (verify != 'Y')
+        {
+            members[*members_size].create_member();
+            members[*members_size].initialize(1);   
+        }
+        (*members_size)++;
         break;
     
+    case 2: 
+        break;
+    
+    case 3:
+        break;
+    
+    case 4:
+
+        break;
     default:
         break;
     }
