@@ -44,3 +44,9 @@ void Member::edit_member(int case_type){
 void Member::display_details(int case_type){
 
 }
+
+// specific to case 1
+
+// specific to case 2
+
+// specific to case 3
