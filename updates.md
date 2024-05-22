@@ -2,6 +2,30 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.0 (May 22, 2024)
+
+- Created member.cpp and member.h
+  - Added Date structure
+  - Added class Member
+    - in private
+      - Added Transaction structure (storing data for all cases)
+        - Added structures for cases 1, 2, and 3
+          - Added expense structure
+      - Added name
+    - in public
+      - Added create_member() - *empty*
+      - Added iniitalize() - *empty*
+      - Added edit_member() - *empty*
+      - Added display_details() - *empty*
+      - Added serialize() - *empty*
+      - Added deserialize() - *empty*
+- In group_mode
+  - Updated group_mode() - *incomplete*
+  - Added case_one() - *empty*
+  - Added case_two() - *empty*
+  - Added case_three() - *empty*
+  - Added init() - *empty*
+  - Added save() - *empty*
 
 ## UDPATE VERSION 3.4 (May 21, 2024)
 
