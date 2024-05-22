@@ -20,7 +20,7 @@ void Member::initialize(int case_type){                 //changed case to case_t
     {
     case 1: {
         CaseOne caseoh;            //variable name i love caseoh
-        std::cout<< "Hey" << name << ", what is your expense?: " << std::endl;
+        std::cout<< "Hey " << name << ", what is your expense?: " << std::endl;
         std::cin >> caseoh.expense;
         std::cout<< "And how much money did you give?: " << std::endl;
         std::cin >> caseoh.bill;
@@ -29,7 +29,7 @@ void Member::initialize(int case_type){                 //changed case to case_t
     }
 
     case 2:
-        
+
     
     default:
         std::cout<< "Case Type Error!" << std::endl;
