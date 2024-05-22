@@ -57,6 +57,22 @@ void case_three(){
         std::cout << "2. Display All Member Budgets.\n";
         std::cout << "3. Add Expense for Member\n";
         std::cout << "4. Exit\n";
+        std::cin >> member_choice;
+
+        switch(member_choice){
+            case 1:
+                //add members code will also ask for initial budget
+            case 2:
+                //add expense logic
+                break;
+            case 3:
+                displayAllMembers(); //function to display all members with their budgets undefined pa FOR NOW
+            case 4:
+                return;
+            default:
+                std::cout << "Invalid choice. Please select again.\n";
+                break;
+        }
     }
 }
 
