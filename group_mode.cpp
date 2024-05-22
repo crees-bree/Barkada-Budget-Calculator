@@ -45,18 +45,24 @@ void case_one(){
 
 }
 void case_two();
-void case_three(){
-    std::vector<Member> members;
+
+void case_three(Member members[],int members_size){
     int member_choice;
-    std:string member_name;
+    std::string member_name;
+    double payment, bill;
+
+    std::cout << "Current Members and Their Budgets:\n";
+    for (int i = 0; i < members_size; ++i) {
+        //std::cout << i + 1 << ". " << members[i].name() << ": " << members[i].budget() << std::endl; di pako sure unsay variables sa name n budget
+        //std::cout << std::endl; newline
+    }
 
     while (true){
         std::cout << "\n Case 3 Menu:\n";
         std::cout << "Group Budget Limiter\n";
         std::cout << "1. Add Member.\n";
-        std::cout << "2. Display All Member Budgets.\n";
-        std::cout << "3. Add Expense for Member\n";
-        std::cout << "4. Exit\n";
+        std::cout << "2. Add Expense for Member\n";
+        std::cout << "3. Exit\n";
         std::cin >> member_choice;
 
         switch(member_choice){
@@ -66,8 +72,6 @@ void case_three(){
                 //add expense logic
                 break;
             case 3:
-                displayAllMembers(); //function to display all members with their budgets undefined pa FOR NOW
-            case 4:
                 return;
             default:
                 std::cout << "Invalid choice. Please select again.\n";
