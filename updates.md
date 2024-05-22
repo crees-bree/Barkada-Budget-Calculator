@@ -13,8 +13,8 @@
           - Added expense structure
       - Added name
     - in public
-      - Added create_member() - *empty*
-      - Added iniitalize() - *empty*
+      - Added create_member() - *not final*
+      - Added iniitalize() - *incomplete*
       - Added edit_member() - *empty*
       - Added display_details() - *empty*
       - Added serialize() - *empty*
@@ -23,7 +23,7 @@
   - Updated group_mode() - *incomplete*
   - Added case_one() - *empty*
   - Added case_two() - *empty*
-  - Added case_three() - *empty*
+  - Added case_three() - *incomplete*
   - Added init() - *empty*
   - Added save() - *empty*
 
