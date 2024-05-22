@@ -77,10 +77,10 @@ int profile_selection(char profile_mode, std::string* file_name){
 
 void add_profile(char profile_mode){
     // variables for file handling
-    std::ofstream file;
+    std::fstream file;
     std::string file_name;
     std::string directory;
-    
+
     // variables for profile management
     std::string profile_name;
     
@@ -165,7 +165,7 @@ void delete_profile(char profile_mode){
             // displays if file is successfully deleted
             std::cout << "\nFile removed succesfully.\n";
         } else {
-            perror("\nFile deletion failed."); // ERROR HANDLING (File cannot be deleted)
+            perror("File deletion failed"); // ERROR HANDLING (File cannot be deleted)
         }
     } else {
         std::cout << "\nFile not found.\n"; // ERROR HANDLING (File is not found)
@@ -230,5 +230,6 @@ std::string set_directory(char profile_mode){
         return ""; // ERROR HANDLING (Invalid profile mode input)
     }
 }
+
 
 

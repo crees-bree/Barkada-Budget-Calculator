@@ -23,4 +23,4 @@ void display_profiles(char);
 // returns true if file exists in directory, else return false
 bool search_profile(std::string profile_name, char profile_mode);
 
-#endif // PROFILE_H_
+#endif // PROFILE_H_ 

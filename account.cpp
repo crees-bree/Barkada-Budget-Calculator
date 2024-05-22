@@ -11,7 +11,7 @@
 #include "account.h"
 
 // AUXILIARY FUNCTIONS
-
+ 
 // get current day, month, and year
 // formatting: months as numbers, years as 4-digit numbers
 void get_local_date(int*, int*, int*);
@@ -240,6 +240,7 @@ void Account::display_records(){
             }
         }
 
+// writing
 void Account::serialize(std::string file_name){
     std::ofstream file;
 
@@ -253,7 +254,7 @@ void Account::serialize(std::string file_name){
     if ( file.fail() ){
         perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
         exit(EXIT_FAILURE);
-    }
+    } 
 
     account_name_buffer = account_name.c_str();
 
@@ -298,6 +299,7 @@ void Account::serialize(std::string file_name){
     file.close();
 }
 
+// reading
 void Account::deserialize(std::string file_name){
     std::ifstream file;
 

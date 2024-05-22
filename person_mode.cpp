@@ -17,7 +17,7 @@
 // reading and writing functions
 
 void init(std::string, Account[], int*);
-void save(std::string, Account[], int);
+void save(std::string, Account[], int*);
 
 // contains functionalities for person mode
 int person_mode(){
@@ -47,7 +47,7 @@ int person_mode(){
     return 0;
 }
 
-// initialize saved data from file
+// initialize saved data from file reading
 void init(std::string file_name, Account accounts[], int* accounts_size){
     std::ifstream file;
 
