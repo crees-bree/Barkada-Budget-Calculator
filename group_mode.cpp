@@ -6,20 +6,14 @@
 
 #include "member.h"
 
-// init
-// save
-//members array, size, limit to 20 members
-
-// group
-
-// menu for case 1, case 2, case 3, and default
-//case 1: split the change
-
-
 #define MODE 'g'
 
-// cases menus
+// CASES MENUS
+
+// menu prompt for cases selection
 void caseMenu();
+
+// case one menu prompt
 void case_oneMenu();
 
 
@@ -34,13 +28,17 @@ void case_oneMenu();
 void init();
 void save();
 
+// contains functionalities for group mode
 void group_mode(){
     Member members[20];
     int members_size = 0;               //I deleted members_size cin cos you can just ++ from create members to get total size
                                     
     int option;
+
+    // display cases selection menu prompt
     caseMenu();
-    std::cin>> option;
+
+    std::cin >> option;
     
     switch (option)
     {
@@ -56,8 +54,12 @@ void group_mode(){
 
 void case_one(int *members_size, Member *members){
     int caseOneTask;
+
+    // prompt menu
     case_oneMenu();
+
     std::cin >> caseOneTask;
+
     switch (caseOneTask)
     {
     case 1:
@@ -65,7 +67,7 @@ void case_one(int *members_size, Member *members){
         members[*members_size].initialize(1);
 
         char verify;
-        std::cout<< "Are you sure you've entered the correct information? Enter Y if yes:" << std::endl;
+        std::cout << "Are you sure you've entered the correct information? Enter Y if yes:" << std::endl;
         std::cin >> verify;
         if (verify != 'Y')
         {
@@ -91,19 +93,27 @@ void case_one(int *members_size, Member *members){
 
 
 void case_oneMenu(){
+    // - chan
+    // group budget limiter lagi ni
     std::cout << "\n Case 1 Menu:" << std::endl;
     std::cout << "Group Budget Limiter" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
     std::cout << "4. Display all member details" << std::endl;
+    // add sad option para maka exit ang user
 }
 
 void caseMenu(){
-    std::cout << "\n Case Menu:" << std::endl;
-    std::cout << "Case 1" << std::endl;             //maybe rename these into better describing unsa iya buhaton, case 1-3 lang sa cos i cant think
-    std::cout << "Case 2" << std::endl;
-    std::cout << "Case 3" << std::endl;
+    // - chan
+    // sa ato-ato ra nang case 1-3 sht
+    // ato idisplay sa user ang name sa case
+    // awa daw if goods ra ang suggested names below
+    std::cout << "\n Case Menu:\n" << std::endl;
+    std::cout << "1) Sukli sa Kinsa" << std::endl;             //maybe rename these into better describing unsa iya buhaton, case 1-3 lang sa cos i cant think
+    std::cout << "2) Utang Tracker" << std::endl;
+    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
+    // add sad option para maka exit ang user
 }
 
 
