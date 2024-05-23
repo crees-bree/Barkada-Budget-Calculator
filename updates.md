@@ -2,6 +2,18 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.1 (May 24, 2024)
+
+- In group_mode
+  - Added caseMenu() - *incomplete*
+  - Added case_oneMenu() - *incompete*
+  - Added displayMembers() - *incomplete*
+  - Updated group_mode() - *incomplete*
+  - Updated case_one() - *incomplete*
+- In member
+  - In Member class
+    - Updated display_details() - *incomplete*
+
 ## UPDATE VERSION 4.0 (May 22, 2024)
 
 - Created member.cpp and member.h

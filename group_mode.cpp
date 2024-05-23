@@ -8,7 +8,9 @@
 
 #define MODE 'g'
 
-// CASES MENUS
+
+// CASES MENU PROMPTS
+
 
 // menu prompt for cases selection
 void caseMenu();
@@ -17,13 +19,24 @@ void caseMenu();
 void case_oneMenu();
 
 
+// CASES MENU FUNCTIONS
+
+
+// contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
+
+// contains all functionalities for case 2
 void case_two();
+
+// contains all functionalities for case 3
 void case_three();
 
-void case_oneMenu();
 
-// reading and writing functions
+// AUXILIARY FUNCTIONS
+
+
+
+// READING AND WRITING FUNCTIONS
 
 void init();
 void save();
