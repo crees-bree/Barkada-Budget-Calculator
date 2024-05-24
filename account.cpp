@@ -535,6 +535,8 @@ void Account::deserialize(std::string file_name){
         delete [] note_buffer;
 
         records.push_back(buffer);
+
+        std::cout << buffer.category.size() << std::endl;
     }
 
     std::cout << "\nData is deserialized successfully.\n";
