@@ -15,8 +15,11 @@
     - Updated display_details() - *incomplete*
 - In account
   - In Account class
+    - Updated private method display_record() - *test pending*
+    - Updated private method update_balance() - *test pending*
     - Updated public method serialize() - *test pending*
     - Updated public method deserialize() - *test pending*
+    - Updated public method display_records() - *test pending*
 
 ## UPDATE VERSION 4.0 (May 22, 2024)
 

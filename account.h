@@ -45,7 +45,7 @@ class Account{
         void display_record(Record record);
 
         // updates balance after a record is added/removed
-        void update_balance(Record, int);
+        void update_balance(Record, bool);
 
     public:
         // initialize account object
