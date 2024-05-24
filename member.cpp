@@ -65,7 +65,7 @@ void Member::display_details(int case_type, int members_size, Member members){
             
             // just remember lang na only functions sulod sa class
             // can access private variables of that class
-            std::cout << "Name: ", members[i].name; // - chan: if nahan ka mag newline kay u can use << std::endl;              
+            std::cout << "Name: ", members.name; // - chan: if nahan ka mag newline kay u can use << std::endl;              
             std::cout << "Bill: ", members[i].
         }   
         

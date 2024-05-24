@@ -24,7 +24,7 @@
 namespace fs = std::filesystem;
 
 // DEFAULT FILE EXTENSION OF PROFILE FILE (DATA FILE)
-#define FILE_EXTENSION ".dat"
+#define FILE_EXTENSION ".txt"
 
 // PERSON AND GROUP MODE MACROS
 #define PERSON 'p'

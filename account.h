@@ -14,16 +14,6 @@ struct date{
     int year;
 };
 typedef struct date Date;
-/*
-class Person, Group bill, change
-gawas si change
-user can input bill for each record Or the user can auto input total bill for that person_mode
-payment sa gawas
-new structure put it into case 1
-
-case 2 - chad
-case 2 same thing with case 1
-*/
 
 // keeps track of expenses and income for each account in person mode
 class Account{
@@ -34,7 +24,6 @@ class Account{
             double amount; // stores the amount of money that will modify the account balance
             std::string category; // stores which category does the record belong to
             std::string note; // stores the note that the user might input
-            //bill
         }; 
         typedef struct record Record;
 

@@ -51,8 +51,18 @@ int person_mode(){
 void init(std::string file_name, Account accounts[], int* accounts_size){
     std::ifstream file;
 
+    file.open(file_name);
+
+    if (file.fail()){
+        perror("\nFile not found. Initialization failed."); // ERROR HANDLING (File not found)
+        exit(EXIT_FAILURE);
+    }
+    
+    // binary files
+    /*std::ifstream file;
+
     // open file for reading
-    file.open(file_name, std::ios::in | std::ios::binary);
+    file.open(file_name);
 
     if (file.fail()){
         perror("\nFile not found. Initialization failed."); // ERROR HANDLING (File not found)
@@ -71,7 +81,7 @@ void init(std::string file_name, Account accounts[], int* accounts_size){
     // read accounts array
     for (int i = 0; i < *accounts_size; ++i){
         accounts[*accounts_size].deserialize(file_name);
-    }
+    }*/
 }
 
 // save data to file
@@ -80,15 +90,15 @@ void save(std::string file_name, Account accounts[], int* accounts_size){
     
     // open file for writing
     // std::ios::trunc completely wipes out the contents of the file
-    file.open(file_name, std::ios::out | std::ios::binary | std::ios::trunc);
+    file.open(file_name, std::ios::binary | std::ios::trunc);
 
-    if (file.fail()){
+    if ( file.fail() ){
         perror("\nFile cannot be opened. Saving failed."); // ERROR HANDLING (File cannot be opened)
         exit(EXIT_FAILURE);
     }
 
     // write accounts array size
-    if (!(file.write((char *) accounts_size, sizeof(*accounts_size)))){
+    if ( !(file.write( (char *) accounts_size, sizeof(*accounts_size) ) ) ){
         perror("\nReading accounts size failed."); // ERROR HANDLING (File writing failed)
         file.close();
         exit(EXIT_FAILURE);
