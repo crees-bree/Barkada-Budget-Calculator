@@ -1,5 +1,7 @@
 // contains Member class functionalities
 
+// you can refer to Account class functions implementation as a reference hehe
+
 #include <iostream>
 #include <cstdio>
 #include <cstring>
