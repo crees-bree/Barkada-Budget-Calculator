@@ -169,8 +169,7 @@ void case_three(Member *members, int *members_size, int option) {
                 std::cout << "Invalid choice. Please select again.\n";
                 break;
         }
-    }
-}
+ }
 
 
 void init(){
