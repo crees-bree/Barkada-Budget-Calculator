@@ -1,6 +1,6 @@
 # Barkada-Budget-Calculator
 ## Announcements
-hehe
+- disregard tung ver4.1 branch para pwede ta makarevert ani if need na irevise completely ang code
 
 ## For Contributors:
 A few things to point out:  
@@ -10,6 +10,8 @@ A few things to point out:
     - (The tedious way that I recommend tbh):
       - Enter `g++ -o profile_test profile_test.cpp profile.cpp` on terminal to compile
       - Enter `.\profile_test` to run
+      - I recommend copy-pasting the compile command because it might delete your .cpp files
+        - e.g. `g++ -o profile_test.cpp profile.cpp` **THIS MIGHT DELETE `profile_test.cpp`. PROCEED WITH CAUTION**
     - (The easy way I don't really recommend since it can mess with your VSCode):
       - Open `tasks.json` under `.vscode` folder
       - Add `"profile.cpp",` in between `"${file}",` and `"-o",`, just like this:
