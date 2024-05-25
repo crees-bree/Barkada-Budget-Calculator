@@ -26,7 +26,7 @@ void edit_memberMenu();
 
 // contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
-void edit_member(int case_type, int members_size, Member members);
+void edit_member(int members_size, Member *members);
 
 // contains all functionalities for case 2
 void case_two();
@@ -93,7 +93,7 @@ void case_one(int *members_size, Member *members){
     }
     
     case 2: {
-
+        edit_member(*members_size, members);
         break;
     }
     
@@ -198,7 +198,7 @@ void save(){
 
 }
 
-void edit_member(int case_type, int members_size, Member *members){
+void edit_member(int members_size, Member *members){
     std::string editName;
     int editCase;
     std::cout << "What is the name of the member you wish to edit?: " << std::endl;
