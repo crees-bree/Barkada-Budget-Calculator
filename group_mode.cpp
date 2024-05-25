@@ -83,11 +83,12 @@ void case_one(int *members_size, Member *members){
         char verify;
         std::cout << "Are you sure you've entered the correct information? Enter Y if yes:" << std::endl;
         std::cin >> verify;
-        if (verify != 'Y')
-        {
+
+        do{
             members[*members_size].create_member();
             members[*members_size].initialize(1);   
-        }
+        }while(verify != 'Y' && verify != 'y');
+        
         (*members_size)++;
         break;
     }
