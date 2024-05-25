@@ -2,6 +2,37 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.2 (May 25, 2024)
+
+- In person_mode
+  - Added ProfileDetails structure
+    - This is to easily track general profile data such as accounts and total balance
+  - Added filter_by_date() - *not final*
+  - Added person_menu_prompt() - *incomplete*
+  - Added add_default_accounts() - *test pending*
+  - Add file_empty() - *test pending*
+  - Updated person_mode() - *incomplete*
+  - Updated init() - *test pending*
+  - Updated save() - *test pending*
+- In account
+  - In Account class
+    - Added private method add_to_records() - *test pending*
+    - Added public method auto_initialize() - *test pending*
+    - Added public method delete_record() - *empty*
+    - Added public method filter_by_date() - *test pending*
+- Added date.cpp and date.h
+  - I dedicated a separate file for my Date structure and its functionalities  
+    since I realized I'm going to have to do a lot of operations  
+    with it
+  - Unified all Date structure declarations into date
+  - Unified all get_local_date() definitions into date
+  - Updated get_current_date() - *test pending*
+    - Previously get_local_date()
+  - In Date structure
+    - Added operator overloading function for <= - *test pending*
+    - Added operator overloading function for >= - *test pending*
+    - Added operator overloading function for == - *test pending*
+
 ## UPDATE VERSION 4.1 (May 24, 2024)
 
 - In group_mode
