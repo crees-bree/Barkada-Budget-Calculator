@@ -17,6 +17,8 @@
 
 #define MODE 'p'
 
+#define CURRENCY "Php"
+
 // PROFILE DETAILS STRUCTURE
 struct profile_details{
     Account accounts[10]; // only a maximum of 10 accounts can be created
@@ -87,6 +89,14 @@ int person_mode(){
             case 1:
             case 2:
             case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
         }
     }
 
@@ -167,7 +177,7 @@ void person_menu_prompt(ProfileDetails* details){
     // display menu title
     std::cout << "=====PERSON MODE=====\n\n";
     printf("Today is %s, %s %i %i\n", current_date.day_name, current_date.month_name, current_date.day, current_date.year);
-    std::cout << "Total Balance: " << details->total_balance << std::endl;
+    std::cout << "Total Balance: " + CURRENCY + " " << details->total_balance << std::endl;
 
     // display today's records for all accounts
     std::cout << "\nToday's Transactions:\n";
@@ -183,17 +193,17 @@ void person_menu_prompt(ProfileDetails* details){
     std::cout << "------RECORDS-----\n";
     std::cout << "1) Add a record\n";
     std::cout << "2) Modify a record\n";
-    std::cout << ") Delete a record\n";
-    std::cout << ") Display records by account\n";
-    std::cout << ") Display records by date\n";
-    std::cout << ") Display records by record type\n";
-    std::cout << ") Display records by specified amount\n";
-    std::cout << ") Display records by category\n";
+    std::cout << "3) Delete a record\n";
+    std::cout << "4) Display records by account\n";
+    std::cout << "5) Display records by date\n";
+    std::cout << "6) Display records by record type\n";
+    std::cout << "7) Display records by specified amount\n";
+    std::cout << "8) Display records by category\n";
     std::cout << "-----ACCOUNTS-----\n";
-    std::cout << ") Add an account\n";
-    std::cout << ") Modify an account\n";
-    std::cout << ") Delete an account\n";
-    std::cout << "0) Exit\n";
+    std::cout << "9) Add an account\n";
+    std::cout << "10) Modify an account\n";
+    std::cout << "11) Delete an account\n";
+    std::cout << "0) Exit\n\n";
 }
 
 void filter_by_date(ProfileDetails* details, Date date){

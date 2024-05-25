@@ -12,6 +12,8 @@
 
 #include "member.h"
 
+#define CURRENCY "Php"
+
 void Member::create_member(){
     std::cout<< "What is the name of the new member?: " << std::endl;
     std::cin >> name;
@@ -47,7 +49,8 @@ void Member::initialize(int case_type){
                 std::cin >> membah.budget;
         }while(verify != 'Y' && verify != 'y');
 
-        std::cout << "Budget of P" << membah.budget << " allocated to " << name << "." << std::endl;
+        // - chan: ako gi ilisdan ang P nimo into Php hehe
+        std::cout << "Budget of " << CURRENCY << " " << membah.budget << " allocated to " << name << "." << std::endl;
         
         break;
     
