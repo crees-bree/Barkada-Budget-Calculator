@@ -1,6 +1,6 @@
 # Barkada-Budget-Calculator
 ## Announcements
-hehe
+nag-add kog in_dev branch para try2 lang, pero pwede ra kaayo ninyo ilahos og commit sa main branch hehe
 
 ## For Contributors:
 A few things to point out:  
