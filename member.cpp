@@ -2,6 +2,8 @@
 
 // you can refer to Account class functions implementation as a reference hehe
 
+// FORMAT: details.case#.whatever_u_wanna_access
+
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -71,6 +73,7 @@ void Member::display_details(int case_type, int members_size){
         {
             // - chan
             // nachange na nako chad hehe mb
+            // awa sa pinakataas ang formatting para ma guide-an
             std::cout << "Name: " << name << std::endl; 
             std::cout << "Bill: " << details.case1.bill << std::endl;
         }   
