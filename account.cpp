@@ -14,6 +14,7 @@
 #define TRANSFER 't'
 
 #define DISPLAY_RECORD_COUNT 20
+#define CURRENCY "Php"
 
 // PRIVATE METHODS DEFINITIONS
 
@@ -90,7 +91,7 @@ void Account::display_record(Record record){
     std::cout << "Record Type: " << record_type_str << std::endl;
 
     // display amount in two decimal places
-    printf("Amount: %.2lf\n", record.amount);
+    printf("Amount: %s %.2lf\n", CURRENCY, record.amount);
 
     // display category
     std::cout << "Category: " << record.category << std::endl;

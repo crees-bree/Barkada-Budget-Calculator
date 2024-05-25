@@ -48,12 +48,15 @@ class Member{
         };
         typedef struct case_three CaseThree;
 
-        struct transaction{ 
+        struct memberdetails{ 
             CaseOne case1;
             CaseTwo case2;
             CaseThree case3;
         };
-        typedef struct transaction Transaction;
+        typedef struct memberdetails MemberDetails;
+
+        // store necessary details of member object
+        MemberDetails details;
 
         // stores the name of the member
         std::string name;
