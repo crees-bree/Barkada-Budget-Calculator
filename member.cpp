@@ -70,22 +70,9 @@ void Member::display_details(int case_type, int members_size){
         for (int i = 0; i < members_size; i++)
         {
             // - chan
-            // u can't use this way of printing
-            // kay this isn't a general function
-            // it's a function attached to the member variable (or object)s
-
-            // so like what u can only do in this function is print the details of this member ra 
-            // (like only for one member, which is kani)
-            // no need to pass a Members array and iterate
-
-            // also diay since naka private man ang name
-            // kay u can't also do this using a general function
-            // hence why this function exists, para maka access siya sa name
-            
-            // just remember lang na only functions sulod sa class
-            // can access private variables of that class
+            // nachange na nako chad hehe mb
             std::cout << "Name: " << name << std::endl; 
-            std::cout << "Bill: ",  << std::endl;
+            std::cout << "Bill: " << details.case1.bill << std::endl;
         }   
         
         break;
