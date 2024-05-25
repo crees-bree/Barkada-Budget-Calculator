@@ -112,7 +112,22 @@ void Member::display_details(int case_type, int members_size){
             std::cout << "Expenses: " << details.case1.expense << std::endl;
             std::cout << "Change: " << details.case1.change << std::endl;
         }   
-        
+        break;
+    case 2:
+        break;
+    case 3:
+        for (int i = 0; i < members_size; i++)
+        {
+            if(details.case3.budget >= 0){
+                std::cout << "Name: " << name << std::endl; 
+                std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
+            }
+            else{
+                std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
+                std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
+                std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
+            }
+        }   
         break;
     
     default:

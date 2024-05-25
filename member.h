@@ -21,6 +21,7 @@ class Member{
         struct expense{
             double expense_payment;
             double expense_bill;
+            std::string note;
         };
         typedef struct expense Expense;
         

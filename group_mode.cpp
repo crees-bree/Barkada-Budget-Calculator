@@ -157,7 +157,7 @@ void case_three(Member *members, int *members_size, int option) {
     while (true) {
         members[*members_size].display_details(option, *members_size);
         std::cout << "\nCase 3 Menu:\n";
-        std::cout << "Group Budget Limiter\n";
+        std::cout << "Gasto Mo Ang Limit!\n";
         std::cout << "1. Add Member.\n";
         std::cout << "2. Add Expense for Member\n";
         std::cout << "3. Exit\n";
