@@ -34,8 +34,6 @@ void case_three();
 
 // AUXILIARY FUNCTIONS
 
-
-
 // READING AND WRITING FUNCTIONS
 
 void init();
@@ -133,25 +131,37 @@ void caseMenu(){
 
 void case_two();
 
-void case_three(Member members[],int members_size, int option){
+void case_three(Member *members, int *members_size, int option) {
     int member_choice;
-    std::string member_name;
+    std::string name;
     double payment, bill;
 
-    while (true){
-        displayMembers(option);
-        std::cout << "\n Case 3 Menu:\n";
+    while (true) {
+        members[*members_size].display_details(option, *members_size, *members);
+        std::cout << "\nCase 3 Menu:\n";
         std::cout << "Group Budget Limiter\n";
         std::cout << "1. Add Member.\n";
         std::cout << "2. Add Expense for Member\n";
         std::cout << "3. Exit\n";
         std::cin >> member_choice;
 
-        switch(member_choice){
+        switch (member_choice) {
             case 1:
-                //add member logic
+                members[*members_size].create_member();
+                members[*members_size].initialize(3);
+
+                char verify;
+                    do{
+                    std::cout << "Are you sure you've entered the correct information? Enter Y if yes: ";
+                    std::cin >> verify;
+                        members[*members_size].create_member();
+                        members[*members_size].initialize(3);   
+                    }while(verify != 'Y' && verify != 'y')
+                }   
+                (*members_size)++;
+                break;
             case 2:
-                //add expense logic
+                // Add expense logic
                 break;
             case 3:
                 return;
@@ -162,22 +172,7 @@ void case_three(Member members[],int members_size, int option){
     }
 }
 
-void displayMembers(Member members[],int members_size, int option){
-    switch(option)
-    case 1:
 
-    case 2:
-
-    case 3:
-        std::cout << "Current Members and Their Budgets:\n";
-        for (int i = 0; i < members_size; ++i) {
-            //std::cout << i + 1 << ". " << members[i].name << ": " << members[i].budget << std::endl;
-            //std::cout << std::endl; newline
-        }
-}
-
-
-}
 void init(){
 
 }
