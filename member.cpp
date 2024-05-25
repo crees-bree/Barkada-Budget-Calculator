@@ -39,7 +39,7 @@ void Member::initialize(int case_type){
 
     case 2:
 
-    case 3:
+    case 3:{
         CaseThree membah;
         char verify;
         std::cout << "How much is the budget you will allocate to " << name << "?" << std::endl;
@@ -55,6 +55,7 @@ void Member::initialize(int case_type){
         std::cout << "Budget of " << CURRENCY << " " << membah.budget << " allocated to " << name << "." << std::endl;
         
         break;
+    }
     
     default:
         std::cout<< "Case Type Error!" << std::endl;
@@ -62,8 +63,19 @@ void Member::initialize(int case_type){
     }
 }
 
-void Member::edit_member(int case_type){
-
+void Member::edit_member(int case_type, int members_size){
+    std::string editName;
+        std::cout << "What is the name of the member you wish to edit?: " << std::endl;
+        std::cin >> editName;
+        for (int i = 0; i < members_size; i++)
+        {
+            if (name == editName)
+            {
+                /* code */
+            }
+            
+        }
+        
 }
 
 void Member::display_details(int case_type, int members_size){
@@ -76,6 +88,8 @@ void Member::display_details(int case_type, int members_size){
             // awa sa pinakataas ang formatting para ma guide-an
             std::cout << "Name: " << name << std::endl; 
             std::cout << "Bill: " << details.case1.bill << std::endl;
+            std::cout << "Expenses: " << details.case1.expense << std::endl;
+            std::cout << "Change: " << details.case1.change << std::endl;
         }   
         break;
     case 2:

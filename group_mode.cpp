@@ -73,7 +73,7 @@ void case_one(int *members_size, Member *members){
 
     switch (caseOneTask)
     {
-    case 1:
+    case 1:{
         members[*members_size].create_member();
         members[*members_size].initialize(1);
 
@@ -87,16 +87,22 @@ void case_one(int *members_size, Member *members){
         }
         (*members_size)++;
         break;
+    }
     
-    case 2: 
+    case 2: {
+        members[*members_size].edit_member(1, *members_size);
         break;
+    }
     
     case 3:
         break;
     
     case 4:
-
+        members[*members_size].display_details(1, *members_size);
         break;
+
+    case 5: return;
+
     default:
         break;
     }
@@ -112,7 +118,9 @@ void case_oneMenu(){
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
     std::cout << "4. Display all member details" << std::endl;
+    std::cout << "5. Exit" << std::endl;
     // add sad option para maka exit ang user
+    // done -conx
 }
 
 void caseMenu(){
