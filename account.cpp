@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
-#include <ctime>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -15,12 +14,6 @@
 #define TRANSFER 't'
 
 #define DISPLAY_RECORD_COUNT 20
-
-// AUXILIARY FUNCTIONS
- 
-// get current day, month, and year
-// formatting: months as numbers, years as 4-digit numbers
-void get_local_date(int*, int*, int*);
 
 // PRIVATE METHODS DEFINITIONS
 
@@ -49,6 +42,23 @@ char Account::select_record_type(){
             default:
                 std::cout << "Invalid input. Please try again\n"; // ERROR HANDLING (Invalid user input)
                 continue;
+        }
+    }
+}
+
+void Account::add_to_records(Record record){
+    std::vector<Record>::iterator iter;
+
+    // insert record according to how new it is
+    for (iter = records.begin(); iter != records.end(); ++iter){
+        // if record date is younger than record in vector
+        // insert the record before the record in vector
+        if (record.date >= iter->date){
+            records.insert(iter - 1, record);
+            break;
+        } // add record at end of vector if we reach the end
+        else if (iter == records.end() - 1){
+            records.push_back(record);
         }
     }
 }
@@ -113,6 +123,11 @@ void Account::initialize(){
     balance = 0;
 }
 
+void Account::auto_initialize(std::string acc_name){
+    account_name = acc_name;
+    balance = 0;
+}
+
 void Account::add_record(){
     Record record;
     int selection;
@@ -120,7 +135,7 @@ void Account::add_record(){
     bool loop = true;
     
     // set date automatically to current date
-    get_local_date(&record.date.day, &record.date.month, &record.date.year);
+    record.date = get_current_date();
 
     // ask user to select a record type
     record.record_type = select_record_type();
@@ -224,7 +239,7 @@ void Account::modify_record(Record record, bool add_record = false){
                 if (exit == 'Y'){
                     if (add_record){
                         // if called from add_record(), add record to records vector
-                        records.push_back(new_record);
+                        add_to_records(new_record);
 
                         inverse_update = true;
                     } else {
@@ -278,40 +293,6 @@ void Account::display_records(){
 
 // writing :D
 void Account::serialize(std::string file_name){
-    /*std::ofstream file;
-
-    // std::ios::trunc completely wipes out the contents of the file
-    file.open(file_name, std::ios::trunc);
-
-    if ( file.fail() ){
-        perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
-        exit(EXIT_FAILURE);
-    } 
-
-    // serialize account name;
-    file << account_name << std::endl;
-
-    // serialize balance ands records size
-    file << balance << " " << records.size() << std::endl;
-
-    // serialize records vector
-    for (int i = 0; i < records.size(); ++i){
-        // serialize date
-        file << records[i].date.day << " " << records[i].date.month << " " << records[i].date.year;
-        
-        // serialize record type and amount
-        file << records[i].record_type << " " << records[i].amount;
-
-        // serialize category
-        file << records[i].category << std::endl;
-
-        // serialize note
-        file << records[i].note << std::endl;
-    }
-
-    std::cout << "\nData is serialized successfully.\n";
-
-    file.close();*/
     std::ofstream file;
 
     account_name = "paul";
@@ -580,21 +561,20 @@ void Account::deserialize(std::string file_name){
     file.close();
 }
 
+void Account::filter_by_date(Date date){s
+    for (auto record : records){
+        if (date == record.date){
+            display_record(record);
+        }
+    }
+}
+
 // AUXILIARY FUNCTION DEFINITIONS
 
 void create_account(Account accounts[], int* accounts_size){
     accounts[*accounts_size].initialize();
-    accounts[*accounts_size].add_record();
+    accounts[*accounts_size].add_record(); // may not be included
     (*accounts_size)++;
 }
 
-void get_local_date(int* day, int* month, int* year){
-    time_t now = time(0);
-
-    tm* date = localtime(&now);
-
-    *day = date->tm_mday;
-    *month = 1 + date->tm_mon;
-    *year = 1900 + date->tm_year;
-}
 

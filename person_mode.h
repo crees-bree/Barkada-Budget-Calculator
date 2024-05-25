@@ -3,6 +3,7 @@
 
 #include <iostream>
 
-extern int person_mode();
+// contains functionalities for person mode
+int person_mode();
 
 #endif // PERSON_MODE_H_

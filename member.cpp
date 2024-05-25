@@ -35,6 +35,21 @@ void Member::initialize(int case_type){
 
     case 2:
 
+    case 3:
+        CaseThree membah;
+        char verify;
+        std::cout << "How much is the budget you will allocate to " << name << "?" << std::endl;
+        std::cin >> membah.budget;
+
+        do{
+            std::cout << "Are you sure with this budget? Enter Y if yes: ";
+            std::cin >> verify;
+                std::cin >> membah.budget;
+        }while(verify != 'Y' && verify != 'y');
+
+        std::cout << "Budget of P" << membah.budget << " allocated to " << name << "." << std::endl;
+        
+        break;
     
     default:
         std::cout<< "Case Type Error!" << std::endl;

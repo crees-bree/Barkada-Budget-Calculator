@@ -48,7 +48,7 @@ class Member{
         };
         typedef struct case_three CaseThree;
 
-        struct transaction{
+        struct transaction{ 
             CaseOne case1;
             CaseTwo case2;
             CaseThree case3;

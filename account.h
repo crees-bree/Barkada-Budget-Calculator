@@ -7,14 +7,6 @@
 
 #include <vector>
 
-// DATE STRUCTURE
-struct date{
-    int day;
-    int month;
-    int year;
-};
-typedef struct date Date;
-
 // keeps track of expenses and income for each account in person mode
 class Account{
     private:
@@ -33,13 +25,15 @@ class Account{
         // account balance
         double balance;
 
-        // person bill (for group mode)
-
         // using C++'s built-in vector to store records
         std::vector<Record> records;
 
         // allows the user to pick record type (income, expense, transfer)
         char select_record_type();
+
+        // adds a record to the records vector
+        // automatically sorts it according to recency
+        void add_to_records(Record record);
 
         // display the contents of a singular record
         void display_record(Record record);
@@ -50,6 +44,12 @@ class Account{
     public:
         // initialize account object
         void initialize();
+
+        // automatically initialize account object
+        // doesn't require user input
+        void auto_initialize(std::string);
+
+        // display account name and balance
         
         // adds a new record to the records[] array
         void add_record();
@@ -60,11 +60,21 @@ class Account{
         // display records (perhaps list 20 recent records)
         void display_records();
 
+        void delete_record();
+
+        // READING AND WRITING METHODS
+
         // convert object data to 
         void serialize(std::string);
 
         // convert to object data
         void deserialize(std::string);
+
+        // FILTERING METHODS
+
+        // display only records with specified date
+        void filter_by_date(Date);
+
 };
 
 // creates a new account
