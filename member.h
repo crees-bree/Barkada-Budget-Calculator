@@ -70,12 +70,18 @@ class Member{
         // initializes depending on what case the user is in
         void initialize(int);
 
-        // edit member details
-        void edit_member(int, int);
+
 
         // display member details
         void display_details(int, int);
+
+        //to iterate which member you want to edit
+        bool check_memName(std::string);  
         
+        //This is for accessing the values inside the class so we can edit
+        void setCase1(int);
+
+
         // CASE 1
 
         // CASE 2

@@ -24,15 +24,14 @@ void Member::create_member(){
 void Member::initialize(int case_type){               
     switch (case_type){
     case 1: {
-        CaseOne caseoh;            //variable name i love caseoh
         std::cout << "Hey " << name << ", what is your expense?: " << std::endl;
-        std::cin >> caseoh.expense;
+        std::cin >> details.case1.expense;
 
         std::cout << "And how much money did you give?: " << std::endl;
-        std::cin >> caseoh.bill;
+        std::cin >> details.case1.bill;
 
         // calculate user change
-        caseoh.change = caseoh.bill - caseoh.expense;
+        details.case1.change = details.case1.bill - details.case1.expense;
 
         break;
     }
@@ -63,19 +62,41 @@ void Member::initialize(int case_type){
     }
 }
 
-void Member::edit_member(int case_type, int members_size){
-    std::string editName;
-        std::cout << "What is the name of the member you wish to edit?: " << std::endl;
-        std::cin >> editName;
-        for (int i = 0; i < members_size; i++)
-        {
-            if (name == editName)
+
+bool Member::check_memName(std::string editName){
+    int index;
+    if (editName == name)
+    {
+        return true;
+    }else return false;
+}
+
+void Member::setCase1(int editCase){
+    switch (editCase)
             {
-                /* code */
+            case 1:{
+                std::cout << "Enter the new name: ";
+                std::cin >> name;
+                break;
             }
-            
-        }
-        
+
+            case 2:{
+                std::cout << "Enter the new bill: ";
+                std::cin >> details.case1.bill;
+                break;
+            }
+
+            case 3:{
+                std::cout << "Enter the new expense: ";
+                std::cin >> details.case1.expense;
+                details.case1.change = details.case1.bill - details.case1.expense;
+                break;
+            }
+
+            case 4: return;
+            default:
+                break;
+            }
 }
 
 void Member::display_details(int case_type, int members_size){

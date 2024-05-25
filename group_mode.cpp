@@ -18,12 +18,15 @@ void caseMenu();
 // case one menu prompt
 void case_oneMenu();
 
+void edit_memberMenu();
+
 
 // CASES MENU FUNCTIONS
 
 
 // contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
+void edit_member(int case_type, int members_size, Member members);
 
 // contains all functionalities for case 2
 void case_two();
@@ -90,7 +93,7 @@ void case_one(int *members_size, Member *members){
     }
     
     case 2: {
-        members[*members_size].edit_member(1, *members_size);
+
         break;
     }
     
@@ -135,6 +138,13 @@ void caseMenu(){
     // add sad option para maka exit ang user
 }
 
+void edit_memberMenu(){
+    std::cout << "What do you want to edit?: " << std::endl;
+    std::cout << "1. Name: " << std::endl;
+    std::cout << "2. Bill: " << std::endl;
+    std::cout << "3. Expense:  " << std::endl;
+    std::cout << "4. Exit" << std::endl;
+}
 
 
 void case_two();
@@ -180,12 +190,34 @@ void case_three(Member *members, int *members_size, int option) {
         }
     }
 }
-
-
 void init(){
 
 }
 
 void save(){
+
+}
+
+void edit_member(int case_type, int members_size, Member *members){
+    std::string editName;
+    int editCase;
+    std::cout << "What is the name of the member you wish to edit?: " << std::endl;
+    std::cin >> editName;
+    for (int i = 0; i < members_size; i++)
+    {
+        if(members[i].check_memName(editName))
+        {
+            while(true) //continue until exit
+            {
+                edit_memberMenu();
+                std::cin >> editCase;
+                members[i].setCase1(editCase);
+                if (editCase == 4)
+                {
+                    break;
+                } 
+            }
+        }
+    }
 
 }
