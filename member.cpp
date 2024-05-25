@@ -82,7 +82,7 @@ void Member::display_details(int case_type, int members_size){
             // just remember lang na only functions sulod sa class
             // can access private variables of that class
             std::cout << "Name: " << name << std::endl; 
-            std::cout << "Bill: ",  << std::endl;
+            std::cout << "Bill: ",  transaction.case1.bill << std::endl;
         }   
         
         break;
