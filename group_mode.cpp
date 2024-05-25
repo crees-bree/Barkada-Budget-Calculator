@@ -156,9 +156,10 @@ void case_three(Member *members, int *members_size, int option) {
                     std::cin >> verify;
                         members[*members_size].create_member();
                         members[*members_size].initialize(3);   
-                    }while(verify != 'Y' && verify != 'y')
-                }   
+                    }while(verify != 'Y' && verify != 'y'); 
+
                 (*members_size)++;
+
                 break;
             case 2:
                 // Add expense logic
@@ -169,7 +170,8 @@ void case_three(Member *members, int *members_size, int option) {
                 std::cout << "Invalid choice. Please select again.\n";
                 break;
         }
- }
+    }
+}
 
 
 void init(){
