@@ -27,9 +27,11 @@ void edit_memberMenu();
 // contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
 void edit_member(int members_size, Member *members);
+void removeMem(int *members_size, Member *members);
 
 // contains all functionalities for case 2
 void case_two();
+
 
 // contains all functionalities for case 3
 void case_three();
@@ -98,6 +100,7 @@ void case_one(int *members_size, Member *members){
     }
     
     case 3:
+        
         break;
     
     case 4:
@@ -111,6 +114,22 @@ void case_one(int *members_size, Member *members){
     }
 }
 
+void removeMem(int *members_size, Member *members){
+    std::string removeName;
+    std::cout << "What is the name of the member you want to remove?: " << std::endl;
+    std::cin >> removeName;
+    for (int i = 0; i < *members_size; i++)
+    {
+        if(members[i].check_memName(removeName))
+        {
+            for (int j = i; i < *members_size - 1; j++) 
+            {
+                members[j] = members[j + 1];
+            }
+        }
+    }
+    (*members_size)--;
+}
 
 void case_oneMenu(){
     // - chan
