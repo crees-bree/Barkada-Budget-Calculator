@@ -28,7 +28,15 @@ A few things to point out:
 
 
 ## Description
-Barkada Budget Calculator (BBC) is a blah blah blah blah
+**Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** that aids in easy money tracking and management.
+This program is highly usable by friend groups with BBC's Group Mode, which allows friend groups to keep track of their respective changes
+when going out and keep track of your friends who didn't pay you back. The great thing about BBC is that it is not only highly usable
+by friend groups, it is also highly usable by people who just want to keep track of how much money is going in and out of their wallets
+thanks to BBC's Person Mode, wherein you can keep track of your incomes and expenses complete with dates, categories, and even some
+personal notes such as *"Income I received from daddy"* or _"Spent just a little on valo skins"_. And BBC can be used by students, families, and
+small companies in ensuring that no one overspends.  
+As you can see, BBC is multi-featured and can be used anytime and anywhere by anyone, that's why you should rate us 5 stars on Google Play Store 
+and App Store and subscribe to our YouTube channel (we are reaching 1 subscribers =>)
 
 ## Features
 ### Main Functionalities:
