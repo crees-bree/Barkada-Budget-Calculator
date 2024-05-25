@@ -11,16 +11,25 @@
   - Added filter_by_date() - *not final*
   - Added person_menu_prompt() - *incomplete*
   - Added add_default_accounts() - *test pending*
-  - Add file_empty() - *test pending*
+  - Added file_empty() - *test pending*
+  - Added add_account_record() - *test pending*
+  - Added modify_account_record() - *empty*
+  - Added delete_account_record() - *empty*
+  - Added display_records_by_account() - *test pending*
+  - Added display_records_by_date() - *test pending*
+  - Added select_account() - *test pending*
   - Updated person_mode() - *incomplete*
   - Updated init() - *test pending*
   - Updated save() - *test pending*
+  - Added default currency (Php)
 - In account
   - In Account class
     - Added private method add_to_records() - *test pending*
     - Added public method auto_initialize() - *test pending*
     - Added public method delete_record() - *empty*
     - Added public method filter_by_date() - *test pending*
+    - Added public method get_account_name() - *test pending*
+  - Added default currency (Php)
 - Added date.cpp and date.h
   - I dedicated a separate file for my Date structure and its functionalities  
     since I realized I'm going to have to do a lot of operations  
@@ -33,6 +42,22 @@
     - Added operator overloading function for <= - *test pending*
     - Added operator overloading function for >= - *test pending*
     - Added operator overloading function for == - *test pending*
+- In group_mode
+  - Added edit_member() - *incomplete*
+  - Added edit_memberMenu() - *test pending*
+  - Updated case_oneMenu() - *test pending*
+  - Updated case_one() - *incomplete*
+    - i think
+- In member
+  - Added default currency (Php)
+  - Added check_memName() - *test pending*
+  - Added setCase1() - *test pending*
+  - Updated initialize() - *incomplete*
+    - i think
+
+To-Do:
+- Test everything you guys just added
+  - This is necessary before adding more sht
 
 ## UPDATE VERSION 4.1 (May 24, 2024)
 

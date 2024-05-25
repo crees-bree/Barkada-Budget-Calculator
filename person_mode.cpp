@@ -27,6 +27,19 @@ struct profile_details{
 };
 typedef struct profile_details ProfileDetails;
 
+// MENU FUNCTIONS
+
+// adds new record
+void add_account_record(ProfileDetails*);
+// modify a record
+void modify_account_record(ProfileDetails*);
+// delete a record
+void delete_account_record(ProfileDetails*);
+// display records by account
+void display_records_by_account(ProfileDetails);
+// display records by date
+void display_records_by_date(ProfileDetails);
+
 // READING AND WRITING FUNCTIONS
 
 // initialize saved data from file reading
@@ -37,7 +50,7 @@ void save(std::string, ProfileDetails*);
 // FILTER FUNCTIONS
 
 // display by date of transaction for all accounts
-void filter_by_date(ProfileDetails*, Date);
+void filter_by_date(ProfileDetails, Date);
 
 // AUXILIARY FUNCTIONS
 
@@ -45,6 +58,8 @@ void filter_by_date(ProfileDetails*, Date);
 void person_menu_prompt(ProfileDetails* details);
 // add default accounts to accounts array
 void add_default_accounts(ProfileDetails*);
+// select account to use
+int select_account(ProfileDetails);
 // returns true if file is empty, else return false
 bool file_empty(std::ifstream&);
 
@@ -55,6 +70,7 @@ int person_mode(){
     details.total_balance
 
     int open, empty, option;
+    char c_option;
     bool loop = true;
 
     std::fstream profile;
@@ -85,8 +101,18 @@ int person_mode(){
         cin >> option;
 
         switch(option){
+            // exit menu
             case 0:
+                std::cout << "Are you sure you want to exit? (Enter Y to confirm)\n";
+                cin >> c_option;
+                if (c_option == 'Y'){
+                    loop = false;
+                }
+                break;
+            // add a record
             case 1:
+                add_account_record(&details);
+                break;
             case 2:
             case 3:
             case 4:
@@ -107,6 +133,42 @@ int person_mode(){
     return 0;
 }
 
+void add_account_record(ProfileDetails* details){
+    int index;
+
+    index = select_account(*details);
+
+    if (index == -1){
+        std::cout << "\nAccount not found.\n";
+        return;
+    }
+
+    details.accounts[index].add_record();
+}
+
+void display_records_by_account(ProfileDetails details){
+    int index;
+
+    index = select_account(*details);
+
+    if (index == -1){
+        std::cout << "\nAccount not found.\n";
+        return;
+    }
+
+    details.accounts[index].display_records();
+}
+
+void display_records_by_date(ProfileDetails details){
+    Date date;
+
+    std::cout << "Enter date (mm dd yyyy): ";
+    std::cin >> date.month;
+    std::cin >> date.day;
+    std::cin >> date.year;
+
+    filter_by_date(details, date);
+}
 
 int init(std::string file_name, ProfileDetails* details){
     std::ifstream file;
@@ -206,9 +268,9 @@ void person_menu_prompt(ProfileDetails* details){
     std::cout << "0) Exit\n\n";
 }
 
-void filter_by_date(ProfileDetails* details, Date date){
-    for (int i = 0; i < details->accounts_size; ++i){
-        details->accounts[i].filter_by_date(date);
+void filter_by_date(ProfileDetails details, Date date){
+    for (int i = 0; i < details.accounts_size; ++i){
+        details.accounts[i].filter_by_date(date);
     }
 }
 
@@ -218,6 +280,32 @@ void add_default_accounts(ProfileDetails* details){
     details->accounts[2].auto_initialize("Savings");
 
     details->accounts = 3;
+}
+
+int select_account(ProfileDetails details){
+    std::string input;
+    
+    // display accounts available
+    std::cout << "\n-----ACCOUNTS-----\n";
+    for (int i = 0; i < details.accounts_size; ++i){
+        std::cout << details.accounts[i].get_account_name() << std::endl;
+    }
+    std::cout << "------------------\n";
+    
+    // ask user input for account name
+    std::cout << "\nEnter account name: ";
+    std::cin >> input;
+
+    // checks if input account name is present (case sensitive)
+    // if yes, returns the index of the account
+    for (int i = 0; i < details.accounts_size; ++i){
+        if (input == details.accounts[i].get_account_name){
+            return i;
+        }
+    }
+
+    // if not found, return -1 (indicating not found)
+    return -1;
 }
 
 bool file_empty(std::ifstream& file){

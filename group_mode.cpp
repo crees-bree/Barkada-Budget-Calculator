@@ -122,8 +122,6 @@ void case_oneMenu(){
     std::cout << "3. Delete a member" << std::endl;
     std::cout << "4. Display all member details" << std::endl;
     std::cout << "5. Exit" << std::endl;
-    // add sad option para maka exit ang user
-    // done -conx
 }
 
 void caseMenu(){
