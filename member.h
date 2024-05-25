@@ -71,7 +71,7 @@ class Member{
         void initialize(int);
 
         // edit member details
-        void edit_member(int);
+        void edit_member(int, int);
 
         // display member details
         void display_details(int, int);
