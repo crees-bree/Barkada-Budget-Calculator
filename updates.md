@@ -4,6 +4,7 @@
 
 ## UPDATE VERSION 4.2 (May 25, 2024)
 
+- Added ver4.2 git branch
 - In person_mode
   - Added ProfileDetails structure
     - This is to easily track general profile data such as accounts and total balance
