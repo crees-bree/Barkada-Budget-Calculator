@@ -49,7 +49,8 @@ class Account{
         // doesn't require user input
         void auto_initialize(std::string);
 
-        // display account name and balance
+        // obtain account name
+        std::string get_account_name();
         
         // adds a new record to the records[] array
         void add_record();

@@ -17,7 +17,7 @@
 #define CURRENCY "Php"
 
 // PRIVATE METHODS DEFINITIONS
-
+ 
 char Account::select_record_type(){
     int selection;
     
@@ -127,6 +127,10 @@ void Account::initialize(){
 void Account::auto_initialize(std::string acc_name){
     account_name = acc_name;
     balance = 0;
+}
+
+std::string Account::get_account_name(){
+    return account_name;
 }
 
 void Account::add_record(){
