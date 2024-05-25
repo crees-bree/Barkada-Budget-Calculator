@@ -46,12 +46,11 @@ void Member::edit_member(int case_type){
 
 }
 
-void Member::display_details(int case_type, int members_size, Member members){
+void Member::display_details(int case_type, int members_size){
     switch (case_type){
     case 1:
         for (int i = 0; i < members_size; i++)
         {
-            //not sure why mag error siya
             // - chan
             // u can't use this way of printing
             // kay this isn't a general function
@@ -67,8 +66,8 @@ void Member::display_details(int case_type, int members_size, Member members){
             
             // just remember lang na only functions sulod sa class
             // can access private variables of that class
-            std::cout << "Name: ", members.name; // - chan: if nahan ka mag newline kay u can use << std::endl;              
-            std::cout << "Bill: ", members[i].
+            std::cout << "Name: " << name << std::endl; 
+            std::cout << "Bill: ",  << std::endl;
         }   
         
         break;

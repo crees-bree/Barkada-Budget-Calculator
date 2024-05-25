@@ -71,7 +71,7 @@ class Member{
         void edit_member(int);
 
         // display member details
-        void display_details(int, int, Member);
+        void display_details(int, int);
         
         // CASE 1
 
