@@ -140,6 +140,10 @@ std::string Account::get_account_name(){
     return account_name;
 }
 
+double Account::get_balance(){
+    return balance;
+}
+
 void Account::add_record(){
     Record record;
     int selection;
@@ -251,16 +255,15 @@ void Account::modify_record(Record record, bool add_record = false){
                     if (add_record){
                         // if called from add_record(), add record to records vector
                         add_to_records(new_record);
-
-                        inverse_update = true;
                     } else {
+                        // revert to previous balance value
+                        update_balance(record, false);
+                        
                         // save newly edited record
                         record = new_record;
-
-                        inverse_update = true;
                     }
                     // update balance
-                    update_balance(new_record, inverse_update);
+                    update_balance(new_record);
 
                     loop = false;
                 }

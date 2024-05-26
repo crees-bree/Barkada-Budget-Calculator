@@ -5,12 +5,14 @@
 ## UPDATE VERSION 4.3 (May 26, 2024)
 
 - In person_mode
+  - Added calculate_total_balance() - *test pending*
   - Updated person_mode() - *incomplete*
   - Updated init() - *test pending*
   - Updated save() - *test pending*
   - Updated select_account() - *test pending*
 - In account
   - In Account class
+    - Added public method get_balance() - *test pending*
     - Updated private method add_to_records() - *test pending*
     - Updated public method serialize() - *test pending*
     - Updated public method deserialize() - *test pending*

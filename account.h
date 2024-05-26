@@ -53,6 +53,9 @@ class Account{
 
         // obtain account name
         std::string get_account_name();
+
+        // obtain account balance
+        double get_balance();
         
         // adds a new record to the records[] array
         void add_record();

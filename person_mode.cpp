@@ -60,6 +60,8 @@ void person_menu_prompt(ProfileDetails details);
 void add_default_accounts(ProfileDetails*);
 // select account to use
 int select_account(ProfileDetails);
+// calculate total balance
+void calculate_total_balance(ProfileDetails*);
 // returns true if file is empty, else return false
 bool file_empty(std::ifstream&);
 
@@ -67,7 +69,6 @@ bool file_empty(std::ifstream&);
 int person_mode(){
     ProfileDetails details;
     details.accounts_size = 0; 
-    details.total_balance = 0.0;
 
     int open, empty, option;
     char c_option;
@@ -95,12 +96,12 @@ int person_mode(){
     }
 
     // person mode main menu
-    while(loop){
+    while (loop){
         person_menu_prompt(details);
 
         std::cin >> option;
 
-        switch(option){
+        switch (option){
             // exit menu
             case 0:
                 std::cout << "Are you sure you want to exit? (Enter Y to confirm)\n";
@@ -135,6 +136,8 @@ int person_mode(){
             case 10:
                 break;
             case 11:
+                break;
+            case 12:
                 break;
         }
     }
@@ -252,6 +255,9 @@ void person_menu_prompt(ProfileDetails details){
     current_date = get_current_date();
     yesterday = get_yesterday_date();
 
+    // calculate total balance
+    calculate_total_balance(&details);
+
     // display menu title
     std::cout << "\n\n=====PERSON MODE=====\n\n";
     printf("Today is %s, %s %i %i\n", current_date.day_name.c_str(), current_date.month_name.c_str(), current_date.day, current_date.year);
@@ -265,7 +271,7 @@ void person_menu_prompt(ProfileDetails details){
     std::cout << "\nYesterday's Transactions:\n";
     filter_by_date(details, yesterday);
 
-    std::cout << "====================\n\n";
+    std::cout << "\n=====================\n\n";
 
     std::cout << "What would you like to do?\n";
     std::cout << "------RECORDS-----\n";
@@ -280,7 +286,8 @@ void person_menu_prompt(ProfileDetails details){
     std::cout << "-----ACCOUNTS-----\n";
     std::cout << "9) Add an account\n";
     std::cout << "10) Modify an account\n";
-    std::cout << "11) Delete an account\n";
+    std::cout << "11) Display all accounts\n";
+    std::cout << "12) Delete an account\n";
     std::cout << "0) Exit\n\n";
 }
 
@@ -322,6 +329,16 @@ int select_account(ProfileDetails details){
 
     // if not found, return -1 (indicating not found)
     return -1;
+}
+
+void calculate_total_balance(ProfileDetails* details){
+    double total_balance = 0;
+
+    for (int i = 0; i < details->accounts_size; ++i){
+        total_balance += details->accounts[i].get_balance();
+    }
+
+    details->total_balance = total_balance;
 }
 
 bool file_empty(std::ifstream& file){
