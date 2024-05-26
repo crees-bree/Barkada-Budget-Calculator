@@ -100,7 +100,7 @@ void case_one(int *members_size, Member *members){
     }
     
     case 3:
-        
+        removeMem(members_size, members);
         break;
     
     case 4:
@@ -114,7 +114,7 @@ void case_one(int *members_size, Member *members){
     }
 }
 
-void removeMem(int *members_size, Member *members){
+void removeMem(int *members_size, Member *members){                 //have to debug for us to know for sure that it works
     std::string removeName;
     std::cout << "What is the name of the member you want to remove?: " << std::endl;
     std::cin >> removeName;
@@ -122,20 +122,21 @@ void removeMem(int *members_size, Member *members){
     {
         if(members[i].check_memName(removeName))
         {
-            for (int j = i; i < *members_size - 1; j++) 
+            for (int j = i; j < *members_size - 1; j++) 
             {
                 members[j] = members[j + 1];
             }
+            (*members_size)--;
+            break;
         }
     }
-    (*members_size)--;
 }
 
 void case_oneMenu(){
     // - chan
-    // group budget limiter lagi ni
+    // group budget limiter lagi ni 
+    // im high, removed na - conx
     std::cout << "\n Case 1 Menu:" << std::endl;
-    std::cout << "Group Budget Limiter" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
@@ -144,15 +145,11 @@ void case_oneMenu(){
 }
 
 void caseMenu(){
-    // - chan
-    // sa ato-ato ra nang case 1-3 sht
-    // ato idisplay sa user ang name sa case
-    // awa daw if goods ra ang suggested names below
     std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1) Sukli sa Kinsa" << std::endl;             //maybe rename these into better describing unsa iya buhaton, case 1-3 lang sa cos i cant think
-    std::cout << "2) Utang Tracker" << std::endl;
-    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
-    // add sad option para maka exit ang user
+    std::cout << "1. Sukli sa Kinsa" << std::endl;          
+    std::cout << "2. Utang Tracker" << std::endl;
+    std::cout << "3. Gasto Mo Ang Limit" << std::endl;
+    std::cout << "4. Exit" << std::endl;
 }
 
 void edit_memberMenu(){
