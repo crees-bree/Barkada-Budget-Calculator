@@ -117,7 +117,13 @@ void case_one(int *members_size, Member *members){
         }
         break;
     }
-    case 5:
+    case 5:{
+        for (int i = 0; i < *members_size; i++)
+        {
+            members[i].display_details(1, *members_size);
+        }
+        break;
+    }
 
     case 6: return;
 
