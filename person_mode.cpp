@@ -55,7 +55,7 @@ void filter_by_date(ProfileDetails, Date);
 // AUXILIARY FUNCTIONS
 
 // display person menu prompt
-void person_menu_prompt(ProfileDetails* details);
+void person_menu_prompt(ProfileDetails details);
 // add default accounts to accounts array
 void add_default_accounts(ProfileDetails*);
 // select account to use
@@ -67,7 +67,7 @@ bool file_empty(std::ifstream&);
 int person_mode(){
     ProfileDetails details;
     details.accounts_size = 0; 
-    details.total_balance
+    details.total_balance = 0.0;
 
     int open, empty, option;
     char c_option;
@@ -96,15 +96,15 @@ int person_mode(){
 
     // person mode main menu
     while(loop){
-        person_menu_prompt();
+        person_menu_prompt(details);
 
-        cin >> option;
+        std::cin >> option;
 
         switch(option){
             // exit menu
             case 0:
                 std::cout << "Are you sure you want to exit? (Enter Y to confirm)\n";
-                cin >> c_option;
+                std::cin >> c_option;
                 if (c_option == 'Y'){
                     loop = false;
                 }
@@ -114,15 +114,28 @@ int person_mode(){
                 add_account_record(&details);
                 break;
             case 2:
+                break;
             case 3:
+            // display record by account
             case 4:
+                display_records_by_account(details);
+                break;
+            // display record by date
             case 5:
+                display_records_by_date(details);
+                break;
             case 6:
+                break;
             case 7:
+                break;
             case 8:
+                break;
             case 9:
+                break;
             case 10:
+                break;
             case 11:
+                break;
         }
     }
 
@@ -143,13 +156,13 @@ void add_account_record(ProfileDetails* details){
         return;
     }
 
-    details.accounts[index].add_record();
+    details->accounts[index].add_record();
 }
 
 void display_records_by_account(ProfileDetails details){
     int index;
 
-    index = select_account(*details);
+    index = select_account(details);
 
     if (index == -1){
         std::cout << "\nAccount not found.\n";
@@ -172,6 +185,7 @@ void display_records_by_date(ProfileDetails details){
 
 int init(std::string file_name, ProfileDetails* details){
     std::ifstream file;
+    long int pos;
 
     // open file for reading
     file.open(file_name, std::ios::binary);
@@ -186,17 +200,19 @@ int init(std::string file_name, ProfileDetails* details){
     }
 
     // read accounts array size
-    if ( !(file.read( (char *) details->accounts_size, sizeof(int) ) ) ){
+    if ( !(file.read( (char *) &details->accounts_size, sizeof(int) ) ) ){
         perror("\nReading accounts size failed."); // ERROR HANDLING (File reading failed)
         file.close();
         exit(EXIT_FAILURE);
     }
 
+    pos = file.tellg();
+
     file.close();
 
     // read accounts array
     for (int i = 0; i < details->accounts_size; ++i){
-        details->accounts[details->accounts_size].deserialize(file_name);
+        details->accounts[i].deserialize(file_name, &pos);
     }
 
     return 0;
@@ -210,13 +226,13 @@ void save(std::string file_name, ProfileDetails* details){
     file.open(file_name, std::ios::binary | std::ios::trunc);
 
     if ( file.fail() ){
-        perror("\nFile cannot be opened. Saving failed."); // ERROR HANDLING (File cannot be opened)
+        perror("\nSaving failed."); // ERROR HANDLING (File cannot be opened)
         exit(EXIT_FAILURE);
     }
 
     // write accounts array size
-    if ( !(file.write( (char *) details->accounts_size, sizeof(int) ) ) ){
-        perror("\nReading accounts size failed."); // ERROR HANDLING (File writing failed)
+    if ( !(file.write( (char *) &(details->accounts_size), sizeof(int) ) ) ){
+        perror("\nWriting accounts size failed."); // ERROR HANDLING (File writing failed)
         file.close();
         exit(EXIT_FAILURE);
     }
@@ -225,29 +241,29 @@ void save(std::string file_name, ProfileDetails* details){
 
     // write accounts array
     for (int i = 0; i < details->accounts_size; ++i){
-        details->accounts[details->accounts_size].serialize(file_name);
+        details->accounts[i].serialize(file_name);
     }
 }
 
-void person_menu_prompt(ProfileDetails* details){
+void person_menu_prompt(ProfileDetails details){
     Date current_date, yesterday;
     
     // set dates
     current_date = get_current_date();
     yesterday = get_yesterday_date();
-    
+
     // display menu title
-    std::cout << "=====PERSON MODE=====\n\n";
-    printf("Today is %s, %s %i %i\n", current_date.day_name, current_date.month_name, current_date.day, current_date.year);
-    std::cout << "Total Balance: " + CURRENCY + " " << details->total_balance << std::endl;
+    std::cout << "\n\n=====PERSON MODE=====\n\n";
+    printf("Today is %s, %s %i %i\n", current_date.day_name.c_str(), current_date.month_name.c_str(), current_date.day, current_date.year);
+    std::cout << "Total Balance: " << CURRENCY << " " << details.total_balance << std::endl;
 
     // display today's records for all accounts
     std::cout << "\nToday's Transactions:\n";
-    filter_by_date(current_date);
+    filter_by_date(details, current_date);
 
     // display yesterday's records for all accounts
     std::cout << "\nYesterday's Transactions:\n";
-    filter_by_date(yesterday);
+    filter_by_date(details, yesterday);
 
     std::cout << "====================\n\n";
 
@@ -279,7 +295,7 @@ void add_default_accounts(ProfileDetails* details){
     details->accounts[1].auto_initialize("Card");
     details->accounts[2].auto_initialize("Savings");
 
-    details->accounts = 3;
+    details->accounts_size = 3;
 }
 
 int select_account(ProfileDetails details){
@@ -299,7 +315,7 @@ int select_account(ProfileDetails details){
     // checks if input account name is present (case sensitive)
     // if yes, returns the index of the account
     for (int i = 0; i < details.accounts_size; ++i){
-        if (input == details.accounts[i].get_account_name){
+        if (input == details.accounts[i].get_account_name()){
             return i;
         }
     }

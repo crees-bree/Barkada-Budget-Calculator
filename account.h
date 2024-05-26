@@ -7,6 +7,8 @@
 
 #include <vector>
 
+#include "date.h"
+
 // keeps track of expenses and income for each account in person mode
 class Account{
     private:
@@ -69,7 +71,7 @@ class Account{
         void serialize(std::string);
 
         // convert to object data
-        void deserialize(std::string);
+        void deserialize(std::string, long int*);
 
         // FILTERING METHODS
 

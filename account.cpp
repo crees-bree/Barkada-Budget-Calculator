@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "account.h"
+#include "date.h"
 
 #define INCOME 'i'
 #define EXPENSE 'e'
@@ -50,16 +51,22 @@ char Account::select_record_type(){
 void Account::add_to_records(Record record){
     std::vector<Record>::iterator iter;
 
+    if (records.empty()){
+        records.push_back(record);
+        return;
+    }
+
     // insert record according to how new it is
     for (iter = records.begin(); iter != records.end(); ++iter){
         // if record date is younger than record in vector
         // insert the record before the record in vector
-        if (record.date >= iter->date){
+        if ((record.date >= iter->date) && iter != records.begin()){
             records.insert(iter - 1, record);
             break;
         } // add record at end of vector if we reach the end
         else if (iter == records.end() - 1){
             records.push_back(record);
+            break;
         }
     }
 }
@@ -198,9 +205,8 @@ void Account::modify_record(Record record, bool add_record = false){
                 if (exit == 'Y'){
                     // break loop just in case
                     loop = false;
-                    // quit add selection
-                    return;
                 }
+                break;
             // modify date
             case 1:
                 std::cout << "Enter date (mm dd yyyy): ";
@@ -298,20 +304,18 @@ void Account::display_records(){
 
 // writing :D
 void Account::serialize(std::string file_name){
-    std::ofstream file;
-
-    account_name = "paul";
+    std::fstream file;
 
     // buffers
     int records_size_b = records.size();
 
     int account_name_size_b = account_name.size();
+    int day_name_size_b;
+    int month_name_size_b;
     int category_size_b;
     int note_size_b;
 
-
-    // std::ios::trunc completely wipes out the contents of the file
-    file.open(file_name, std::ios::binary | std::ios::trunc);
+    file.open(file_name, std::ios::app | std::ios::binary);
 
     if ( file.fail() ){
         perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
@@ -322,7 +326,7 @@ void Account::serialize(std::string file_name){
     if ( !(file.write( (char *) &account_name_size_b, sizeof(int) ) ) ){
         file.close();
         
-        perror("Serializing account name size failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Serializing account name size failed"); // ERROR HANDLING (Data cannot be serialized)
         exit(EXIT_FAILURE);
     }
 
@@ -330,7 +334,7 @@ void Account::serialize(std::string file_name){
     if ( !(file.write( account_name.c_str(), sizeof(char) * account_name_size_b ) ) ){
         file.close();
         
-        perror("Serializing account name failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Serializing account name failed"); // ERROR HANDLING (Data cannot be serialized)
         exit(EXIT_FAILURE);
     }
 
@@ -338,7 +342,7 @@ void Account::serialize(std::string file_name){
     if ( !(file.write( (char *) &balance, sizeof(double) ) ) ){
         file.close();
         
-        perror("Serializing balance failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Serializing balance failed"); // ERROR HANDLING (Data cannot be serialized)
         exit(EXIT_FAILURE);
     }
 
@@ -346,21 +350,65 @@ void Account::serialize(std::string file_name){
     if ( !(file.write( (char *) &records_size_b, sizeof(int) ) ) ){
         file.close();
         
-        perror("Serializing records size failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Serializing records size failed"); // ERROR HANDLING (Data cannot be serialized)
         exit(EXIT_FAILURE);
     }
 
     // serialize records vector
     for (int i = 0; i < records_size_b; ++i){
         // initialize buffers
+        day_name_size_b = records[i].date.day_name.size();
+        month_name_size_b = records[i].date.month_name.size();
         category_size_b = records[i].category.size();
         note_size_b = records[i].note.size();
         
         // serialize date
-        if ( !(file.write( (char *) &records[i].date, sizeof(Date) ) ) ){
+        if ( !(file.write( (char *) &records[i].date.day, sizeof(int) ) ) ){
             file.close();
             
-            perror("Serializing date failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing day failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( (char *) &day_name_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing day name size failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( records[i].date.day_name.c_str(), sizeof(char) * day_name_size_b ) ) ){
+            file.close();
+            
+            perror("Serializing day name failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( (char *) &records[i].date.month, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing month failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( (char *) &month_name_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing month name size failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( records[i].date.month_name.c_str(), sizeof(char) * month_name_size_b ) ) ){
+            file.close();
+            
+            perror("Serializing month name failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.write( (char *) &records[i].date.year, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing year failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -368,7 +416,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( &records[i].record_type, sizeof(char) ) ) ){
             file.close();
             
-            perror("Serializing record type failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing record type failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -376,7 +424,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( (char *) &records[i].amount, sizeof(double) ) ) ){
             file.close();
             
-            perror("Serializing amount failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing amount failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -384,7 +432,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( (char *) &category_size_b, sizeof(int) ) ) ){
             file.close();
             
-            perror("Serializing category size failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing category size failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -392,7 +440,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( records[i].category.c_str(), sizeof(char) * category_size_b ) ) ){
             file.close();
             
-            perror("Serializing category failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing category failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -400,7 +448,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( (char *) &note_size_b, sizeof(int) ) ) ){
             file.close();
             
-            perror("Serializing category size failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing category size failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
 
@@ -408,7 +456,7 @@ void Account::serialize(std::string file_name){
         if ( !(file.write( records[i].note.c_str(), sizeof(char) * note_size_b ) ) ){
             file.close();
             
-            perror("Serializing category failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Serializing category failed"); // ERROR HANDLING (Data cannot be serialized)
             exit(EXIT_FAILURE);
         }
     }
@@ -419,31 +467,37 @@ void Account::serialize(std::string file_name){
 }
 
 // reading
-void Account::deserialize(std::string file_name){
+void Account::deserialize(std::string file_name, long int* pos){
     std::ifstream file;
 
     // buffers
     char* account_name_buffer = NULL;
+    char* day_name_buffer = NULL;
+    char* month_name_buffer = NULL;
     char* category_buffer = NULL;
     char* note_buffer = NULL;
 
+    int day_name_size_b;
+    int month_name_size_b;
     int account_name_size_b;
     int records_size_b;
     int category_size_b;
     int note_size_b;
 
-    file.open(file_name, std::ios::in | std::ios::binary);
+    file.open(file_name, std::ios::binary);
 
     if ( file.fail() ){
         perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
         exit(EXIT_FAILURE);
-    } 
+    }
+
+    file.seekg(*pos, std::ios::beg); 
 
     // deserialize account name size
     if ( !(file.read( (char *) &account_name_size_b, sizeof(int) ) ) ){
         file.close();
         
-        perror("Deserializing account name size failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Deserializing account name size failed"); // ERROR HANDLING (Data cannot be deserialized)
         exit(EXIT_FAILURE);
     }
 
@@ -453,7 +507,7 @@ void Account::deserialize(std::string file_name){
     if ( !(file.read( account_name_buffer, sizeof(char) * account_name_size_b ) ) ){
         file.close();
         
-        perror("Deserializing account name failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Deserializing account name failed"); // ERROR HANDLING (Data cannot be deserialized)
         exit(EXIT_FAILURE);
     }
 
@@ -467,7 +521,7 @@ void Account::deserialize(std::string file_name){
     if ( !(file.read( (char *) &balance, sizeof(double) ) ) ){
         file.close();
         
-        perror("Deserializing balance failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Deserializing balance failed"); // ERROR HANDLING (Data cannot be deserialized)
         exit(EXIT_FAILURE);
     }
 
@@ -475,7 +529,7 @@ void Account::deserialize(std::string file_name){
     if ( !(file.read( (char *) &records_size_b, sizeof(int) ) ) ){
         file.close();
         
-        perror("Deserializing records size failed"); // ERROR HANDLING (File cannot be opened)
+        perror("Deserializing records size failed"); // ERROR HANDLING (Data cannot be deserialized)
         exit(EXIT_FAILURE);
     }
 
@@ -483,15 +537,59 @@ void Account::deserialize(std::string file_name){
     for (int i = 0; i < records_size_b; ++i){
         // initialize buffers
         Record buffer;
-
+        
+        day_name_buffer = NULL;
+        month_name_buffer = NULL;
         category_buffer = NULL;
         note_buffer = NULL;
 
         // deserialize date
-        if ( !(file.read( (char *) &buffer.date, sizeof(Date) ) ) ){
+        if ( !(file.read( (char *) &buffer.date.day, sizeof(int) ) ) ){
             file.close();
             
-            perror("Deserializing date failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing day failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.read( (char *) &day_name_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Deserializing day name size failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+        day_name_buffer = new char [day_name_size_b + 1];
+        if ( !(file.read( day_name_buffer, sizeof(char) * day_name_size_b ) ) ){
+            file.close();
+            
+            perror("Deserializing day name failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.read( (char *) &buffer.date.month, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Deserializing month failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.read( (char *) &month_name_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Deserializing month name size failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+        month_name_buffer = new char [month_name_size_b + 1];
+        if ( !(file.read( month_name_buffer, sizeof(char) * month_name_size_b ) ) ){
+            file.close();
+            
+            perror("Deserializing month name failed"); // ERROR HANDLING (Data cannot be deserialized)
+            exit(EXIT_FAILURE);
+        }
+
+        if ( !(file.read( (char *) &buffer.date.year, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Deserializing year failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -499,7 +597,7 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( &buffer.record_type, sizeof(char) ) ) ){
             file.close();
             
-            perror("Deserializing record type failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing record type failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -507,7 +605,7 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( (char *) &buffer.amount, sizeof(double) ) ) ){
             file.close();
             
-            perror("Deserializing amount failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing amount failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -515,7 +613,7 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( (char *) &category_size_b, sizeof(int) ) ) ){
             file.close();
             
-            perror("Deserializing category size failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing category size failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -525,7 +623,7 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( category_buffer, sizeof(char) * category_size_b ) ) ){
             file.close();
             
-            perror("Deserializing category failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing category failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -533,7 +631,7 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( (char *) &note_size_b, sizeof(int) ) ) ){
             file.close();
             
-            perror("Deserializing category size failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing category size failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
@@ -543,30 +641,36 @@ void Account::deserialize(std::string file_name){
         if ( !(file.read( note_buffer, sizeof(char) * note_size_b ) ) ){
             file.close();
             
-            perror("Deserializing category failed"); // ERROR HANDLING (File cannot be opened)
+            perror("Deserializing category failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
 
+        day_name_buffer[day_name_size_b] = '\0';
+        month_name_buffer[month_name_size_b] = '\0';
         category_buffer[category_size_b] = '\0';
         note_buffer[note_size_b] = '\0';
 
+        buffer.date.day_name.assign(day_name_buffer, day_name_size_b);
+        buffer.date.month_name.assign(month_name_buffer, month_name_size_b);
         buffer.category.assign(category_buffer, category_size_b);
         buffer.note.assign(note_buffer, note_size_b);
 
+        delete [] day_name_buffer;
+        delete [] month_name_buffer;
         delete [] category_buffer;
         delete [] note_buffer;
 
         records.push_back(buffer);
-
-        std::cout << buffer.category.size() << std::endl;
     }
 
     std::cout << "\nData is deserialized successfully.\n";
 
+    *pos = file.tellg();
+
     file.close();
 }
 
-void Account::filter_by_date(Date date){s
+void Account::filter_by_date(Date date){
     for (auto record : records){
         if (date == record.date){
             display_record(record);

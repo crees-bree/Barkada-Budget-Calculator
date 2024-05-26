@@ -2,6 +2,24 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.3 (May 26, 2024)
+
+- In person_mode
+  - Updated person_mode() - *incomplete*
+  - Updated init() - *test pending*
+  - Updated save() - *test pending*
+  - Updated select_account() - *test pending*
+- In account
+  - In Account class
+    - Updated private method add_to_records() - *test pending*
+    - Updated public method serialize() - *test pending*
+    - Updated public method deserialize() - *test pending*
+- In date
+  - Updated op. over. func. for <= - *test pending*
+  - Updated op. over. func. for >= - *test pending*
+  - Updated op. over. func. for == - *test pending*
+  - Added operator overloading function prototypes in date.h
+
 ## UPDATE VERSION 4.2 (May 25, 2024)
 
 - Added ver4.2 git branch

@@ -24,7 +24,7 @@
 namespace fs = std::filesystem;
 
 // DEFAULT FILE EXTENSION OF PROFILE FILE (DATA FILE)
-#define FILE_EXTENSION ".txt"
+#define FILE_EXTENSION ".dat"
 
 // PERSON AND GROUP MODE MACROS
 #define PERSON 'p'
@@ -86,7 +86,9 @@ void add_profile(char profile_mode){
     
     // ask user for new profile name
     std::cout << "\nProfile Name: ";
-    std::cin >> profile_name;
+    std::cin.ignore();
+    getline(std::cin, profile_name);
+
 
     // this is to prevent creating two profiles with same name
     if (search_profile(profile_name, profile_mode) == true){
@@ -117,7 +119,8 @@ int open_profile(char profile_mode, std::string* file_name){
 
     // asks user to enter profile name to open
     std::cout << "\nEnter the profile name that you want to open:\n";
-    std::cin >> profile_name;
+    std::cin.ignore();
+    getline(std::cin, profile_name);
 
     // search for profile name in list of profiles
     found = search_profile(profile_name, profile_mode);
@@ -148,7 +151,8 @@ void delete_profile(char profile_mode){
 
     // asks user to input profile name to delete
     std::cout << "\nEnter the profile name that you want to delete:\n";
-    std::cin >> profile_name;
+    std::cin.ignore();
+    getline(std::cin, profile_name);
 
     // search for profile name in list of profiles
     found = search_profile(profile_name, profile_mode);
@@ -211,7 +215,7 @@ bool search_profile(std::string profile_name, char profile_mode){
 
     // file is in directory if file can be opened, thus return true
     // else then file isn't in directory, thus return false
-    if (file.is_open() == true){
+    if (file.is_open()){
         file.close();
         return true;
     } else {
