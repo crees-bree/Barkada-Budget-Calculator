@@ -103,11 +103,23 @@ void case_one(int *members_size, Member *members){
         removeMem(members_size, members);
         break;
     
-    case 4:
-        members[*members_size].display_details(1, *members_size);
+    case 4:{
+        std::string displayName;
+        std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
+        std::cin >> displayName;
+        for (int i = 0; i < *members_size; i++)
+        {
+            if (members[i].check_memName(displayName))
+            {
+                members[i].display_details(1, *members_size);
+                return;
+            }
+        }
         break;
+    }
+    case 5:
 
-    case 5: return;
+    case 6: return;
 
     default:
         break;
@@ -140,8 +152,9 @@ void case_oneMenu(){
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
-    std::cout << "4. Display all member details" << std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "4. Display each member details" << std::endl;
+    std::cout << "5. Display all member details" << std::endl;
+    std::cout << "6. Exit" << std::endl;
 }
 
 void caseMenu(){
