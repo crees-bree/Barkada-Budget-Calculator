@@ -14,7 +14,7 @@
 #define EXPENSE 'e'
 #define TRANSFER 't'
 
-#define DISPLAY_RECORD_COUNT 20
+#define DISPLAY_RECORD_COUNT 5
 #define CURRENCY "Php"
 
 // PRIVATE METHODS DEFINITIONS
@@ -26,7 +26,6 @@ char Account::select_record_type(){
         std::cout << "\n\nSelect record type:\n";
         std::cout << "1) Income\n";
         std::cout << "2) Expense\n";
-        std::cout << "3) Transfer\n";
         std::cin >> selection;
 
         std::cout << "\n";
@@ -38,9 +37,6 @@ char Account::select_record_type(){
             // select expense
             case 2:
                 return EXPENSE;
-            // select transfer
-            case 3:
-                return TRANSFER;
             default:
                 std::cout << "Invalid input. Please try again\n"; // ERROR HANDLING (Invalid user input)
                 continue;
@@ -51,6 +47,7 @@ char Account::select_record_type(){
 void Account::add_to_records(Record record){
     std::vector<Record>::iterator iter;
 
+    // if records is empty, just add the record
     if (records.empty()){
         records.push_back(record);
         return;
@@ -61,9 +58,10 @@ void Account::add_to_records(Record record){
         // if record date is younger than record in vector
         // insert the record before the record in vector
         if ((record.date >= iter->date) && iter != records.begin()){
-            records.insert(iter - 1, record);
+            records.insert(iter, record);
             break;
-        } // add record at end of vector if we reach the end
+        } 
+        // add record at end of vector if we reach the end
         else if (iter == records.end() - 1){
             records.push_back(record);
             break;
@@ -71,11 +69,19 @@ void Account::add_to_records(Record record){
     }
 }
 
-void Account::display_record(Record record){
+void Account::display_record(Record record, bool account = false, bool select = false, int i = -1){
     std::string record_type_str;
     
     // display separator
     std::cout << std::endl << "-------------------------------" << std::endl;
+
+    // display account name (optional)
+    if (account) std::cout << "Account: " << account_name << std::endl;
+
+    // display select index (for selection menu)
+    if (select) std::cout << "RECORD #" << i << ":\n";
+
+    if (record.record_type == EXPENSE) record.amount = record.amount - record.amount - record.amount;
 
     // display date
     printf("Date: %i/%i/%i\n", record.date.month, record.date.day, record.date.year);
@@ -90,7 +96,6 @@ void Account::display_record(Record record){
             break;
         case TRANSFER:
             record_type_str = "Transfer";
-            break;
         default:
             record_type_str = ""; // ERROR HANDLING (Unexpected value)
     }
@@ -107,14 +112,94 @@ void Account::display_record(Record record){
     std::cout << "Note: " << record.note << std::endl;
 }
 
+int Account::select_record_screen(){
+    std::vector<Record>::iterator iter, prev;
+    int total_pages, page = 0;
+    int option, i;
+    bool loop = true;
+
+    // set iter to beginning of records
+    iter = records.begin();
+
+    // determine totasl number of pages
+    total_pages = records.size() / DISPLAY_RECORD_COUNT;
+
+    // add an extra page for the remaining records
+    if (records.size() % DISPLAY_RECORD_COUNT != 0){
+        ++total_pages;
+    }
+
+    while (page <= total_pages){  
+        ++page;
+        
+        prev = iter;
+        
+        while (loop){
+            i = 1;
+            
+            iter = prev;
+            
+            // display records up to specified number for each page
+            for (; iter != records.end() && i <= 5; ++iter){
+                display_record( *(iter) );
+                ++i;
+            }
+
+            // display current page
+            printf("\nDisplaying (%i) of (%i) pages\n", page, total_pages);
+
+            std::cout << "Enter 0 to proceed to previous page\n";
+            std::cout << "Enter 6 to proceed to next page\n";
+            std::cout << "Enter -1 to exit\n\n";
+            std::cin >> option;
+
+            if (option >= 1 && option <= DISPLAY_RECORD_COUNT){
+                return (DISPLAY_RECORD_COUNT * (page - 1)) + (option - 1);
+            }
+            // go back to previous page
+            else if (option == 0){
+                if (page == 1){
+                    std::cout << "\nYou cannot go to previous page. Please try again.\n"; // ERROR HANDLING (Out of bounds)
+                    continue;
+                }
+                
+                iter = iter - ( (i - 1) + DISPLAY_RECORD_COUNT);
+                page -= 2;
+
+                break;
+            }
+            // proceed to next page
+            else if (option == 6){
+                if (page == total_pages){
+                    std::cout << "\nYou cannot go to next page. Please try again.\n"; // ERROR HANDLING (Out of bounds)
+                    continue;
+                }
+                
+                break;
+            }
+            // exit select record screen
+            else if (option == -1){
+                return option;
+            }
+            else {
+                std::cout << "\nInvalid input. Please try again.\n"; // ERROR HANDLING (Invalid user input)
+            }
+        }
+    }   
+
+    return -1;
+}
+
 void Account::update_balance(Record record, bool inverse = false){
     // add to balance if adding a new record,
     // subtract to balance if removing a record
-    if (record.record_type == INCOME){
+    /*if (record.record_type == INCOME){
         balance = (inverse) ? balance - record.amount : balance + record.amount;
     } else if (record.record_type == EXPENSE){
         balance = (inverse) ? balance + record.amount : balance - record.amount;
-    }
+    }*/
+
+    balance = (inverse) ? balance - record.amount : balance + record.amount;
 }
 
 // PUBLIC METHODS DEFINITIONS
@@ -140,8 +225,69 @@ std::string Account::get_account_name(){
     return account_name;
 }
 
+void Account::set_account_name(std::string acc_name){
+    account_name = acc_name;
+}
+
 double Account::get_balance(){
     return balance;
+}
+
+void Account::set_balance(double bal, bool transfer_call){
+    Record record_diff;
+    double diff;
+    char option;
+
+    diff = balance - bal;
+
+    if (diff > 0){
+        record_diff.record_type = EXPENSE;
+    } else if (diff < 0){
+        record_diff.record_type = INCOME;
+    } else {
+        std::cout << "\nBalance didn't change. Returning to main menu...\n";
+        return;
+    }
+
+    record_diff.date = get_current_date();
+    record_diff.amount = diff - diff - diff;
+    record_diff.category = "UPDATE BALANCE";
+    record_diff.note = "";
+
+    
+    std::cout << "\nThe following record will be added to " << account_name << " to modify the balance\n";
+    display_record(record_diff);
+    std::cout << "\nEnter Y to proceed with the changes\n\n";
+
+    std::cin >> option;
+
+    if (option == 'Y'){
+        add_to_records(record_diff);
+        update_balance(record_diff);
+    } else {
+        std::cout << "\nModifying cancelled. Returning to main menu...\n";
+    }
+}
+
+void Account::transfer_balance(double bal, bool current){
+    Record record_diff;
+    
+    if (balance > 0 && current){
+        
+    }
+
+    record_diff.record_type = TRANSFER;
+    record_diff.category = "TRANSFERRED AMOUNT";
+
+    std::cout << "\nThe following record will be added to " << account_name << " in transferring amount\n";
+    display_record(record_diff);
+    std::cout << std::endl;
+
+    add_to_records(record_diff);
+    update_balance(record_diff);
+
+    return;
+
 }
 
 void Account::add_record(){
@@ -159,6 +305,9 @@ void Account::add_record(){
     // ask user to enter amount
     std::cout << "Enter amount: ";
     std::cin >> record.amount;
+
+    // essentially sets amount to negative if its an expense record
+    record.amount = (record.record_type == INCOME) ? record.amount : record.amount - record.amount - record.amount;
 
     // ask user to enter category
     std::cout << "Enter category: ";
@@ -181,7 +330,7 @@ void Account::add_record(){
 
 void Account::modify_record(Record record, bool add_record = false){
     Record new_record = record;
-    bool loop = true;
+    bool loop = true, loop2 = true;
     int selection;
     bool inverse_update;
     char exit;
@@ -204,29 +353,52 @@ void Account::modify_record(Record record, bool add_record = false){
         switch(selection){
             // discard record
             case 0:
-                std::cout << "\nAre you sure that you want to discard this record? (Enter Y to discard): ";
+                std::cout << "\nAre you sure that you want to discard your changes? (Enter Y to discard): ";
                 std::cin >> exit;
                 if (exit == 'Y'){
                     // break loop just in case
+                    if (add_record == false){
+                        add_to_records(record);
+                        update_balance(record);
+                    }
+
                     loop = false;
                 }
                 break;
             // modify date
             case 1:
-                std::cout << "Enter date (mm dd yyyy): ";
-                std::cin >> new_record.date.month;
-                std::cin >> new_record.date.day;
-                std::cin >> new_record.date.year;
+                while (loop2){
+                    std::cout << "Enter date (mm dd yyyy): ";
+                    std::cin >> new_record.date.month;
+                    std::cin >> new_record.date.day;
+                    std::cin >> new_record.date.year;
 
+                    if ( !date_is_valid(new_record.date) ){
+                        std::cout << "\nInvalid date. Please try again.\n"; // ERROR HANDLING (Invalid input)
+                        continue;
+                    }
+
+                    loop2 = false;
+                }
+                
                 break;
             // modify record type
             case 2:
                 new_record.record_type = select_record_type();
+                
+                if ( (new_record.record_type == INCOME && new_record.amount < 0) || 
+                     (new_record.record_type == EXPENSE && new_record.amount > 0) ){
+                    new_record.amount = new_record.amount - new_record.amount - new_record.amount;
+                } 
                 break;
             // modify amount
             case 3:
                 std::cout << "Enter amount: ";
                 std::cin >> new_record.amount;
+
+                if (new_record.record_type == EXPENSE){
+                    new_record.amount = new_record.amount - new_record.amount - new_record.amount;
+                }
                 break;
             // modify category
             case 4:
@@ -252,16 +424,13 @@ void Account::modify_record(Record record, bool add_record = false){
                 std::cin >> exit;
 
                 if (exit == 'Y'){
-                    if (add_record){
-                        // if called from add_record(), add record to records vector
-                        add_to_records(new_record);
-                    } else {
+                    // condition when modifying an already existing record
+                    if (add_record == false) {
                         // revert to previous balance value
-                        update_balance(record, false);
-                        
-                        // save newly edited record
-                        record = new_record;
+                        update_balance(record, true);
                     }
+                    add_to_records(new_record);
+
                     // update balance
                     update_balance(new_record);
 
@@ -275,37 +444,125 @@ void Account::modify_record(Record record, bool add_record = false){
     }
 }
 
+void Account::modify_record_screen(){
+    Record buffer;
+    int index;
+
+    index = select_record_screen();
+
+    if (index == -1){
+        return;
+    }
+
+    // transfer record to be edited to buffer
+    buffer = records[index];
+
+    // delete unmodified record (so that we can sort the modified record)
+    records.erase(records.begin() + index);
+    
+    // proceed with modifying
+    modify_record(buffer);
+}
+
+void Account::delete_record(){
+    int index;
+    char option;
+
+    index = select_record_screen();
+
+    if (index == -1){
+        return;
+    }
+
+    std::cout << "\nDo you want to delete this record?";
+
+    display_record(records[index]);
+
+    std::cout << "\nEnter Y to proceed\n";
+    std::cout << "Enter anything else to cancel\n\n";
+    std::cin >> option;
+
+    if (option == 'Y'){
+        update_balance(records[index], true);
+
+        records.erase(records.begin() + index);
+    }
+}
+
 void Account::display_records(){
-    std::vector<Record>::iterator iter;
-    int total_pages = records.size() / DISPLAY_RECORD_COUNT;
+    std::vector<Record>::iterator iter, prev;
+    int total_pages, page = 0;
     int option;
+    int count;
+    bool loop;
+
+    // initialize iter at start of records
+    iter = records.begin();
+
+    // set total no. of pages
+    total_pages = records.size() / DISPLAY_RECORD_COUNT;
 
     // add an extra page for the remaining records
     if (records.size() % DISPLAY_RECORD_COUNT != 0){
         ++total_pages;
     }
 
-    for (int page = 1; page <= total_pages; ++page){
-        for (iter = records.begin(); iter != records.end() && iter != (iter + DISPLAY_RECORD_COUNT); ++iter){
-            display_record( *(iter) );
+    while (page <= total_pages){  
+        loop = true;
+        
+        ++page;
+        
+        prev = iter;
+        
+        while (loop){
+            count = 1;
+            
+            iter = prev;
+            
+            // display records up to specified number for each page
+            for (; iter != records.end() && count <= 5; ++iter){
+                display_record( *(iter) );
+                ++count;
+            }
+
+            // display current page
+            printf("\nDisplaying (%i) of (%i) pages\n", page, total_pages);
+
+            std::cout << "Enter 1 to proceed to previous page\n";
+            std::cout << "Enter 2 to proceed to next page\n";
+            std::cout << "Enter 0 to exit\n\n";
+            std::cin >> option;
+
+            switch (option){
+                // exit selection screen
+                case 0:
+                    return;
+                // go back to previous page
+                case 1:
+                    if (page == 1){
+                        std::cout << "\nYou cannot go to previous page. Please try again.\n"; // ERROR HANDLING (Out of bounds)
+                        continue;
+                    }
+                    iter = iter - ( (count - 1) + DISPLAY_RECORD_COUNT);
+                    page -= 2;
+                    loop = false;
+                    break;
+                // go to next page
+                case 2:
+                    if (page == total_pages){
+                        std::cout << "\nYou cannot go to next page. Please try again.\n"; // ERROR HANDLING (Out of bounds)
+                        continue;
+                    }
+                    loop = false;
+                    break;
+                default:
+                    std::cout << "\nInvalid input. Please try again.\n"; // ERROR HANDLING (Invalid user input)
+                    continue;
+            }
         }
-
-        printf("\nDisplaying (%i) of (%i) pages\n", page, total_pages);
-
-        if (page == total_pages){
-            break;
-        }
-
-        std::cout << "\nDo you want to go to the next page? (Enter Y to proceed)" << std::endl;
-        std::cin >> option;
-
-        if (option != 'Y'){
-            break;
-        }
-    }    
+    }   
 }
 
-// writing :D
 void Account::serialize(std::string file_name){
     std::fstream file;
 
@@ -469,7 +726,7 @@ void Account::serialize(std::string file_name){
     file.close();
 }
 
-// reading
+// reading :DDDDDDDDDDDDDDDDDD
 void Account::deserialize(std::string file_name, long int* pos){
     std::ifstream file;
 
@@ -494,6 +751,7 @@ void Account::deserialize(std::string file_name, long int* pos){
         exit(EXIT_FAILURE);
     }
 
+    // set file ptr position to when the program stopped reading previously
     file.seekg(*pos, std::ios::beg); 
 
     // deserialize account name size
@@ -504,6 +762,7 @@ void Account::deserialize(std::string file_name, long int* pos){
         exit(EXIT_FAILURE);
     }
 
+    // allocate memory to account name buffer
     account_name_buffer = new char [account_name_size_b + 1];
 
     // deserialize account name
@@ -514,6 +773,7 @@ void Account::deserialize(std::string file_name, long int* pos){
         exit(EXIT_FAILURE);
     }
 
+    // transfer account name buffer to account name 
     account_name_buffer[account_name_size_b] = '\0';
 
     account_name.assign(account_name_buffer, account_name_size_b);
@@ -560,7 +820,10 @@ void Account::deserialize(std::string file_name, long int* pos){
             perror("Deserializing day name size failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
+
+        // allocate memory to day name buffer
         day_name_buffer = new char [day_name_size_b + 1];
+
         if ( !(file.read( day_name_buffer, sizeof(char) * day_name_size_b ) ) ){
             file.close();
             
@@ -581,7 +844,10 @@ void Account::deserialize(std::string file_name, long int* pos){
             perror("Deserializing month name size failed"); // ERROR HANDLING (Data cannot be deserialized)
             exit(EXIT_FAILURE);
         }
+
+        // allocate memory to month name buffer
         month_name_buffer = new char [month_name_size_b + 1];
+
         if ( !(file.read( month_name_buffer, sizeof(char) * month_name_size_b ) ) ){
             file.close();
             
@@ -620,6 +886,7 @@ void Account::deserialize(std::string file_name, long int* pos){
             exit(EXIT_FAILURE);
         }
 
+        // allocate memory to category buffer
         category_buffer = new char [category_size_b + 1];
 
         // deserialize category
@@ -638,6 +905,7 @@ void Account::deserialize(std::string file_name, long int* pos){
             exit(EXIT_FAILURE);
         }
 
+        // allocate memory to note buffer
         note_buffer = new char [note_size_b + 1];
 
         // deserialize category
@@ -648,6 +916,7 @@ void Account::deserialize(std::string file_name, long int* pos){
             exit(EXIT_FAILURE);
         }
 
+        // transfer string buffers to their designated string variables
         day_name_buffer[day_name_size_b] = '\0';
         month_name_buffer[month_name_size_b] = '\0';
         category_buffer[category_size_b] = '\0';
@@ -663,29 +932,78 @@ void Account::deserialize(std::string file_name, long int* pos){
         delete [] category_buffer;
         delete [] note_buffer;
 
+        // add read record to records
         records.push_back(buffer);
     }
 
     std::cout << "\nData is deserialized successfully.\n";
 
+    // update file ptr position to where the program last read file
     *pos = file.tellg();
 
     file.close();
 }
 
-void Account::filter_by_date(Date date){
+bool Account::filter_by_date(Date date){
+    bool found = false;
+    
     for (auto record : records){
         if (date == record.date){
-            display_record(record);
+            display_record(record, true);
+
+            if (!found) found = true;
         }
     }
+
+    return found;
+}
+
+bool Account::filter_by_record_type(char record_type){
+    bool found = false;
+    
+    for (auto record : records){
+        if (record_type == record.record_type){
+            display_record(record, true);
+
+            if (!found) found = true;
+        }
+    }
+
+    return found;
+}
+
+bool Account::filter_by_amount_range(double low, double high){
+    bool found = false;
+    
+    for (auto record : records){
+        if (record.amount >= low && record.amount <= high){
+            display_record(record, true);
+
+            if (!found) found = true;
+        }
+    }
+
+    return found;
+}
+
+bool Account::filter_by_category(std::string category){
+    bool found = false;
+    
+    for (auto record : records){
+        if (category == record.category){
+            display_record(record, true);
+
+            if (!found) found = true;
+        }
+    }
+
+    return found;
 }
 
 // AUXILIARY FUNCTION DEFINITIONS
 
 void create_account(Account accounts[], int* accounts_size){
     accounts[*accounts_size].initialize();
-    accounts[*accounts_size].add_record(); // may not be included
     (*accounts_size)++;
 }
 

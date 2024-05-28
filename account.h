@@ -35,10 +35,13 @@ class Account{
 
         // adds a record to the records vector
         // automatically sorts it according to recency
-        void add_to_records(Record record);
+        void add_to_records(Record);
 
         // display the contents of a singular record
-        void display_record(Record record);
+        void display_record(Record, bool, bool, int);
+
+        // select a record to proceed
+        int select_record_screen();
 
         // updates balance after a record is added/removed
         void update_balance(Record, bool);
@@ -54,8 +57,19 @@ class Account{
         // obtain account name
         std::string get_account_name();
 
+        // set account name
+        void set_account_name(std::string);
+
         // obtain account balance
         double get_balance();
+
+        // add a new record that sets balance
+        void set_balance(double, bool transfer_call = false);
+
+        // transfer balance
+        // current is set to true if the account is the current destination
+        // current is set to false if the accounts is the new destination
+        void transfer_balance(double, bool);
         
         // adds a new record to the records[] array
         void add_record();
@@ -63,9 +77,13 @@ class Account{
         // modify a record
         void modify_record(Record, bool);
 
-        // display records (perhaps list 20 recent records)
+        // modify record selection screen
+        void modify_record_screen();
+
+        // display records (perhaps list 5 recent records)
         void display_records();
 
+        // deletes a record
         void delete_record();
 
         // READING AND WRITING METHODS
@@ -79,7 +97,16 @@ class Account{
         // FILTERING METHODS
 
         // display only records with specified date
-        void filter_by_date(Date);
+        bool filter_by_date(Date);
+
+        // display only records with specified type (income or expense)
+        bool filter_by_record_type(char);
+
+        // display only records with specified amount range
+        bool filter_by_amount_range(double, double);
+
+        // display only records with specified category
+        bool filter_by_category(std::string);
 
 };
 

@@ -6,6 +6,7 @@
 
 
 #include <iostream>
+#include <ncurses/ncurses.h>
 #include <errno.h>
 #include <fstream>
 
@@ -39,6 +40,24 @@ void delete_account_record(ProfileDetails*);
 void display_records_by_account(ProfileDetails);
 // display records by date
 void display_records_by_date(ProfileDetails);
+// display records by record type
+void display_records_by_type(ProfileDetails);
+// display records by specified amount range
+void display_records_by_amount(ProfileDetails);
+// display records by category
+void display_records_by_category(ProfileDetails);
+// display category percentages
+void display_category_percentages(ProfileDetails);
+// add account
+void add_account(ProfileDetails*);
+// modify account
+void modify_account(ProfileDetails*);
+// display accounts
+void display_accounts(ProfileDetails, bool balance = true);
+// delete account
+void delete_account(ProfileDetails*);
+// transfer balance from one account to another
+void transfer_balance(ProfileDetails*);
 
 // READING AND WRITING FUNCTIONS
 
@@ -50,7 +69,7 @@ void save(std::string, ProfileDetails*);
 // FILTER FUNCTIONS
 
 // display by date of transaction for all accounts
-void filter_by_date(ProfileDetails, Date);
+void filter_by_date(ProfileDetails, Date, bool display_call = false);
 
 // AUXILIARY FUNCTIONS
 
@@ -59,7 +78,7 @@ void person_menu_prompt(ProfileDetails details);
 // add default accounts to accounts array
 void add_default_accounts(ProfileDetails*);
 // select account to use
-int select_account(ProfileDetails);
+int select_account(ProfileDetails, bool modify_call = false);
 // calculate total balance
 void calculate_total_balance(ProfileDetails*);
 // returns true if file is empty, else return false
@@ -104,7 +123,7 @@ int person_mode(){
         switch (option){
             // exit menu
             case 0:
-                std::cout << "Are you sure you want to exit? (Enter Y to confirm)\n";
+                std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
                 std::cin >> c_option;
                 if (c_option == 'Y'){
                     loop = false;
@@ -114,30 +133,57 @@ int person_mode(){
             case 1:
                 add_account_record(&details);
                 break;
+            // modify a record
             case 2:
+                modify_account_record(&details);
                 break;
+            // delete a record
             case 3:
-            // display record by account
+                delete_account_record(&details);
+                break;
+            // display records by account
             case 4:
                 display_records_by_account(details);
                 break;
-            // display record by date
+            // display records by date
             case 5:
                 display_records_by_date(details);
                 break;
+            // display records by type
             case 6:
+                display_records_by_type(details);
                 break;
+            // display records by amount range
             case 7:
+                display_records_by_amount(details);
                 break;
+            // display records by category
             case 8:
+                display_records_by_category(details);
                 break;
+            // display percentages of category occurrences
             case 9:
+                //display_category_percentages(details);
                 break;
+            // add new account
             case 10:
+                add_account(&details);
                 break;
+            // modify account details
             case 11:
+                modify_account(&details);
                 break;
+            // display all accounts
             case 12:
+                display_accounts(details);
+                break;
+            // delete account
+            case 13:
+                delete_account(&details);
+                break;
+            // transfer balance
+            case 14:
+                transfer_balance(&details);
                 break;
         }
     }
@@ -155,11 +201,37 @@ void add_account_record(ProfileDetails* details){
     index = select_account(*details);
 
     if (index == -1){
-        std::cout << "\nAccount not found.\n";
+        std::cout << "\nAccount not found. Returning to main menu...\n";
         return;
     }
 
     details->accounts[index].add_record();
+}
+
+void modify_account_record(ProfileDetails* details){
+    int index;
+
+    index = select_account(*details);
+
+    if (index == -1){
+        std::cout << "\nAccount not found. Returning to main menu...\n";
+        return;
+    }
+
+    details->accounts[index].modify_record_screen();
+}
+
+void delete_account_record(ProfileDetails* details){
+    int index;
+
+    index = select_account(*details);
+
+    if (index == -1){
+        std::cout << "\nAccount not found. Returning to main menu...\n";
+        return;
+    }
+
+    details->accounts[index].delete_record();
 }
 
 void display_records_by_account(ProfileDetails details){
@@ -168,7 +240,7 @@ void display_records_by_account(ProfileDetails details){
     index = select_account(details);
 
     if (index == -1){
-        std::cout << "\nAccount not found.\n";
+        std::cout << "\nAccount not found. Returning to main menu...\n"; // ERROR HANDLING (Cannot be found)
         return;
     }
 
@@ -177,13 +249,278 @@ void display_records_by_account(ProfileDetails details){
 
 void display_records_by_date(ProfileDetails details){
     Date date;
+    bool loop = true;
 
-    std::cout << "Enter date (mm dd yyyy): ";
-    std::cin >> date.month;
-    std::cin >> date.day;
-    std::cin >> date.year;
+    while (loop){
+        std::cout << "\nEnter date (mm dd yyyy): ";
+        std::cin >> date.month;
+        std::cin >> date.day;
+        std::cin >> date.year;
 
-    filter_by_date(details, date);
+        if ( !date_is_valid(date) ){
+            std::cout << "\nInputted date is invalid. Please try again.\n";
+            continue;
+        }
+
+        loop = false;
+    }
+
+    filter_by_date(details, date, true);
+}
+
+void display_records_by_type(ProfileDetails details){
+    std::string input;
+    char record_type;
+    bool found = false;
+
+    std::cout << "\nEnter record type ( Income / Expense ): ";
+    std::cin >> input;
+
+    if (input == "Income"){
+        record_type = 'i';
+    } else if (input == "Expense"){
+        record_type = 'e';
+    } else {
+        std::cout << "\nInvalid input. Returning to main menu...\n";
+        return;
+    }
+
+    for (int i = 0; i < details.accounts_size; ++i){
+        if (details.accounts[i].filter_by_record_type(record_type) && !found) found = true;
+    }
+
+    if (!found){
+        std::cout << "\nNo records satisfy the inputted type. Returning to main menu...\n"; // ERROR HANDLING (Cannot be found)
+    }
+}
+
+void display_records_by_amount(ProfileDetails details){
+    double amount, low, high;
+    int option;
+    bool loop = true, found = false;
+
+    std::cout << "\nEnter...\n";
+    std::cout << "1) Exact Amount\n";
+    std::cout << "2) Amount Range\n\n";
+    std::cin >> option;
+
+    switch(option){
+        case 1:
+            std::cout << "\nEnter amount: ";
+            std::cin >> amount;
+
+            low = amount;
+            high = amount;
+            break;
+        case 2:
+            while (loop){
+                std::cout << "\nEnter minimum for amount range: ";
+                std::cin >> low;
+
+                std::cout << "Enter maximum for amount range: ";
+                std::cin >> high;
+
+                if (low > high){
+                    std::cout << "\nInputted minimum is greater than inputted maximum. Please try again.\n"; // ERROR HANDLING (Invalid input range)
+                    continue;
+                }
+
+                loop = false;
+            }
+            break;
+        default:
+            std::cout << "\nInvalid input. Returning to main menu...\n"; // ERROR HANDLING (Invalid user input)
+            return;
+    }
+
+    for (int i = 0; i < details.accounts_size; ++i){
+        if (details.accounts[i].filter_by_amount_range(low, high) && !found) found = true;
+    }
+
+    if (!found){
+        std::cout << "\nNo records satisfy the specified amount range. Returning to main menu...\n"; // ERROR HANDLING (Cannot be found)
+    }
+}
+
+// - chan: ari ibutang imong category percentage calculation jim
+/*void display_category_percentages(ProfileDetails details){
+
+}*/
+
+void display_records_by_category(ProfileDetails details){
+    std::string category;
+    bool found = false;
+
+    std::cout << "\nEnter a category: ";
+    std::cin >> category;
+
+    for (int i = 0; i < details.accounts_size; ++i){
+        if (details.accounts[i].filter_by_category(category) && !found) found = true;
+    }
+
+    if (!found){
+        std::cout << "\nCategory " << category << " not found. Returning to main menu...\n"; // ERROR HANDLING (Cannot be found)
+    }
+}
+
+void display_category_percentages(ProfileDetails details){
+
+}
+
+void add_account(ProfileDetails* details){
+    create_account(details->accounts, &details->accounts_size);   
+}
+
+void modify_account(ProfileDetails* details){
+    std::string account_name;
+    double balance;
+    int index, option, exit;
+    bool loop = true;
+
+    index = select_account(*details, true);
+
+    if (index == -1){
+        std::cout << "\nAccount not found. Returning to main menu...\n";
+        return;
+    }
+
+    while (loop){
+        // display account details
+        std::cout << std::endl << "Account Name: " << details->accounts[index].get_account_name() << std::endl;
+        std::cout << "Balance: " << CURRENCY << " " << details->accounts[index].get_balance() << std::endl;
+        
+        // display menu option prompts
+        std::cout << "\nWhat would you like to do?\n";
+        std::cout << "1) Modify account name\n";
+        std::cout << "2) Modify balance\n";
+        std::cout << "0) Exit\n\n";
+        std::cin >> option;
+
+        switch(option){
+            // exit
+            case 0:
+                std::cout << "\nAre you sure that you want to discard your changes? (Enter Y to discard): ";
+                std::cin >> exit;
+                if (exit == 'Y'){
+                    loop = false;
+                }
+                break;
+            // modify account name
+            case 1:
+                std::cout << "\nEnter new account name: ";
+                std::cin >> account_name;
+
+                details->accounts[index].set_account_name(account_name);
+
+                loop = false;
+                break;
+            // modify balance
+            case 2:
+                std::cout << "\nEnter new balance: ";
+                std::cin >> balance;
+
+                details->accounts[index].set_balance(balance);
+
+                loop = false;
+                break;
+        }
+    }
+}
+
+void display_accounts(ProfileDetails details, bool balance){
+    std::cout << "\n-----ACCOUNTS-----\n";
+    for (int i = 0; i < details.accounts_size; ++i){
+        std::cout << details.accounts[i].get_account_name() << std::endl;
+        
+        if (balance){
+            std::cout << "Balance: " << CURRENCY << " " << details.accounts[i].get_balance() << std::endl << std::endl;
+        }
+    }
+    std::cout << "------------------\n";
+}
+
+void delete_account(ProfileDetails* details){
+    int index;
+    char option;
+
+    index = select_account(*details, true);
+
+    if (index == -1){
+        std::cout << "\nAccount not found. Returning to main menu...\n";
+        return;
+    }
+
+    // display account details
+    std::cout << std::endl << "Account Name: " << details->accounts[index].get_account_name() << std::endl;
+    std::cout << "Balance: " << CURRENCY << " " << details->accounts[index].get_balance() << std::endl;
+
+    std::cout << "\nDo you want to delete this record? (Enter Y to proceed) ";
+    std::cin >> option;
+
+    if (option == 'Y'){
+        for (int i = index + 1; i < details->accounts_size; ++i){
+            details->accounts[i - 1] = details->accounts[i];
+        }
+        --details->accounts_size;
+        std::cout << "\nAccount has been deleted. Returning to main menu...\n";
+    } else {
+        std::cout << "\nAccount deletion canceled. Returning to main menu...\n";
+    }
+}
+
+void transfer_balance(ProfileDetails* details){
+    std::string current, destination;
+    double amount;
+    int curr_index = -1, dest_index = -1;
+    bool found, loop = true;
+
+    while (loop){
+        found = false;
+        
+        display_accounts(*details);
+
+        std::cout << "\nEnter current account destination: ";
+        std::cin >> current;
+
+        for (int i = 0; i < details->accounts_size; ++i){
+            if ( current == details->accounts[i].get_account_name() ){
+                found = true;
+                curr_index = i;
+            }
+        }
+
+        if (curr_index == -1 && !found){
+            std::cout << "\nInvalid account name. Please try again.\n"; // ERROR HANDLING (Invalid user input)
+            continue;
+        }
+
+        found = false;
+
+        std::cout << "\nEnter new account destination: ";
+        std::cin >> destination;
+
+        for (int i = 0; i < details->accounts_size; ++i){
+            if ( destination == details->accounts[i].get_account_name() ){
+                found = true;
+                dest_index = i;
+            }
+        }
+
+        if (dest_index == -1 && !found){
+            std::cout << "\nInvalid account name. Please try again.\n"; // ERROR HANDLING (Invalid user input)
+            continue;
+        }
+
+        std::cout << "\nEnter amount to transfer: ";
+        std::cin >> amount;
+
+        details->accounts[curr_index].set_balance( amount - (amount + amount), true );
+        details->accounts[dest_index].set_balance(amount, true);
+
+        std::cout << "\nReturning to main menu...\n";
+
+        loop = false;
+    }
 }
 
 int init(std::string file_name, ProfileDetails* details){
@@ -198,6 +535,8 @@ int init(std::string file_name, ProfileDetails* details){
         exit(EXIT_FAILURE);
     }
 
+    // returns 1 when file is empty
+    // to add default accounts (cash, card, savings)
     if (file_empty(file)){
         return 1;
     }
@@ -209,6 +548,7 @@ int init(std::string file_name, ProfileDetails* details){
         exit(EXIT_FAILURE);
     }
 
+    // get current file ptr position for continuous reading
     pos = file.tellg();
 
     file.close();
@@ -283,17 +623,26 @@ void person_menu_prompt(ProfileDetails details){
     std::cout << "6) Display records by record type\n";
     std::cout << "7) Display records by specified amount\n";
     std::cout << "8) Display records by category\n";
+    std::cout << "9) Display category percentages\n";
     std::cout << "-----ACCOUNTS-----\n";
-    std::cout << "9) Add an account\n";
-    std::cout << "10) Modify an account\n";
-    std::cout << "11) Display all accounts\n";
-    std::cout << "12) Delete an account\n";
+    std::cout << "10) Add an account\n";
+    std::cout << "11) Modify an account\n";
+    std::cout << "12) Display all accounts\n";
+    std::cout << "13) Delete an account\n";
+    std::cout << "14) Transfer balance\n";
     std::cout << "0) Exit\n\n";
 }
 
-void filter_by_date(ProfileDetails details, Date date){
+void filter_by_date(ProfileDetails details, Date date, bool display_call){
+    bool found = false;
+    
+    // display records for all accounts according to date
     for (int i = 0; i < details.accounts_size; ++i){
-        details.accounts[i].filter_by_date(date);
+        if (details.accounts[i].filter_by_date(date) && !found) found = true;
+    }
+
+    if (!found && display_call){
+        std::cout << "\nNo records satisfy the inputted date. Returning to main menu...\n";
     }
 }
 
@@ -305,15 +654,11 @@ void add_default_accounts(ProfileDetails* details){
     details->accounts_size = 3;
 }
 
-int select_account(ProfileDetails details){
+int select_account(ProfileDetails details, bool modify_call){
     std::string input;
     
     // display accounts available
-    std::cout << "\n-----ACCOUNTS-----\n";
-    for (int i = 0; i < details.accounts_size; ++i){
-        std::cout << details.accounts[i].get_account_name() << std::endl;
-    }
-    std::cout << "------------------\n";
+    display_accounts(details, modify_call);
     
     // ask user input for account name
     std::cout << "\nEnter account name: ";
@@ -334,6 +679,7 @@ int select_account(ProfileDetails details){
 void calculate_total_balance(ProfileDetails* details){
     double total_balance = 0;
 
+    // add balance of all accounts into total_balance
     for (int i = 0; i < details->accounts_size; ++i){
         total_balance += details->accounts[i].get_balance();
     }

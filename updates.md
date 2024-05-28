@@ -2,6 +2,77 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.4 (May 28, 2024)
+
+- In person_mode
+  - Added display_records_by_type() - *verify testing*
+  - Added display_records_by_amount() - *verify testing*
+  - Added display_records_by_category() - *verify testing*
+  - Added display_category_percentages() - *empty*
+  - Added add_account() - *verify testing*
+  - Added modify_account() - *verify testing*
+  - Added display_accounts() - *verify testing*
+  - Added delete_account() - *verify testing*
+  - Added transfer_balance() - *not final*
+  - Updated person_mode() - *incomplete*
+  - Updated modify_account_record() - *verify testing*
+  - Updated delete_account_record() - *verify testing*
+  - Updated person_menu_prompt() - *verify testing*
+  - Updated filter_by_date() - *verify testing*
+- In account
+  - In Account class
+    - Added private method select_record_screen() - *verify testing*
+    - Added public method modify_record_screen() - *verify testing*
+    - Added public method set_account_name() - *verify testing*
+    - Added public method get_balance() - *verify testing*
+    - Added public method set_balance() - *not final*
+    - Added public method transfer_balance() - *incomplete*
+    - Added public method filter_by_record_type() - *verify testing*
+    - Added public method filter_by_amount_range() - *verify testing*
+    - Added public method filter_by_category() - *verify testing*
+    - Updated private method select_record_type() - *verify testing*
+      - Removed transfer record category
+    - Updated private method display_record() - *verify testing*
+    - Updated public method modify_record() - *verify testing*
+    - Updated public method delete_record() - *verify testing*
+    - Updated public method display_records() - *verify testing*
+- In date
+  - Added date_is_valid() - *verify testing*
+- In group_mode
+  - Added removeMem() - *test pending*
+  - Added case_three() - *incomplete*
+    - forgot to add this one hihi
+  - Updated case_one() - *test pending*
+  - Updated case_oneMenu() - *test pending*
+  - Updated edit_member() - *test pending*
+- In member
+  - In Member class
+    - 
+- Added program.cpp
+  - NOT FINAL
+  - Will opt to use ncurses for clear screen, pause, and some fancy display stuff
+
+To-Do:
+**FOR CHAD:**
+- Test ur case 1 bro
+- Implement case 2
+
+**FOR JIM:**
+- Finish case 3 plsplslpslpslpslsplsplsp
+- Implement category percentage display (already made a function for this sa person_mode)
+
+**FOR CHAN:**
+- Finish transfer_balance() in account
+- Get rid of initialize() in account since it's kind of pointless i think
+- Also get rid of create_accounts() in account since it's also kind of pointless
+- Check if the balance is updated correctly
+- Create group mode main menu screen
+- Implement reading and writing
+  - Implement serializing and deserializing of Member class
+- Try out ncurses (if u can and time will permit)
+  - Pause the program on specified parts of code
+  - Clear screen (use system("cls") or smth idk it's not recommended daw)
+
 ## UPDATE VERSION 4.3 (May 26, 2024)
 
 - In person_mode

@@ -32,4 +32,7 @@ Date get_current_date();
 // obtain date yesterday
 Date get_yesterday_date();
 
+// check if date is valid
+bool date_is_valid(Date);
+
 #endif // DATE_H_

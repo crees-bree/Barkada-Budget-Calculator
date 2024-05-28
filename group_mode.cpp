@@ -151,9 +151,6 @@ void removeMem(int *members_size, Member *members){                 //have to de
 }
 
 void case_oneMenu(){
-    // - chan
-    // group budget limiter lagi ni 
-    // im high, removed na - conx
     std::cout << "\n Case 1 Menu:" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
