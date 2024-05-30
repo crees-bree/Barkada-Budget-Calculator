@@ -13,9 +13,9 @@
 - In member
   - Case 3 functions added
     - everything mentioned above has their functions in member 
+    
 To-Do:
 **FOR JIM:**
-- Finish case 3 (done)
 - Implement category percentage display (already made a function for this sa person_mode)
 
 ## UPDATE VERSION 4.4 (May 28, 2024)

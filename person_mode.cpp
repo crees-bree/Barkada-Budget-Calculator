@@ -342,11 +342,6 @@ void display_records_by_amount(ProfileDetails details){
     }
 }
 
-// - chan: ari ibutang imong category percentage calculation jim
-/*void display_category_percentages(ProfileDetails details){
-
-}*/
-
 void display_records_by_category(ProfileDetails details){
     std::string category;
     bool found = false;
