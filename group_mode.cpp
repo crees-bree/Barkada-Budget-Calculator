@@ -23,6 +23,8 @@ void edit_memberMenu();
 
 // CASES MENU FUNCTIONS
 
+void case_threeMenu();
+
 
 // contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
@@ -187,12 +189,9 @@ void case_three(Member *members, int *members_size, int option) {
 
     while (true) {
         members[*members_size].display_details(option, *members_size);
-        std::cout << "\nCase 3 Menu:\n";
-        std::cout << "Gasto Mo Ang Limit!\n";
-        std::cout << "1. Add Member.\n";
-        std::cout << "2. Add Expense for Member\n";
-        std::cout << "3. Exit\n";
+        case_threeMenu();
         std::cin >> member_choice;
+        std::string displayName;
 
         switch (member_choice) {
             case 1:
@@ -210,10 +209,34 @@ void case_three(Member *members, int *members_size, int option) {
                 (*members_size)++;
 
                 break;
-            case 2:
-                // Add expense logic
+            case 2: //delete member
+                    removeMem(members_size, members);
                 break;
             case 3:
+                std::cout << "Enter the name of member you want to add an expense to: " << std::endl;
+                std::cin >> displayName;
+                for (int i = 0; i < *members_size; i++)
+                {
+                    if (members[i].check_memName(displayName))
+                    {
+                        members[i].addExpense();
+                        return;
+                    }
+                }
+                break;
+            case 4:
+                std::cout << "Enter the name of member you want to display: " << std::endl;
+                std::cin >> displayName;
+                for (int i = 0; i < *members_size; i++)
+                {
+                    if (members[i].check_memName(displayName))
+                    {
+                        members[i].displayMember();
+                        return;
+                    }
+                }
+                break;
+            case 5:
                 return;
             default:
                 std::cout << "Invalid choice. Please select again.\n";
@@ -221,6 +244,16 @@ void case_three(Member *members, int *members_size, int option) {
         }
     }
 }
+
+void casethree_Menu(){
+        std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
+        std::cout << "1. Add Member.\n";
+        std::cout << "2. Delete Member \n.";
+        std::cout << "3. Add Expense for Member\n";
+        std::cout << "4. Display Member Details.\n";
+        std::cout << "5. Exit\n";
+}
+
 void init(){
 
 }

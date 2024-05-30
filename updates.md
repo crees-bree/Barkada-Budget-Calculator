@@ -2,6 +2,22 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.5 (May 30,2024)
+- In group_mode
+  - Case 3 is finished *test pending*
+    - added function to display member details (displays budget left and all recorded exenses) *test pending*
+    - added function tor remove member *test pending*
+    - added function for expenses (includes notes for expense) *test pending*
+    - budget also updates according to expense,
+    - display member will also dislay whether member has went over the budget
+- In member
+  - Case 3 functions added
+    - everything mentioned above has their functions in member 
+To-Do:
+**FOR JIM:**
+- Finish case 3 (done)
+- Implement category percentage display (already made a function for this sa person_mode)
+
 ## UPDATE VERSION 4.4 (May 28, 2024)
 
 - In person_mode

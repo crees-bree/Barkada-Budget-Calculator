@@ -89,7 +89,9 @@ class Member{
 
         // CASE 3
 
-
+        void addExpense();
+        void displayMember();
+        
         void serialize();
         void deserialize();
 };
