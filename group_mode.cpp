@@ -27,9 +27,11 @@ void edit_memberMenu();
 // contains all functionalities for case 1
 void case_one(int *members_size, Member *members);
 void edit_member(int members_size, Member *members);
+void removeMem(int *members_size, Member *members);
 
 // contains all functionalities for case 2
 void case_two();
+
 
 // contains all functionalities for case 3
 void case_three();
@@ -99,44 +101,72 @@ void case_one(int *members_size, Member *members){
     }
     
     case 3:
+        removeMem(members_size, members);
         break;
     
-    case 4:
-        members[*members_size].display_details(1, *members_size);
+    case 4:{
+        std::string displayName;
+        std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
+        std::cin >> displayName;
+        for (int i = 0; i < *members_size; i++)
+        {
+            if (members[i].check_memName(displayName))
+            {
+                members[i].display_details(1, *members_size);
+                return;
+            }
+        }
         break;
+    }
+    case 5:{
+        for (int i = 0; i < *members_size; i++)
+        {
+            members[i].display_details(1, *members_size);
+        }
+        break;
+    }
 
-    case 5: return;
+    case 6: return;
 
     default:
         break;
     }
 }
 
+void removeMem(int *members_size, Member *members){                 //have to debug for us to know for sure that it works
+    std::string removeName;
+    std::cout << "What is the name of the member you want to remove?: " << std::endl;
+    std::cin >> removeName;
+    for (int i = 0; i < *members_size; i++)
+    {
+        if(members[i].check_memName(removeName))
+        {
+            for (int j = i; j < *members_size - 1; j++) 
+            {
+                members[j] = members[j + 1];
+            }
+            (*members_size)--;
+            break;
+        }
+    }
+}
 
 void case_oneMenu(){
-    // - chan
-    // group budget limiter lagi ni
     std::cout << "\n Case 1 Menu:" << std::endl;
-    std::cout << "Group Budget Limiter" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
-    std::cout << "4. Display all member details" << std::endl;
-    std::cout << "5. Exit" << std::endl;
-    // add sad option para maka exit ang user
-    // done -conx
+    std::cout << "4. Display each member details" << std::endl;
+    std::cout << "5. Display all member details" << std::endl;
+    std::cout << "6. Exit" << std::endl;
 }
 
 void caseMenu(){
-    // - chan
-    // sa ato-ato ra nang case 1-3 sht
-    // ato idisplay sa user ang name sa case
-    // awa daw if goods ra ang suggested names below
     std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1) Sukli sa Kinsa" << std::endl;             //maybe rename these into better describing unsa iya buhaton, case 1-3 lang sa cos i cant think
-    std::cout << "2) Utang Tracker" << std::endl;
-    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
-    // add sad option para maka exit ang user
+    std::cout << "1. Sukli sa Kinsa" << std::endl;          
+    std::cout << "2. Utang Tracker" << std::endl;
+    std::cout << "3. Gasto Mo Ang Limit" << std::endl;
+    std::cout << "4. Exit" << std::endl;
 }
 
 void edit_memberMenu(){

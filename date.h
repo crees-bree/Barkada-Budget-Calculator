@@ -14,10 +14,25 @@ struct date{
 };
 typedef struct date Date;
 
+// operator overloading functions
+
+// is a older than b
+bool operator<= (const Date& d1, const Date& d2);
+
+// is a younger than b
+bool operator>= (const Date& d1, const Date& d2);
+
+// are dates a and b the same
+bool operator== (const Date& d1, const Date& d2);
+
+
 // obtain date today
 Date get_current_date();
 
 // obtain date yesterday
 Date get_yesterday_date();
+
+// check if date is valid
+bool date_is_valid(Date);
 
 #endif // DATE_H_

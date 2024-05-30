@@ -2,6 +2,97 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.4 (May 28, 2024)
+
+- In person_mode
+  - Added display_records_by_type() - *verify testing*
+  - Added display_records_by_amount() - *verify testing*
+  - Added display_records_by_category() - *verify testing*
+  - Added display_category_percentages() - *empty*
+  - Added add_account() - *verify testing*
+  - Added modify_account() - *verify testing*
+  - Added display_accounts() - *verify testing*
+  - Added delete_account() - *verify testing*
+  - Added transfer_balance() - *not final*
+  - Updated person_mode() - *incomplete*
+  - Updated modify_account_record() - *verify testing*
+  - Updated delete_account_record() - *verify testing*
+  - Updated person_menu_prompt() - *verify testing*
+  - Updated filter_by_date() - *verify testing*
+- In account
+  - In Account class
+    - Added private method select_record_screen() - *verify testing*
+    - Added public method modify_record_screen() - *verify testing*
+    - Added public method set_account_name() - *verify testing*
+    - Added public method get_balance() - *verify testing*
+    - Added public method set_balance() - *not final*
+    - Added public method transfer_balance() - *incomplete*
+    - Added public method filter_by_record_type() - *verify testing*
+    - Added public method filter_by_amount_range() - *verify testing*
+    - Added public method filter_by_category() - *verify testing*
+    - Updated private method select_record_type() - *verify testing*
+      - Removed transfer record category
+    - Updated private method display_record() - *verify testing*
+    - Updated public method modify_record() - *verify testing*
+    - Updated public method delete_record() - *verify testing*
+    - Updated public method display_records() - *verify testing*
+- In date
+  - Added date_is_valid() - *verify testing*
+- In group_mode
+  - Added removeMem() - *test pending*
+  - Added case_three() - *incomplete*
+    - forgot to add this one hihi
+  - Updated case_one() - *test pending*
+  - Updated case_oneMenu() - *test pending*
+  - Updated edit_member() - *test pending*
+- In member
+  - In Member class
+    - 
+- Added program.cpp
+  - NOT FINAL
+  - Will opt to use ncurses for clear screen, pause, and some fancy display stuff
+
+To-Do:
+**FOR CHAD:**
+- Test ur case 1 bro
+- Implement case 2
+
+**FOR JIM:**
+- Finish case 3 plsplslpslpslpslsplsplsp
+- Implement category percentage display (already made a function for this sa person_mode)
+
+**FOR CHAN:**
+- Finish transfer_balance() in account
+- Get rid of initialize() in account since it's kind of pointless i think
+- Also get rid of create_accounts() in account since it's also kind of pointless
+- Check if the balance is updated correctly
+- Create group mode main menu screen
+- Implement reading and writing
+  - Implement serializing and deserializing of Member class
+- Try out ncurses (if u can and time will permit)
+  - Pause the program on specified parts of code
+  - Clear screen (use system("cls") or smth idk it's not recommended daw)
+
+## UPDATE VERSION 4.3 (May 26, 2024)
+
+- In person_mode
+  - Added calculate_total_balance() - *test pending*
+  - Updated person_mode() - *incomplete*
+  - Updated init() - *test pending*
+  - Updated save() - *test pending*
+  - Updated select_account() - *test pending*
+- In account
+  - In Account class
+    - Added public method get_balance() - *test pending*
+    - Updated private method add_to_records() - *test pending*
+    - Updated public method serialize() - *test pending*
+    - Updated public method deserialize() - *test pending*
+- In date
+  - Updated op. over. func. for <= - *test pending*
+  - Updated op. over. func. for >= - *test pending*
+  - Updated op. over. func. for == - *test pending*
+  - Added operator overloading function prototypes in date.h
+
 ## UPDATE VERSION 4.2 (May 25, 2024)
 
 - Added ver4.2 git branch
@@ -11,16 +102,25 @@
   - Added filter_by_date() - *not final*
   - Added person_menu_prompt() - *incomplete*
   - Added add_default_accounts() - *test pending*
-  - Add file_empty() - *test pending*
+  - Added file_empty() - *test pending*
+  - Added add_account_record() - *test pending*
+  - Added modify_account_record() - *empty*
+  - Added delete_account_record() - *empty*
+  - Added display_records_by_account() - *test pending*
+  - Added display_records_by_date() - *test pending*
+  - Added select_account() - *test pending*
   - Updated person_mode() - *incomplete*
   - Updated init() - *test pending*
   - Updated save() - *test pending*
+  - Added default currency (Php)
 - In account
   - In Account class
     - Added private method add_to_records() - *test pending*
     - Added public method auto_initialize() - *test pending*
     - Added public method delete_record() - *empty*
     - Added public method filter_by_date() - *test pending*
+    - Added public method get_account_name() - *test pending*
+  - Added default currency (Php)
 - Added date.cpp and date.h
   - I dedicated a separate file for my Date structure and its functionalities  
     since I realized I'm going to have to do a lot of operations  
@@ -33,6 +133,22 @@
     - Added operator overloading function for <= - *test pending*
     - Added operator overloading function for >= - *test pending*
     - Added operator overloading function for == - *test pending*
+- In group_mode
+  - Added edit_member() - *incomplete*
+  - Added edit_memberMenu() - *test pending*
+  - Updated case_oneMenu() - *test pending*
+  - Updated case_one() - *incomplete*
+    - i think
+- In member
+  - Added default currency (Php)
+  - Added check_memName() - *test pending*
+  - Added setCase1() - *test pending*
+  - Updated initialize() - *incomplete*
+    - i think
+
+To-Do:
+- Test everything you guys just added
+  - This is necessary before adding more sht
 
 ## UPDATE VERSION 4.1 (May 24, 2024)
 
