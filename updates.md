@@ -13,6 +13,16 @@
 - In member
   - Case 3 functions added
     - everything mentioned above has their functions in member 
+- In person_mode
+  - Updated transfer_balance() - *verify pending*
+  - Updated modify_account() - *verify testing*
+  - Updated delete_account() - *verify testing*
+- In account
+  - In Account class
+    - Updated public method transfer_balance() - *verify pending*
+  - Removed create_accounts()
+- Added pmode_test.cpp
+  - Person mode testing code
     
 To-Do:
 **FOR JIM:**
@@ -61,9 +71,6 @@ To-Do:
   - Updated case_one() - *test pending*
   - Updated case_oneMenu() - *test pending*
   - Updated edit_member() - *test pending*
-- In member
-  - In Member class
-    - 
 - Added program.cpp
   - NOT FINAL
   - Will opt to use ncurses for clear screen, pause, and some fancy display stuff

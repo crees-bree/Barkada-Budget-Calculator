@@ -110,7 +110,5 @@ class Account{
 
 };
 
-// creates a new account
-void create_account(Account[], int*);
 
 #endif // ACCOUNT_H_

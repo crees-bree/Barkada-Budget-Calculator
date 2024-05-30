@@ -271,18 +271,32 @@ void Account::set_balance(double bal, bool transfer_call){
 
 void Account::transfer_balance(double bal, bool current){
     Record record_diff;
-    
-    if (balance > 0 && current){
-        
+    double diff;
+
+    // calculate difference
+    diff = balance - bal;
+
+    // sets signs based on account location
+    // if current is true (transferring from current account),
+    // sets amount to negative (to subtract)
+    // if current is false (transferring to new account),
+    // sets amount to positive (to add)
+    if ( (diff > 0 && current) || (diff < 0 && !current) ){
+        diff = -diff;
     }
 
+    // set transfer record details
+    record_diff.date = get_current_date();
     record_diff.record_type = TRANSFER;
+    record_diff.amount = diff;
     record_diff.category = "TRANSFERRED AMOUNT";
 
+    // display what will be added to records to allow transfer
     std::cout << "\nThe following record will be added to " << account_name << " in transferring amount\n";
     display_record(record_diff);
     std::cout << std::endl;
 
+    // add to records and update balance
     add_to_records(record_diff);
     update_balance(record_diff);
 
@@ -1000,11 +1014,5 @@ bool Account::filter_by_category(std::string category){
     return found;
 }
 
-// AUXILIARY FUNCTION DEFINITIONS
-
-void create_account(Account accounts[], int* accounts_size){
-    accounts[*accounts_size].initialize();
-    (*accounts_size)++;
-}
 
 
