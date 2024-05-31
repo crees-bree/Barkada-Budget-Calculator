@@ -406,9 +406,10 @@ void display_category_percentages(ProfileDetails details) {
             end_date.year = today.year; 
             break;
         }
-    // Filter records based on the selected time frame
+    // filter records based on time frame
     std::vector<Record> filtered_records;
-    for (const auto& record : details.records) {
+    for (size_t i = 0; i < details.records.size(); ++i) {
+        const Record& record = details.records[i];
         if (record.date >= start_date && record.date <= end_date) {
             filtered_records.push_back(record);
         }
@@ -416,32 +417,32 @@ void display_category_percentages(ProfileDetails details) {
 
     // Calculate total expenses for each category
     std::vector<std::pair<std::string, double>> category_expenses;
-    for (const auto& record : filtered_records) {
-        if (record.record_type == 'e') {
+    for (size_t i = 0; i < filtered_records.size(); ++i) {
+        if (filtered_records[i].record_type == 'e') {
             bool found = false;
-            for (auto& cat_exp : category_expenses) {
-                if (cat_exp.first == record.category) {
-                    cat_exp.second += record.amount;
+            for (size_t j = 0; j < category_expenses.size(); ++j) {
+                if (category_expenses[j].first == filtered_records[i].category) {
+                    category_expenses[j].second += filtered_records[i].amount;
                     found = true;
                     break;
                 }
             }
             if (!found) {
-                category_expenses.push_back({record.category, record.amount});
+                category_expenses.push_back({filtered_records[i].category, filtered_records[i].amount});
             }
         }
     }
 
     double total_expenses = 0.0;
-    for (const auto& pair : category_expenses) {
-        total_expenses += pair.second;
+    for (int i = 0; i < category_expenses.size(); ++i) {
+        total_expenses += category_expenses[i].second;
     }
 
     // Calculate and display percentage of expenses for each category
     std::cout << "Category\tPercentage\n";
-    for (const auto& pair : category_expenses) {
-        double percentage = (pair.second / total_expenses) * 100.0;
-        std::cout << pair.first << "\t\t" << percentage << "%\n";
+    for (int i = 0; i < category_expenses.size(); ++i) {
+        double percentage = (category_expenses[i].second / total_expenses) * 100.0;
+        std::cout << category_expenses[i].first << "\t\t" << percentage << "%\n";
     }
 }
 
