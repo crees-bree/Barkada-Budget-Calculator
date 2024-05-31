@@ -58,34 +58,7 @@ int group_mode(){
     char exit;
     bool loop = true;
 
-<<<<<<< HEAD
-    std::cin >> option;
-    
-    switch (option)
-    {
-    case 1:
-        case_one(&members_size, members);
-        break;
-    case 2:
-        break;
-    case 3:
-        case_three(members, &members_size, option);
-        break;
-    default:
-        std::cout << "Invalid input" << std::endl;
-        break;
-=======
     std::string file_name;
-
-    // select a profile first
-    open = profile_selection(MODE, &file_name);
-
-    // exit program if open profile is not initiated
-    if (!open){
-        // program exited successfully
-        return 0;
->>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
-    }
 
     // read saved data from profile file
     init(file_name, members, &members_size);
@@ -335,6 +308,10 @@ void case_threeMenu(){
         std::cout << "4. Display Member Details.\n";
         std::cout << "5. Exit\n";
 }
+
+void init(std::string file_name, Member members[], int* members_size){
+    std::ifstream file;
+    long int pos;
 
     // open file for reading
     file.open(file_name, std::ios::binary);
