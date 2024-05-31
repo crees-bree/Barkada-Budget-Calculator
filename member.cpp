@@ -113,20 +113,18 @@ void Member::display_details(int case_type, int members_size){
                     std::cout << " " << std::endl; 
                     std::cout << "Name: " << name << std::endl; 
                     std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
-                } else{
+                } else {
                     std::cout << " " << std::endl; 
                     std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
                     std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
                     std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
                 }
-            }
         break;
-    
     default:
         break;
         }
-    }
 }
+
 
 // specific to case 1
 
