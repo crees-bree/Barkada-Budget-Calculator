@@ -129,6 +129,7 @@ void Member::display_details(int case_type, int members_size){
     
     default:
         break;
+        }
     }
 }
 

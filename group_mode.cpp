@@ -37,7 +37,7 @@ void case_one(int *members_size, Member *members);
 // case two main menu
 void case_two();
 // case three main menu
-void case_three();
+void case_three(Member *members, int *members_size, int option);
 
 // READING AND WRITING FUNCTIONS
 
