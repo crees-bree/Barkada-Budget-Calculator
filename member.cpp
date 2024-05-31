@@ -110,14 +110,12 @@ void Member::display_details(int case_type, int members_size){
     case 2:
         break;
     case 3:
-<<<<<<< HEAD
             if(details.case3.budget >= 0){
                 std::cout << " " << std::endl; 
-======= }
+        }
         for (int i = 0; i < members_size; i++)
         {
             if (details.case3.budget >= 0){
->>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
                 std::cout << "Name: " << name << std::endl; 
                 std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
             }
