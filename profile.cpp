@@ -26,6 +26,11 @@ namespace fs = std::filesystem;
 // DEFAULT FILE EXTENSION OF PROFILE FILE (DATA FILE)
 #define FILE_EXTENSION ".dat"
 
+// profile directory
+const std::string dir = "../Profiles/";
+const std::string pdir = "Person/";
+const std::string gdir = "Group/";
+
 // PERSON AND GROUP MODE MACROS
 #define PERSON 'p'
 #define GROUP 'g'
@@ -189,7 +194,7 @@ void display_profiles(char profile_mode){
         file_name = entry.path().generic_string();
 
         // delete directory name
-        file_name.erase(0, (profile_mode == PERSON) ? 16 : 15);
+        file_name.erase(0, (profile_mode == PERSON) ? dir.length() + pdir.length() : dir.length() + gdir.length());
         
         // delete .txt extension
         file_name.erase(file_name.length() - 4, 4);
@@ -227,9 +232,9 @@ bool search_profile(std::string profile_name, char profile_mode){
 
 std::string set_directory(char profile_mode){
     if (profile_mode == PERSON){
-        return "Profiles/Person/";
+        return dir + pdir;
     } else if (profile_mode == GROUP){
-        return "Profiles/Group/";
+        return dir + gdir;
     } else {
         return ""; // ERROR HANDLING (Invalid profile mode input)
     }

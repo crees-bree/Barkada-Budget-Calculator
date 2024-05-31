@@ -6,7 +6,6 @@
 
 
 #include <iostream>
-#include <ncurses/ncurses.h>
 #include <errno.h>
 #include <fstream>
 
