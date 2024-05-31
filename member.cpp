@@ -138,7 +138,7 @@ void Member::display_details(int case_type, int members_size){
 
 // specific to case 3
 
-void Member::addExpense() {
+void Member::addExpense(){
     double expenseAmount;
     std::string note;
     char confirm;
@@ -185,9 +185,6 @@ void Member::displayMember() {
         std::cout << "Amount: " << expense.expense_payment << ", Note: " << expense.note << "\n";
         std::cout << " " << std::endl; 
     }
-<<<<<<< HEAD
-    std::cout << "---------------------\n";
-=======
 }
 
 void Member::serialize(std::string file_name){
@@ -196,5 +193,4 @@ void Member::serialize(std::string file_name){
 
 void Member::deserialize(std::string file_name, long int* pos){
     
->>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
 }
