@@ -180,7 +180,9 @@ void edit_memberMenu(){
 }
 
 
-void case_two();
+void case_two(Member *members){
+
+}
 
 void case_three(Member *members, int *members_size, int option) {
     int member_choice;
