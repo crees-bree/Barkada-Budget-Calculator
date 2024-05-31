@@ -35,9 +35,9 @@ void case_threeMenu();
 // case one main menu
 void case_one(int *members_size, Member *members);
 // case two main menu
-void case_two(Member *members);
+void case_two();
 // case three main menu
-void case_three(Member *members, int *members_size, int option);
+void case_three();
 
 // READING AND WRITING FUNCTIONS
 
@@ -58,6 +58,23 @@ int group_mode(){
     char exit;
     bool loop = true;
 
+<<<<<<< HEAD
+    std::cin >> option;
+    
+    switch (option)
+    {
+    case 1:
+        case_one(&members_size, members);
+        break;
+    case 2:
+        break;
+    case 3:
+        case_three(members, &members_size, option);
+        break;
+    default:
+        std::cout << "Invalid input" << std::endl;
+        break;
+=======
     std::string file_name;
 
     // select a profile first
@@ -67,6 +84,7 @@ int group_mode(){
     if (!open){
         // program exited successfully
         return 0;
+>>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
     }
 
     // read saved data from profile file
@@ -79,7 +97,7 @@ int group_mode(){
         std::cin >> option;
         
         switch (option){
-            case 0:
+            case 4:
                 std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
                 std::cin >> exit;
 
@@ -259,27 +277,22 @@ void case_three(Member *members, int *members_size, int option) {
     double payment, bill;
 
     while (true) {
-        members[*members_size].display_details(option, *members_size);
+        for (int i = 0; i < *members_size; i++){
+            members[i].display_details(option, *members_size);
+        }
         case_threeMenu();
         std::cin >> member_choice;
         std::string displayName;
 
         switch (member_choice) {
             case 1:
+            
                 members[*members_size].create_member();
                 members[*members_size].initialize(3);
 
-                char verify;
-                    do{
-                    std::cout << "Are you sure you've entered the correct information? Enter Y if yes: ";
-                    std::cin >> verify;
-                        members[*members_size].create_member();
-                        members[*members_size].initialize(3);   
-                    }while(verify != 'Y' && verify != 'y'); 
-
                 (*members_size)++;
-
                 break;
+
             case 2: //delete member
                     removeMem(members_size, members);
                 break;
@@ -291,7 +304,6 @@ void case_three(Member *members, int *members_size, int option) {
                     if (members[i].check_memName(displayName))
                     {
                         members[i].addExpense();
-                        return;
                     }
                 }
                 break;
@@ -303,7 +315,6 @@ void case_three(Member *members, int *members_size, int option) {
                     if (members[i].check_memName(displayName))
                     {
                         members[i].displayMember();
-                        return;
                     }
                 } 
                 break;
@@ -316,9 +327,14 @@ void case_three(Member *members, int *members_size, int option) {
     }
 }
 
-void init(std::string file_name, Member members[], int* members_size){
-    std::ifstream file;
-    long int pos;
+void case_threeMenu(){
+        std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
+        std::cout << "1. Add Member.\n";
+        std::cout << "2. Delete Member. \n";
+        std::cout << "3. Add Expense for Member.\n";
+        std::cout << "4. Display Member Details.\n";
+        std::cout << "5. Exit\n";
+}
 
     // open file for reading
     file.open(file_name, std::ios::binary);
