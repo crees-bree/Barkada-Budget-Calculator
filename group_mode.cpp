@@ -4,7 +4,9 @@
 #include <errno.h>
 #include <fstream>
 
+#include "group_mode.h"
 #include "member.h"
+#include "profile.h"
 
 #define MODE 'g'
 
@@ -43,31 +45,63 @@ void case_three();
 
 // READING AND WRITING FUNCTIONS
 
-void init();
-void save();
+void init(std::string, Member[], int*);
+void save(std::string, Member[], int*);
 
-// contains functionalities for group mode
-void group_mode(){
+int group_mode(){
     Member members[20];
-    int members_size = 0;               //I deleted members_size cin cos you can just ++ from create members to get total size
-                                    
-    int option;
+    int members_size = 0;      
 
-    // display cases selection menu prompt
-    caseMenu();
+    int open, option;
+    char exit;
+    bool loop = true;
 
-    std::cin >> option;
-    
-    switch (option)
-    {
-    case 1:
-        case_one(&members_size, members);
-        break;
-    
-    default:
-        std::cout << "Invalid input" << std::endl;
-        break;
+    std::string file_name;
+
+    // select a profile first
+    open = profile_selection(MODE, &file_name);
+
+    // exit program if open profile is not initiated
+    if (!open){
+        // program exited successfully
+        return 0;
     }
+
+    // read saved data from profile file
+    init(file_name, members, &members_size);
+
+    while (loop){
+        // display cases selection menu prompt
+        caseMenu();
+
+        std::cin >> option;
+        
+        switch (option){
+            case 0:
+                std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
+                std::cin >> exit;
+
+                if (exit == 'Y'){
+                    loop = false;
+                }
+
+                break;
+            case 1:
+                case_one(&members_size, members);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                std::cout << "\nInvalid input. Please try again.\n" << std::endl;
+                continue;
+        }
+    }
+
+    save(file_name, members, &members_size);
+
+    return 0;
 }
 
 void case_one(int *members_size, Member *members){
@@ -165,10 +199,10 @@ void case_oneMenu(){
 
 void caseMenu(){
     std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1. Sukli sa Kinsa" << std::endl;          
-    std::cout << "2. Utang Tracker" << std::endl;
-    std::cout << "3. Gasto Mo Ang Limit" << std::endl;
-    std::cout << "4. Exit" << std::endl;
+    std::cout << "1) Sukli sa Kinsa" << std::endl;          
+    std::cout << "2) Utang Tracker" << std::endl;
+    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
 }
 
 void edit_memberMenu(){
@@ -234,7 +268,7 @@ void case_three(Member *members, int *members_size, int option) {
                         members[i].displayMember();
                         return;
                     }
-                }
+                } 
                 break;
             case 5:
                 return;

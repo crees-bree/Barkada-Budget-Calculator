@@ -93,7 +93,6 @@ int person_mode(){
     char c_option;
     bool loop = true;
 
-    std::fstream profile;
     std::string file_name;
 
     // select a profile first

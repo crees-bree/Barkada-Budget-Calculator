@@ -24,7 +24,7 @@ A few things to point out:
         ```
       - Click `Run C/C++ File` on run button in VSCode
       - **NOTE:** Don't forget to replace what you just pasted back to `"${file}"` otherwise you're going to run into some problematic issues
-  - Add your results to your testings on **Person Mode Testing** issue
+  - Add your results to your testings on **Test Person Mode** issue
 
 - `profile.cpp` is ready for testing and bug fixing. You can freely test profile selection functionalities with `profile_test.cpp`. Modify the code as needed.  
   - To compile,

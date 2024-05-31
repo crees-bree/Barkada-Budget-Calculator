@@ -14,7 +14,7 @@
 #include "person_mode.h"
 
 int main(){
-    int option;
+    int option, exit;
 
     while (true){
         printf("BARKADA BUDGET CALCULATOR\n\n");
@@ -29,13 +29,13 @@ int main(){
             case 0:
                 return 0;
             case 1:
-                person_mode();
+                exit = person_mode();
                 break;
             case 2:
-                group_mode();
+                exit = group_mode();
                 break;
             default:
-                printf("Invalid input. Please try again.\n\n");
+                std::cout << "\nInvalid input. Please try again.\n";
                 continue;
         }
     }
