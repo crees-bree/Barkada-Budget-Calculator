@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "group_mode.h"
+#include "person_mode.h"
 
 int main(){
-    group_mode();
+    person_mode();
 
     return 0;
 }

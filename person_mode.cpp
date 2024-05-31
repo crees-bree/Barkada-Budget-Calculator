@@ -294,7 +294,7 @@ void display_records_by_type(ProfileDetails details){
 }
 
 void display_records_by_amount(ProfileDetails details){
-    double amount, low, high;
+      double amount, low, high;
     int option;
     bool loop = true, found = false;
 
@@ -357,8 +357,93 @@ void display_records_by_category(ProfileDetails details){
     }
 }
 
-void display_category_percentages(ProfileDetails details){
+void display_category_percentages(ProfileDetails details) {
+    Date today = get_current_date();
 
+    int choice; //menu
+    std::cout << "Choose time frame:\n";
+    std::cout << "1. Today\n";
+    std::cout << "2. Past seven days\n";
+    std::cout << "3. Specific month\n";
+    std::cin >> choice;
+
+    while (choice < 1 || choice > 3) {
+        std::cout << "Invalid choice. Please choose 1, 2, or 3.\n";
+        std::cin >> choice;
+    }
+
+    // Calculate start and end dates based on the selected time frame
+    Date start_date, end_date;
+    switch (choice) {
+        case 1:
+            // Today
+            start_date = today;
+            end_date = today;
+            break;
+        case 2:
+            // Past seven days
+            start_date = today;
+            start_date.day -= 6; // 7 days ago
+            if (start_date.day < 1) {
+                // Adjust month and year if necessary
+            }
+            end_date = today;
+            break;
+        case 3:
+            // Specific month
+            int month;
+            std::cout << "Enter month (1-12): ";
+            std::cin >> month;
+            // Validate user input for month
+            while (month < 1 || month > 12) {
+                std::cout << "Invalid month. Please enter a value between 1 and 12.\n";
+                std::cin >> month;
+            }
+            start_date.day = 1;
+            start_date.month = month;
+            start_date.year = today.year; 
+            end_date.day = 30; // Assuming the month has 30 days
+            end_date.month = month;
+            end_date.year = today.year; 
+            break;
+        }
+    // Filter records based on the selected time frame
+    std::vector<Record> filtered_records;
+    for (const auto& record : details.records) {
+        if (record.date >= start_date && record.date <= end_date) {
+            filtered_records.push_back(record);
+        }
+    }
+
+    // Calculate total expenses for each category
+    std::vector<std::pair<std::string, double>> category_expenses;
+    for (const auto& record : filtered_records) {
+        if (record.record_type == 'e') {
+            bool found = false;
+            for (auto& cat_exp : category_expenses) {
+                if (cat_exp.first == record.category) {
+                    cat_exp.second += record.amount;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                category_expenses.push_back({record.category, record.amount});
+            }
+        }
+    }
+
+    double total_expenses = 0.0;
+    for (const auto& pair : category_expenses) {
+        total_expenses += pair.second;
+    }
+
+    // Calculate and display percentage of expenses for each category
+    std::cout << "Category\tPercentage\n";
+    for (const auto& pair : category_expenses) {
+        double percentage = (pair.second / total_expenses) * 100.0;
+        std::cout << pair.first << "\t\t" << percentage << "%\n";
+    }
 }
 
 void add_account(ProfileDetails* details){
