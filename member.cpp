@@ -98,32 +98,27 @@ void Member::setCase1(int editCase){
 
 void Member::display_details(int case_type, int members_size){
     switch (case_type){
-    case 1:
-        for (int i = 0; i < members_size; i++)
-        {
-            std::cout << "Name: " << name << std::endl; 
-            std::cout << "Bill: " << details.case1.bill << std::endl;
-            std::cout << "Expenses: " << details.case1.expense << std::endl;
-            std::cout << "Change: " << details.case1.change << std::endl;
-        }   
-        break;
-    case 2:
-        break;
-    case 3:
-            if(details.case3.budget >= 0){
-                std::cout << " " << std::endl; 
-        }
-        for (int i = 0; i < members_size; i++)
-        {
-            if (details.case3.budget >= 0){
+        case 1:
+            for (int i = 0; i < members_size; i++){
                 std::cout << "Name: " << name << std::endl; 
-                std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
-            }
-            else{
-                std::cout << " " << std::endl; 
-                std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
-                std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
-                std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
+                std::cout << "Bill: " << details.case1.bill << std::endl;
+                std::cout << "Expenses: " << details.case1.expense << std::endl;
+                std::cout << "Change: " << details.case1.change << std::endl;
+            }   
+            break;
+        case 2:
+            break;
+        case 3:
+                if (details.case3.budget >= 0){
+                    std::cout << " " << std::endl; 
+                    std::cout << "Name: " << name << std::endl; 
+                    std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
+                } else{
+                    std::cout << " " << std::endl; 
+                    std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
+                    std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
+                    std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
+                }
             }
         break;
     
@@ -186,6 +181,7 @@ void Member::displayMember() {
         std::cout << "Amount: " << expense.expense_payment << ", Note: " << expense.note << "\n";
         std::cout << " " << std::endl; 
     }
+    std::cout << "---------------------\n";
 }
 
 void Member::serialize(std::string file_name){

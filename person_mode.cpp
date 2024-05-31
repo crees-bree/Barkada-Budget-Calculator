@@ -82,7 +82,7 @@ int select_account(ProfileDetails, bool modify_call = false);
 // calculate total balance
 void calculate_total_balance(ProfileDetails*);
 // returns true if file is empty, else return false
-bool file_empty(std::ifstream&);
+bool pmode_file_empty(std::ifstream&);
 
 
 int person_mode(){
@@ -570,7 +570,7 @@ int init(std::string file_name, ProfileDetails* details){
 
     // returns 1 when file is empty
     // to add default accounts (cash, card, savings)
-    if (file_empty(file)){
+    if (pmode_file_empty(file)){
         return 1;
     }
 
@@ -720,7 +720,7 @@ void calculate_total_balance(ProfileDetails* details){
     details->total_balance = total_balance;
 }
 
-bool file_empty(std::ifstream& file){
+bool pmode_file_empty(std::ifstream& file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
 

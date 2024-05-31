@@ -7,7 +7,7 @@
 
 // standard header files
 #include <iostream>
-#include <ncurses/ncurses.h>
+//#include <ncurses/ncurses.h>
 #include <stdbool.h>
 
 // custom header files
@@ -18,7 +18,7 @@ int main(){
     int option, exit;
     bool loop = true;
 
-    initscr();
+    //initscr();
 
     while (loop){
 
@@ -46,6 +46,6 @@ int main(){
         }
     }
 
-    endwin();
+    //endwin();
 }
 

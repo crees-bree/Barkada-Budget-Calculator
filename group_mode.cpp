@@ -47,7 +47,7 @@ void save(std::string, Member[], int*);
 // AUXILIARY FUNCTIONS
 
 // returns 1 if file is empty, else returns 0
-bool file_empty(std::ifstream&);
+bool gmode_file_empty(std::ifstream&);
 
 
 int group_mode(){
@@ -58,6 +58,7 @@ int group_mode(){
     char exit;
     bool loop = true;
 
+<<<<<<< HEAD
     std::cin >> option;
     
     switch (option)
@@ -74,6 +75,9 @@ int group_mode(){
         std::cout << "Invalid input" << std::endl;
         break;
     }
+=======
+    std::string file_name;
+>>>>>>> 0e95a758e4ed354f3e7ec6f0d3719eaf5895db22
 
     // read saved data from profile file
     init(file_name, members, &members_size);
@@ -85,7 +89,7 @@ int group_mode(){
         std::cin >> option;
         
         switch (option){
-            case 0:
+            case 4:
                 std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
                 std::cin >> exit;
 
@@ -173,7 +177,7 @@ void case_oneMenu(){
     std::cout << "6. Exit" << std::endl;
 }
 
-void case_threeMenu(){
+void casethree_Menu(){
     std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
     std::cout << "1. Add Member.\n";
     std::cout << "2. Delete Member \n.";
@@ -315,6 +319,22 @@ void case_three(Member *members, int *members_size, int option) {
     }
 }
 
+<<<<<<< HEAD
+=======
+void case_threeMenu(){
+        std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
+        std::cout << "1. Add Member.\n";
+        std::cout << "2. Delete Member. \n";
+        std::cout << "3. Add Expense for Member.\n";
+        std::cout << "4. Display Member Details.\n";
+        std::cout << "5. Exit\n";
+}
+
+void init(std::string file_name, Member members[], int* members_size){
+    std::ifstream file;
+    long int pos;
+
+>>>>>>> 0e95a758e4ed354f3e7ec6f0d3719eaf5895db22
     // open file for reading
     file.open(file_name, std::ios::binary);
 
@@ -324,7 +344,7 @@ void case_three(Member *members, int *members_size, int option) {
     }
 
     // end initializing data if profile file is empty
-    if (file_empty(file)){
+    if (gmode_file_empty(file)){
         file.close();
         return;
     }
@@ -374,7 +394,7 @@ void save(std::string file_name, Member members[], int* members_size){
     }
 }
 
-bool file_empty(std::ifstream& file){
+bool gmode_file_empty(std::ifstream& file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
 
