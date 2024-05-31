@@ -5,6 +5,27 @@
 ## For Contributors:
 A few things to point out:  
 - Please refer to `updates.md` for code updates.  
+
+- `person_mode.cpp`, while not yet complete (still waiting for @mijimmi's category display), is ready for testing and bug fixing.
+  You can freely test profile selection functionalities with `pmode_test.cpp`. Modify the code as needed.
+  - To compile,
+    - MANUAL COMPILE
+      - Enter `g++ -o pmode_test pmode_test.cpp person_mode.cpp profile.cpp account.cpp date.cpp` on the terminal
+      - Enter `.\pmode_test` to run
+    - BUILD WITH VSCODE
+      - Open `tasks.json` under `.vscode` folder
+      - Locate `"${file}",` under `"args" :` and replace with:
+        ```
+        "pmode_test.cpp",
+        "person_mode.cpp".
+        "profile.cpp",
+        "account.cpp",
+        "date.cpp"
+        ```
+      - Click `Run C/C++ File` on run button in VSCode
+      - **NOTE:** Don't forget to replace what you just pasted back to `"${file}"` otherwise you're going to run into some problematic issues
+  - Add your results to your testings on **Test Person Mode** issue
+
 - `profile.cpp` is ready for testing and bug fixing. You can freely test profile selection functionalities with `profile_test.cpp`. Modify the code as needed.  
   - To compile,
     - (The tedious way that I recommend tbh):
@@ -23,8 +44,10 @@ A few things to point out:
       - Click `Run C/C++ File` on run button in VSCode
       - **NOTE:** Ensure that you're running `test.cpp` or `profile_test.cpp`, otherwise it would mess things up
   - Add your results to your testings on **Profile Selection** issue
-- `account.cpp` and `person_mode.cpp` currently in development.
-- For more questions and suggestions, ask me na lang hehe
+
+- `account`, `person_mode.cpp`, `member.cpp`, and `group_mode.cpp` currently in development.
+
+- For more questions and suggestions, go to me na lang hehe
 
 
 ## Description

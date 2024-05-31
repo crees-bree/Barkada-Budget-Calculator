@@ -2,7 +2,19 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
-## UPDATE VERSION 4.5 (May 30,2024)
+## UPDATE VERSION 4.6 (May 31, 2024)
+
+- In group_mode
+  - Updated init() - *test pending*
+  - Updated save() - *test pending*
+  - Updated group_mode() - *not final*
+- In member
+  - In Member class
+    - Updated public method serialize() - *empty*
+    - Updated public method deserialize() - *empty*
+
+## UPDATE VERSION 4.5 (May 30, 2024)
+
 - In group_mode
   - Case 3 is finished *test pending*
     - added function to display member details (displays budget left and all recorded exenses) *test pending*
@@ -13,9 +25,19 @@
 - In member
   - Case 3 functions added
     - everything mentioned above has their functions in member 
+- In person_mode
+  - Updated transfer_balance() - *verify pending*
+  - Updated modify_account() - *verify testing*
+  - Updated delete_account() - *verify testing*
+- In account
+  - In Account class
+    - Updated public method transfer_balance() - *verify pending*
+  - Removed create_accounts()
+- Added pmode_test.cpp
+  - Person mode testing code
+    
 To-Do:
 **FOR JIM:**
-- Finish case 3 (done)
 - Implement category percentage display (already made a function for this sa person_mode)
 
 ## UPDATE VERSION 4.4 (May 28, 2024)
@@ -61,9 +83,6 @@ To-Do:
   - Updated case_one() - *test pending*
   - Updated case_oneMenu() - *test pending*
   - Updated edit_member() - *test pending*
-- In member
-  - In Member class
-    - 
 - Added program.cpp
   - NOT FINAL
   - Will opt to use ncurses for clear screen, pause, and some fancy display stuff

@@ -101,9 +101,6 @@ void Member::display_details(int case_type, int members_size){
     case 1:
         for (int i = 0; i < members_size; i++)
         {
-            // - chan
-            // nachange na nako chad hehe mb
-            // awa sa pinakataas ang formatting para ma guide-an
             std::cout << "Name: " << name << std::endl; 
             std::cout << "Bill: " << details.case1.bill << std::endl;
             std::cout << "Expenses: " << details.case1.expense << std::endl;
@@ -113,8 +110,14 @@ void Member::display_details(int case_type, int members_size){
     case 2:
         break;
     case 3:
+<<<<<<< HEAD
             if(details.case3.budget >= 0){
                 std::cout << " " << std::endl; 
+======= }
+        for (int i = 0; i < members_size; i++)
+        {
+            if (details.case3.budget >= 0){
+>>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
                 std::cout << "Name: " << name << std::endl; 
                 std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
             }
@@ -184,5 +187,16 @@ void Member::displayMember() {
         std::cout << "Amount: " << expense.expense_payment << ", Note: " << expense.note << "\n";
         std::cout << " " << std::endl; 
     }
+<<<<<<< HEAD
     std::cout << "---------------------\n";
+=======
+}
+
+void Member::serialize(std::string file_name){
+
+}
+
+void Member::deserialize(std::string file_name, long int* pos){
+    
+>>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
 }

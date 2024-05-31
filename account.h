@@ -88,10 +88,10 @@ class Account{
 
         // READING AND WRITING METHODS
 
-        // convert object data to 
+        // convert object data to binary data
         void serialize(std::string);
 
-        // convert to object data
+        // convert binary data to object data
         void deserialize(std::string, long int*);
 
         // FILTERING METHODS
@@ -110,7 +110,5 @@ class Account{
 
 };
 
-// creates a new account
-void create_account(Account[], int*);
 
 #endif // ACCOUNT_H_

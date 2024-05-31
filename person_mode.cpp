@@ -93,7 +93,6 @@ int person_mode(){
     char c_option;
     bool loop = true;
 
-    std::fstream profile;
     std::string file_name;
 
     // select a profile first
@@ -342,11 +341,6 @@ void display_records_by_amount(ProfileDetails details){
     }
 }
 
-// - chan: ari ibutang imong category percentage calculation jim
-/*void display_category_percentages(ProfileDetails details){
-
-}*/
-
 void display_records_by_category(ProfileDetails details){
     std::string category;
     bool found = false;
@@ -368,7 +362,13 @@ void display_category_percentages(ProfileDetails details){
 }
 
 void add_account(ProfileDetails* details){
-    create_account(details->accounts, &details->accounts_size);   
+    if (details->accounts_size >= sizeof(details->accounts) / sizeof(Account)){
+        std::cout << "\nMaximum account limit reached. Returning to main menu...\n";
+        return;
+    }
+    
+    details->accounts[details->accounts_size].initialize();
+    details->accounts_size++;
 }
 
 void modify_account(ProfileDetails* details){
@@ -377,8 +377,16 @@ void modify_account(ProfileDetails* details){
     int index, option, exit;
     bool loop = true;
 
+    // returns to man menu if there are no accounts
+    if (details->accounts_size <= 0){
+        std::cout << "\nThere are no accounts to modify. Returning to man menu...\n";
+        return;
+    }
+
+    // select account
     index = select_account(*details, true);
 
+    // return to main menu if account name isnt found
     if (index == -1){
         std::cout << "\nAccount not found. Returning to main menu...\n";
         return;
@@ -443,8 +451,16 @@ void delete_account(ProfileDetails* details){
     int index;
     char option;
 
+    // return to main menu if there are no accounts to delete
+    if (details->accounts_size <= 0){
+        std::cout << "\nThere are no accounts to delete. Returning to main menu...\n";
+        return;
+    }
+
+    // select account
     index = select_account(*details, true);
 
+    // return to main menu if account name isnt found
     if (index == -1){
         std::cout << "\nAccount not found. Returning to main menu...\n";
         return;
@@ -458,9 +474,11 @@ void delete_account(ProfileDetails* details){
     std::cin >> option;
 
     if (option == 'Y'){
+        // deleting an account by shifting accounts right of deleted account to the left
         for (int i = index + 1; i < details->accounts_size; ++i){
             details->accounts[i - 1] = details->accounts[i];
         }
+        // decrease accounts size
         --details->accounts_size;
         std::cout << "\nAccount has been deleted. Returning to main menu...\n";
     } else {
@@ -477,11 +495,14 @@ void transfer_balance(ProfileDetails* details){
     while (loop){
         found = false;
         
+        // display account details
         display_accounts(*details);
 
+        // enter current destination
         std::cout << "\nEnter current account destination: ";
         std::cin >> current;
 
+        // check if account name exists
         for (int i = 0; i < details->accounts_size; ++i){
             if ( current == details->accounts[i].get_account_name() ){
                 found = true;
@@ -489,6 +510,7 @@ void transfer_balance(ProfileDetails* details){
             }
         }
 
+        // if it doesnt, let the user input again
         if (curr_index == -1 && !found){
             std::cout << "\nInvalid account name. Please try again.\n"; // ERROR HANDLING (Invalid user input)
             continue;
@@ -496,9 +518,11 @@ void transfer_balance(ProfileDetails* details){
 
         found = false;
 
+        // enter new destination
         std::cout << "\nEnter new account destination: ";
         std::cin >> destination;
 
+        // look for account if it exists
         for (int i = 0; i < details->accounts_size; ++i){
             if ( destination == details->accounts[i].get_account_name() ){
                 found = true;
@@ -506,16 +530,25 @@ void transfer_balance(ProfileDetails* details){
             }
         }
 
+        // allow user to input again if not found
         if (dest_index == -1 && !found){
             std::cout << "\nInvalid account name. Please try again.\n"; // ERROR HANDLING (Invalid user input)
             continue;
         }
 
+        // enter amount to transfer
         std::cout << "\nEnter amount to transfer: ";
         std::cin >> amount;
 
-        details->accounts[curr_index].set_balance( amount - (amount + amount), true );
-        details->accounts[dest_index].set_balance(amount, true);
+        // you can't transfer 0 or negative money 
+        if (amount <= 0){
+            std::cout << "\nAmount entered is invalid.\n";
+            continue;
+        }
+
+        // add transfer record to records
+        details->accounts[curr_index].transfer_balance(amount, true);
+        details->accounts[dest_index].transfer_balance(amount, false);
 
         std::cout << "\nReturning to main menu...\n";
 
