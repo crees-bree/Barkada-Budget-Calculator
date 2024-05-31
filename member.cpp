@@ -38,22 +38,20 @@ void Member::initialize(int case_type){
 
     case 2:
 
-    case 3:{
-        char verify;
+case 3: {
+    char verify;
+    do {
         std::cout << "How much is the budget you will allocate to " << name << "?" << std::endl;
         std::cin >> details.case3.budget;
 
-        do{
-            std::cout << "Are you sure with this budget? Enter Y if yes: ";
-            std::cin >> verify;
-                std::cin >> details.case3.budget;
-        }while(verify != 'Y' && verify != 'y');
+        std::cout << "Are you sure with this budget? Enter Y if yes: ";
+        std::cin >> verify;
 
-        // - chan: ako gi ilisdan ang P nimo into Php hehe
-        std::cout << "Budget of " << CURRENCY << " " << details.case3.budget << " allocated to " << name << "." << std::endl;
-        
-        break;
-    }
+    } while(verify != 'Y' && verify != 'y');
+
+    std::cout << "Budget of " << CURRENCY << " " << details.case3.budget << " allocated to " << name << "." << std::endl;
+    break;
+}
     
     default:
         std::cout<< "Case Type Error!" << std::endl;
@@ -115,18 +113,17 @@ void Member::display_details(int case_type, int members_size){
     case 2:
         break;
     case 3:
-        for (int i = 0; i < members_size; i++)
-        {
             if(details.case3.budget >= 0){
+                std::cout << " " << std::endl; 
                 std::cout << "Name: " << name << std::endl; 
                 std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
             }
             else{
+                std::cout << " " << std::endl; 
                 std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
                 std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
                 std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
             }
-        }   
         break;
     
     default:
@@ -173,6 +170,7 @@ void Member::addExpense() {
 }
 
 void Member::displayMember() {
+    std::cout << "---------------------\n";
     std::cout << "Member Name: " << name << "\n";
     std::cout << "Budget Left: " << details.case3.budget << "\n";
     
@@ -184,6 +182,7 @@ void Member::displayMember() {
     
     for (const auto& expense : details.case3.expenses) {
         std::cout << "Amount: " << expense.expense_payment << ", Note: " << expense.note << "\n";
-        std::cout << "---------------------\n";
+        std::cout << " " << std::endl; 
     }
+    std::cout << "---------------------\n";
 }

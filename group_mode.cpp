@@ -36,7 +36,7 @@ void case_two();
 
 
 // contains all functionalities for case 3
-void case_three();
+void case_three(Member *members, int *members_size, int option);
 
 
 // AUXILIARY FUNCTIONS
@@ -63,7 +63,11 @@ void group_mode(){
     case 1:
         case_one(&members_size, members);
         break;
-    
+    case 2:
+        break;
+    case 3:
+        case_three(members, &members_size, option);
+        break;
     default:
         std::cout << "Invalid input" << std::endl;
         break;
@@ -188,27 +192,22 @@ void case_three(Member *members, int *members_size, int option) {
     double payment, bill;
 
     while (true) {
-        members[*members_size].display_details(option, *members_size);
+        for (int i = 0; i < *members_size; i++){
+            members[i].display_details(option, *members_size);
+        }
         case_threeMenu();
         std::cin >> member_choice;
         std::string displayName;
 
         switch (member_choice) {
             case 1:
+            
                 members[*members_size].create_member();
                 members[*members_size].initialize(3);
 
-                char verify;
-                    do{
-                    std::cout << "Are you sure you've entered the correct information? Enter Y if yes: ";
-                    std::cin >> verify;
-                        members[*members_size].create_member();
-                        members[*members_size].initialize(3);   
-                    }while(verify != 'Y' && verify != 'y'); 
-
                 (*members_size)++;
-
                 break;
+
             case 2: //delete member
                     removeMem(members_size, members);
                 break;
@@ -220,7 +219,6 @@ void case_three(Member *members, int *members_size, int option) {
                     if (members[i].check_memName(displayName))
                     {
                         members[i].addExpense();
-                        return;
                     }
                 }
                 break;
@@ -232,7 +230,6 @@ void case_three(Member *members, int *members_size, int option) {
                     if (members[i].check_memName(displayName))
                     {
                         members[i].displayMember();
-                        return;
                     }
                 }
                 break;
@@ -245,11 +242,11 @@ void case_three(Member *members, int *members_size, int option) {
     }
 }
 
-void casethree_Menu(){
+void case_threeMenu(){
         std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
         std::cout << "1. Add Member.\n";
-        std::cout << "2. Delete Member \n.";
-        std::cout << "3. Add Expense for Member\n";
+        std::cout << "2. Delete Member. \n";
+        std::cout << "3. Add Expense for Member.\n";
         std::cout << "4. Display Member Details.\n";
         std::cout << "5. Exit\n";
 }
