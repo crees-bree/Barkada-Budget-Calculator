@@ -35,9 +35,9 @@ void case_threeMenu();
 // case one main menu
 void case_one(int *members_size, Member *members);
 // case two main menu
-void case_two();
+void case_two(Member *members);
 // case three main menu
-void case_three();
+void case_three(Member *members, int *members_size, int option);
 
 // READING AND WRITING FUNCTIONS
 
@@ -241,19 +241,6 @@ void case_one(int *members_size, Member *members){
     }
 }
 
-void case_oneMenu(){
-    // - chan
-    // group budget limiter lagi ni 
-    // im high, removed na - conx
-    std::cout << "\n Case 1 Menu:" << std::endl;
-    std::cout << "1. Add a new member" << std::endl;
-    std::cout << "2. Edit a member" << std::endl;
-    std::cout << "3. Delete a member" << std::endl;
-    std::cout << "4. Display each member details" << std::endl;
-    std::cout << "5. Display all member details" << std::endl;
-    std::cout << "6. Exit" << std::endl;
-}
-
 void caseMenu(){
     std::cout << "\n Case Menu:\n" << std::endl;
     std::cout << "1. Sukli sa Kinsa" << std::endl;          
@@ -264,9 +251,6 @@ void caseMenu(){
 
 void case_two(Member *members){
 
-}
-void case_two(){
-    
 }
 
 void case_three(Member *members, int *members_size, int option) {
