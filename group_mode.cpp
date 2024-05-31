@@ -157,14 +157,6 @@ void removeMem(int *members_size, Member *members){                 //have to de
     }
 }
 
-void caseMenu(){
-    std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1) Sukli sa Kinsa" << std::endl;          
-    std::cout << "2) Utang Tracker" << std::endl;
-    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
-    std::cout << "0) Exit" << std::endl << std::endl;
-}
-
 void case_oneMenu(){
     std::cout << "\n Case 1 Menu:" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
@@ -249,24 +241,6 @@ void case_one(int *members_size, Member *members){
     }
 }
 
-void removeMem(int *members_size, Member *members){                 //have to debug for us to know for sure that it works
-    std::string removeName;
-    std::cout << "What is the name of the member you want to remove?: " << std::endl;
-    std::cin >> removeName;
-    for (int i = 0; i < *members_size; i++)
-    {
-        if(members[i].check_memName(removeName))
-        {
-            for (int j = i; j < *members_size - 1; j++) 
-            {
-                members[j] = members[j + 1];
-            }
-            (*members_size)--;
-            break;
-        }
-    }
-}
-
 void case_oneMenu(){
     // - chan
     // group budget limiter lagi ni 
@@ -287,15 +261,6 @@ void caseMenu(){
     std::cout << "3. Gasto Mo Ang Limit" << std::endl;
     std::cout << "4. Exit" << std::endl;
 }
-
-void edit_memberMenu(){
-    std::cout << "What do you want to edit?: " << std::endl;
-    std::cout << "1. Name: " << std::endl;
-    std::cout << "2. Bill: " << std::endl;
-    std::cout << "3. Expense:  " << std::endl;
-    std::cout << "4. Exit" << std::endl;
-}
-
 
 void case_two(Member *members){
 
