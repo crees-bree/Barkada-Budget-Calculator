@@ -167,7 +167,7 @@ void case_oneMenu(){
     std::cout << "6. Exit" << std::endl;
 }
 
-void case_threeMenu(){
+void casethree_Menu(){
     std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
     std::cout << "1. Add Member.\n";
     std::cout << "2. Delete Member \n.";
