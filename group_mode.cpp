@@ -79,7 +79,7 @@ int group_mode(){
         std::cin >> option;
         
         switch (option){
-            case 0:
+            case 4:
                 std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
                 std::cin >> exit;
 
