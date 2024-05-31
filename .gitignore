@@ -13,3 +13,5 @@ uwu.dat
 uwu.exe
 CMakeLists.txt
 /build
+menu.cpp
+menu.h
