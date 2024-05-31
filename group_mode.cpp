@@ -36,15 +36,8 @@ void case_threeMenu();
 void case_one(int *members_size, Member *members);
 // case two main menu
 void case_two();
-<<<<<<< HEAD
-
-
-// contains all functionalities for case 3
-void case_three(Member *members, int *members_size, int option);
-=======
 // case three main menu
 void case_three();
->>>>>>> eb181adcb1bc62efb39a08179a12a376e96fa700
 
 // READING AND WRITING FUNCTIONS
 
@@ -182,14 +175,6 @@ void removeMem(int *members_size, Member *members){                 //have to de
     }
 }
 
-void caseMenu(){
-    std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1) Sukli sa Kinsa" << std::endl;          
-    std::cout << "2) Utang Tracker" << std::endl;
-    std::cout << "3) Gasto Mo Ang Limit" << std::endl;
-    std::cout << "0) Exit" << std::endl << std::endl;
-}
-
 void case_oneMenu(){
     std::cout << "\n Case 1 Menu:" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
@@ -200,7 +185,7 @@ void case_oneMenu(){
     std::cout << "6. Exit" << std::endl;
 }
 
-void casethree_Menu(){
+void case_threeMenu(){
     std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
     std::cout << "1. Add Member.\n";
     std::cout << "2. Delete Member \n.";
@@ -274,37 +259,6 @@ void case_one(int *members_size, Member *members){
     }
 }
 
-void removeMem(int *members_size, Member *members){                 //have to debug for us to know for sure that it works
-    std::string removeName;
-    std::cout << "What is the name of the member you want to remove?: " << std::endl;
-    std::cin >> removeName;
-    for (int i = 0; i < *members_size; i++)
-    {
-        if(members[i].check_memName(removeName))
-        {
-            for (int j = i; j < *members_size - 1; j++) 
-            {
-                members[j] = members[j + 1];
-            }
-            (*members_size)--;
-            break;
-        }
-    }
-}
-
-void case_oneMenu(){
-    // - chan
-    // group budget limiter lagi ni 
-    // im high, removed na - conx
-    std::cout << "\n Case 1 Menu:" << std::endl;
-    std::cout << "1. Add a new member" << std::endl;
-    std::cout << "2. Edit a member" << std::endl;
-    std::cout << "3. Delete a member" << std::endl;
-    std::cout << "4. Display each member details" << std::endl;
-    std::cout << "5. Display all member details" << std::endl;
-    std::cout << "6. Exit" << std::endl;
-}
-
 void caseMenu(){
     std::cout << "\n Case Menu:\n" << std::endl;
     std::cout << "1. Sukli sa Kinsa" << std::endl;          
@@ -313,20 +267,8 @@ void caseMenu(){
     std::cout << "4. Exit" << std::endl;
 }
 
-void edit_memberMenu(){
-    std::cout << "What do you want to edit?: " << std::endl;
-    std::cout << "1. Name: " << std::endl;
-    std::cout << "2. Bill: " << std::endl;
-    std::cout << "3. Expense:  " << std::endl;
-    std::cout << "4. Exit" << std::endl;
-}
-
-
 void case_two(Member *members){
 
-}
-void case_two(){
-    
 }
 
 void case_three(Member *members, int *members_size, int option) {
