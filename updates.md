@@ -2,7 +2,19 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
-## UPDATE VERSION 4.5 (May 30,2024)
+## UPDATE VERSION 4.6 (May 31, 2024)
+
+- In group_mode
+  - Updated init() - *test pending*
+  - Updated save() - *test pending*
+  - Updated group_mode() - *not final*
+- In member
+  - In Member class
+    - Updated public method serialize() - *empty*
+    - Updated public method deserialize() - *empty*
+
+## UPDATE VERSION 4.5 (May 30, 2024)
+
 - In group_mode
   - Case 3 is finished *test pending*
     - added function to display member details (displays budget left and all recorded exenses) *test pending*

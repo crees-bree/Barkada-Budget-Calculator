@@ -2,11 +2,12 @@
 // In Partial Completion for the Course CMSC 21
 
 // Developers: Brillos, Christian C., Intern at UPC ITC
-//             Lumbab, Jezreel Chad G., Senior Developer at Microsoft
-//             Mijares, Jimmy Eleazar, Lead Developer at Riot Games
+//             Lumbab, Jezreel Chad G., Senior Developer of Riot Games
+//             Mijares, Jimmy Eleazar, Lead Developer of Roblox
 
 // standard header files
 #include <iostream>
+#include <ncurses/ncurses.h>
 #include <stdbool.h>
 
 // custom header files
@@ -15,8 +16,12 @@
 
 int main(){
     int option, exit;
+    bool loop = true;
 
-    while (true){
+    initscr();
+
+    while (loop){
+
         printf("BARKADA BUDGET CALCULATOR\n\n");
         printf("Select a mode:\n");
         printf("1) Person Mode\n");
@@ -27,7 +32,8 @@ int main(){
 
         switch(option){
             case 0:
-                return 0;
+                loop = false;
+                break;
             case 1:
                 exit = person_mode();
                 break;
@@ -39,5 +45,7 @@ int main(){
                 continue;
         }
     }
+
+    endwin();
 }
 

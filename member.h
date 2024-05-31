@@ -91,9 +91,14 @@ class Member{
 
         void addExpense();
         void displayMember();
+
+        // READING AND WRITING METHODS
         
-        void serialize();
-        void deserialize();
+        // convert object data to binary data
+        void serialize(std::string);
+
+        // convert binary data to object data
+        void deserialize(std::string, long int*);
 };
 
 #endif // MEMBER_H_
