@@ -47,7 +47,7 @@ void save(std::string, Member[], int*);
 // AUXILIARY FUNCTIONS
 
 // returns 1 if file is empty, else returns 0
-bool file_empty(std::ifstream&);
+bool gmode_file_empty(std::ifstream&);
 
 
 int group_mode(){
@@ -322,7 +322,7 @@ void init(std::string file_name, Member members[], int* members_size){
     }
 
     // end initializing data if profile file is empty
-    if (file_empty(file)){
+    if (gmode_file_empty(file)){
         file.close();
         return;
     }
@@ -372,7 +372,7 @@ void save(std::string file_name, Member members[], int* members_size){
     }
 }
 
-bool file_empty(std::ifstream& file){
+bool gmode_file_empty(std::ifstream& file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
 

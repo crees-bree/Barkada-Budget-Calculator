@@ -90,6 +90,7 @@ class Member{
         // CASE 3
 
         void addExpense();
+        
         void displayMember();
 
         // READING AND WRITING METHODS
