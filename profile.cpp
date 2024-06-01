@@ -27,7 +27,7 @@ namespace fs = std::filesystem;
 #define FILE_EXTENSION ".dat"
 
 // profile directory
-const std::string dir = "../Profiles/";
+const std::string dir = "Profiles/";
 const std::string pdir = "Person/";
 const std::string gdir = "Group/";
 

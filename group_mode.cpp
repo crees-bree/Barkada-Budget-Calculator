@@ -60,13 +60,19 @@ int group_mode(){
     
     std::string file_name;
 
+    open = profile_selection(MODE, &file_name);
+    if (!open)
+    {
+        return 0;
+    }
+    
+
     // read saved data from profile file
     init(file_name, members, &members_size);
 
     while (loop){
         // display cases selection menu prompt
         caseMenu();
-
         std::cin >> option;
         
         switch (option){
@@ -85,6 +91,7 @@ int group_mode(){
             case 2:
                 break;
             case 3:
+                case_three(members, &members_size, option);
                 break;
             default:
                 std::cout << "\nInvalid input. Please try again.\n" << std::endl;
@@ -149,19 +156,18 @@ void removeMem(int *members_size, Member *members){                 //have to de
 }
 
 void case_oneMenu(){
-    std::cout << "\n Case 1 Menu:" << std::endl;
+    std::cout << "Case 1 Menu:" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Edit a member" << std::endl;
     std::cout << "3. Delete a member" << std::endl;
     std::cout << "4. Display each member details" << std::endl;
-    std::cout << "5. Display all member details" << std::endl;
-    std::cout << "6. Exit" << std::endl;
+    std::cout << "5. Exit" << std::endl;
 }
 
 void case_threeMenu(){
     std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
     std::cout << "1. Add Member.\n";
-    std::cout << "2. Delete Member \n.";
+    std::cout << "2. Delete Member. \n";
     std::cout << "3. Add Expense for Member\n";
     std::cout << "4. Display Member Details.\n";
     std::cout << "5. Exit\n";
@@ -169,67 +175,65 @@ void case_threeMenu(){
 
 void case_one(int *members_size, Member *members){
     int caseOneTask;
-
-    // prompt menu
-    case_oneMenu();
-
-    std::cin >> caseOneTask;
-
-    switch (caseOneTask)
+    do
     {
-    case 1:{
-        members[*members_size].create_member();
-        members[*members_size].initialize(1);
-
-        char verify;
-        std::cout << "Are you sure you've entered the correct information? Enter Y if yes:" << std::endl;
-        std::cin >> verify;
-
-        do{
-            members[*members_size].create_member();
-            members[*members_size].initialize(1);   
-        }while(verify != 'Y' && verify != 'y');
-        
-        (*members_size)++;
-        break;
-    }
-    
-    case 2: {
-        edit_member(*members_size, members);
-        break;
-    }
-    
-    case 3:
-        removeMem(members_size, members);
-        break;
-    
-    case 4:{
-        std::string displayName;
-        std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
-        std::cin >> displayName;
         for (int i = 0; i < *members_size; i++)
-        {
-            if (members[i].check_memName(displayName))
             {
                 members[i].display_details(1, *members_size);
-                return;
+                printf("\n");
             }
-        }
-        break;
-    }
-    case 5:{
-        for (int i = 0; i < *members_size; i++)
+        // prompt menu
+        case_oneMenu();
+
+        std::cin >> caseOneTask;
+
+        switch (caseOneTask)
         {
-            members[i].display_details(1, *members_size);
+        case 1:{
+            char verify;
+
+            do{
+                members[*members_size].create_member();
+                members[*members_size].initialize(1);
+                std::cout << "Are you sure you've entered the correct information? Enter Y if yes, N if no:" << std::endl;
+                std::cin >> verify;
+            }while(verify != 'Y' && verify != 'y');
+            
+            (*members_size)++;
+            break;
         }
-        break;
-    }
+        
+        case 2: {
+            edit_member(*members_size, members);
+            break;
+        }
+        
+        case 3:
+            removeMem(members_size, members);
+            break;
+        
+        case 4:{
+            std::string displayName;
+            std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
+            std::cin >> displayName;
+            for (int i = 0; i < *members_size; i++)
+            {
+                if (members[i].check_memName(displayName))
+                {
+                    members[i].display_details(1, *members_size);
+                    return;
+                }
+            }
+            break;
+        }
 
-    case 6: return;
+        case 5: return;
 
-    default:
-        break;
-    }
+        default:
+            break;
+        }
+    } while (caseOneTask != 0);
+    
 }
 
 void caseMenu(){

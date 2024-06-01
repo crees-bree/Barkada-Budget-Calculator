@@ -80,6 +80,7 @@ void Member::setCase1(int editCase){
             case 2:{
                 std::cout << "Enter the new bill: ";
                 std::cin >> details.case1.bill;
+                details.case1.change = details.case1.bill - details.case1.expense;
                 break;
             }
 
