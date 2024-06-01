@@ -171,3 +171,6 @@ bool date_is_valid(Date date){
     return true;
 }
 
+std::string getMonthName(int index){
+    return months[index-1];
+}

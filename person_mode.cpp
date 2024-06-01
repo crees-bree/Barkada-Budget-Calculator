@@ -382,11 +382,7 @@ void display_category_percentages(ProfileDetails details) {
             break;
         case 2:
             // Past seven days
-            start_date = today;
-            start_date.day -= 6; // 7 days ago
-            if (start_date.day < 1) {
-
-            }
+            start_date = get_last_week_date();
             end_date = today;
             break;
         case 3:
@@ -401,10 +397,11 @@ void display_category_percentages(ProfileDetails details) {
             }
             start_date.day = 1;
             start_date.month = month;
-            start_date.year = today.year; 
-            end_date.day = 30; // Assuming the month has 30 days
+            start_date.year = today.year;
+            start_date.month_name = getMonthName(month); 
+            end_date.day = 31;
             end_date.month = month;
-            end_date.year = today.year; 
+            end_date.year = today.year;
             break;
         }
             int index = select_account(details, true);
@@ -414,8 +411,8 @@ void display_category_percentages(ProfileDetails details) {
                 std::cout << "\nAccount not found. Returning to main menu...\n";
                 return;
             }
-        details.accounts[index].filter_Percent_Records(start_date, end_date);
-
+        details.accounts[index].filter_Percent_Records(start_date, end_date, choice);
+        
 }
 
 void add_account(ProfileDetails* details){

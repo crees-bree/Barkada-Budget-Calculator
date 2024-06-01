@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <cstring>
 #include <fstream>
+#include <iomanip>
 #include <string>
 #include <vector>
 
@@ -577,16 +578,10 @@ void Account::display_records(){
     }   
 }
 
-void Account::filter_Percent_Records(Date start_date, Date end_date){
-<<<<<<< HEAD
-        std::vector<Record> filtered_records;
+void Account::filter_Percent_Records(Date start_date, Date end_date, int choice){
+    std::vector<Record> filtered_records;
     for (size_t i = 0; i < records.size(); ++i) {
         const Record& record = records[i];
-=======
-    std::vector<Record> filtered_records;
-    for (size_t i = 0; i < filtered_records.size(); ++i) {
-        const Record& record = filtered_records[i];
->>>>>>> d447b9131542f6a1617aa3a2ec8409bdee8264d9
         if (record.date >= start_date && record.date <= end_date) {
             filtered_records.push_back(record);
         }
@@ -614,11 +609,31 @@ void Account::filter_Percent_Records(Date start_date, Date end_date){
     }
 
     // Calculate and display percentage of expenses for each category
-    std::cout << "Category\tPercentage\n";
+    std::cout << " " <<std::endl;
+    std::cout << "==============================";
+    std::cout << " " <<std::endl;
+    switch(choice){
+        case 1:
+        std::cout << "Date: " << start_date.month_name << " " << start_date.day << ", " << start_date.year <<std::endl;
+        std::cout << " " <<std::endl;
+        break;
+        case 2:
+        std::cout << "From " << start_date.month_name << " " << start_date.day << ", " << start_date.year <<std::endl;
+        std::cout << "To " << end_date.month_name << " " << end_date.day << ", " << end_date.year <<std::endl;
+        std::cout << " " <<std::endl;
+        break;
+        case 3:
+        std::cout << "Displaying the Month of " << start_date.month_name <<std::endl;
+        std::cout << " " <<std::endl;
+        break;
+    }
+    std::cout << "=== CATEGORY || PERCENTAGE ===\n";
     for (int i = 0; i < category_expenses.size(); ++i) {
         double percentage = (category_expenses[i].second / total_expenses) * 100.0;
-        std::cout << category_expenses[i].first << "\t\t" << percentage << "%\n";
+        std::cout << category_expenses[i].first << "\t\t" << std::setprecision(1) << std::fixed << percentage << "%\n";
+        std::cout << " " <<std::endl;
     }
+    std::cout << "==============================";
 }
 
 
