@@ -57,27 +57,8 @@ int group_mode(){
     int open, option;
     char exit;
     bool loop = true;
-
-<<<<<<< HEAD
-    std::cin >> option;
     
-    switch (option)
-    {
-    case 1:
-        case_one(&members_size, members);
-        break;
-    case 2:
-        break;
-    case 3:
-        case_three(members, &members_size, option);
-        break;
-    default:
-        std::cout << "Invalid input" << std::endl;
-        break;
-    }
-=======
     std::string file_name;
->>>>>>> 0e95a758e4ed354f3e7ec6f0d3719eaf5895db22
 
     // read saved data from profile file
     init(file_name, members, &members_size);
