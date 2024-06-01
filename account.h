@@ -108,6 +108,8 @@ class Account{
         // display only records with specified category
         bool filter_by_category(std::string);
 
+        void filter_Percent_Records(Date, Date);
+
 };
 
 
