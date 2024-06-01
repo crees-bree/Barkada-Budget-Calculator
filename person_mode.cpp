@@ -361,13 +361,13 @@ void display_category_percentages(ProfileDetails details) {
     Date today = get_current_date();
 
     int choice; //menu
-    std::cout << "Choose time frame:\n";
-    std::cout << "1. Today\n";
-    std::cout << "2. Past seven days\n";
-    std::cout << "3. Specific month\n";
+    std::cout << "-----Choose time frame-----:\n";
+    std::cout << "1) Today\n";
+    std::cout << "2) Past seven days\n";
+    std::cout << "3) Specific month\n";
     std::cin >> choice;
 
-    while (choice < 1 || choice > 3) {
+    while (choice < 1 || choice > 4) {
         std::cout << "Invalid choice. Please choose 1, 2, or 3.\n";
         std::cin >> choice;
     }
@@ -385,7 +385,7 @@ void display_category_percentages(ProfileDetails details) {
             start_date = today;
             start_date.day -= 6; // 7 days ago
             if (start_date.day < 1) {
-                // Adjust month and year if necessary
+
             }
             end_date = today;
             break;
