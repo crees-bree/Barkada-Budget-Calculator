@@ -111,10 +111,10 @@ Date get_last_week_date(){
     Date date;
 
     // get current time
-    time_t yest = time(0);
+    time_t lw_date = time(0);
 
     // convert to tm struct
-    tm* sys_date = localtime(&yest);
+    tm* sys_date = localtime(&lw_date);
 
     // move to date last week
     sys_date->tm_mday -= 7;
