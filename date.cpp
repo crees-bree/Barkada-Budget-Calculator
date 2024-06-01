@@ -107,6 +107,31 @@ Date get_yesterday_date(){
     return date;
 }
 
+Date get_last_week_date(){
+    Date date;
+
+    // get current time
+    time_t lw_date = time(0);
+
+    // convert to tm struct
+    tm* sys_date = localtime(&lw_date);
+
+    // move to date last week
+    sys_date->tm_mday -= 7;
+
+    // normalize tm struct (in case day becomes 0)
+    mktime(sys_date);
+
+    // obtain date details
+    date.day = sys_date->tm_mday;
+    date.month = 1 + sys_date->tm_mon;
+    date.year = 1900 + sys_date->tm_year;
+    date.day_name = days[sys_date->tm_wday];
+    date.month_name = months[date.month - 1];
+    
+    return date;
+}
+
 bool date_is_valid(Date date){
     // big bang denotes the beginning of time, well for computers at least uwu -><-
     Date bigbang = { .day = 1, .month = 1, .year = 1970};
