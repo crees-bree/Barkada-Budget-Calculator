@@ -57,17 +57,17 @@ class Member{
         
     public:
         // GENERAL USE
-        
+        // initialize details to their default values (to prevent any errors in saving/display)
+        void init_default_values();
+
         // this will execute if you want to create a new member
         void create_member();
 
         // initializes depending on what case the user is in
         void initialize(int);
 
-
-
         // display member details
-        void display_details(int, int);
+        void display_details(int);
 
         //to iterate which member you want to edit
         bool check_memName(std::string);  

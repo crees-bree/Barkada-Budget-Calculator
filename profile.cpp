@@ -27,7 +27,7 @@ namespace fs = std::filesystem;
 #define FILE_EXTENSION ".dat"
 
 // profile directory
-const std::string dir = "Profiles/";
+const std::string dir = "../Profiles/";
 const std::string pdir = "Person/";
 const std::string gdir = "Group/";
 
@@ -123,7 +123,7 @@ int open_profile(char profile_mode, std::string* file_name){
     bool found;
 
     // asks user to enter profile name to open
-    std::cout << "\nEnter the profile name that you want to open:\n";
+    std::cout << "\nEnter the profile name that you want to open: ";
     std::cin.ignore();
     getline(std::cin, profile_name);
 
@@ -155,7 +155,7 @@ void delete_profile(char profile_mode){
     bool found;
 
     // asks user to input profile name to delete
-    std::cout << "\nEnter the profile name that you want to delete:\n";
+    std::cout << "\nEnter the profile name that you want to delete: ";
     std::cin.ignore();
     getline(std::cin, profile_name);
 

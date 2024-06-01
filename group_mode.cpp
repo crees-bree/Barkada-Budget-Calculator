@@ -111,8 +111,12 @@ int group_mode(){
 void edit_member(int members_size, Member *members, int caseType){
     std::string editName;
     int editCase;
-    std::cout << "What is the name of the member you wish to edit?: " << std::endl;
-    std::cin >> editName;
+    bool found;
+
+    std::cout << "\nWhat is the name of the member you wish to edit?: ";
+    std::cin.ignore();
+    getline(std::cin, editName);
+
     switch (caseType)
     {
     case 1:{
@@ -120,17 +124,28 @@ void edit_member(int members_size, Member *members, int caseType){
             {
                 if(members[i].check_memName(editName))
                 {
+                    found = true;
+                    
                     while(true) //continue until exit
                     {
+                        // display edit menu prompt
                         edit_memberMenu();
+
                         std::cin >> editCase;
+                        
+                        // edit member details
                         members[i].setCase1(editCase);
-                        if (editCase == 4)
+
+                        if (editCase == 0)
                         {
                             break;
                         } 
                     }
-                }
+                } 
+            }
+
+            if (!found){
+                std::cout << "\nMember not found. Returning to main menu...\n";
             }
         break;
     }
@@ -170,21 +185,27 @@ void edit_memberMenu2(){
 }
 
 void edit_memberMenu(){
-    std::cout << "What do you want to edit?: " << std::endl;
-    std::cout << "1. Name " << std::endl;
-    std::cout << "2. Bill " << std::endl;
-    std::cout << "3. Expense  " << std::endl;
-    std::cout << "4. Exit" << std::endl;
+    std::cout << "\nWhat do you want to edit?" << std::endl;
+    std::cout << "1) Name " << std::endl;
+    std::cout << "2) Bill " << std::endl;
+    std::cout << "3) Expense  " << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
 }
 
 void removeMem(int *members_size, Member *members){                 
     std::string removeName;
-    std::cout << "What is the name of the member you want to remove?: " << std::endl;
-    std::cin >> removeName;
+    bool found = false;
+
+    std::cout << "\nWhat is the name of the member you want to remove: ";
+    std::cin.ignore();
+    getline(std::cin, removeName);
+
     for (int i = 0; i < *members_size; i++)
     {
         if(members[i].check_memName(removeName))
         {
+            found = true;
+
             for (int j = i; j < *members_size - 1; j++) 
             {
                 members[j] = members[j + 1];
@@ -193,15 +214,17 @@ void removeMem(int *members_size, Member *members){
             break;
         }
     }
+
+    if (!found) std::cout << "\nMember not found. Returning to main menu...\n";
 }
 
 void case_oneMenu(){
-    std::cout << "Case 1 Menu:" << std::endl;
-    std::cout << "1. Add a new member" << std::endl;
-    std::cout << "2. Edit a member" << std::endl;
-    std::cout << "3. Delete a member" << std::endl;
-    std::cout << "4. Display each member details" << std::endl;
-    std::cout << "5. Exit" << std::endl;
+    std::cout << "\nWhat would you like to do?" << std::endl;
+    std::cout << "1) Add a new member" << std::endl;
+    std::cout << "2) Edit a member" << std::endl;
+    std::cout << "3) Delete a member" << std::endl;
+    std::cout << "4) Display member details" << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
 }
 
 void case_twoMenu(){
@@ -226,13 +249,23 @@ void case_threeMenu(){
 
 void case_one(int *members_size, Member *members){
     int caseOneTask;
+    std::string displayName;
+    char exit;
+
     do
     {
+        // case 1 title
+        std::cout << "\nUTANG NI KINSA\n\n";
+        
+        // display member details
+        std::cout << "=====MEMBERS=====\n\n";
         for (int i = 0; i < *members_size; i++)
             {
-                members[i].display_details(1, *members_size);
-                printf("\n");
+                members[i].display_details(1);
+                std::cout << std::endl;
             }
+        std::cout << "=================\n\n";
+
         // prompt menu
         case_oneMenu();
 
@@ -240,45 +273,56 @@ void case_one(int *members_size, Member *members){
 
         switch (caseOneTask)
         {
+        // add new member
         case 1:{
             char verify;
 
             do{
                 members[*members_size].create_member();
                 members[*members_size].initialize(1);
-                std::cout << "Are you sure you've entered the correct information? Enter Y if yes, N if no:" << std::endl;
+                std::cout << "\nAre you sure you've entered the correct information? (Enter Y to confirm) ";
                 std::cin >> verify;
-            }while(verify != 'Y' && verify != 'y');
+            } while (verify != 'Y' && verify != 'y');
             
             (*members_size)++;
             break;
         }
-        
+        // edit member
         case 2: {
             edit_member(*members_size, members, 1);
             break;
         }
-        
+        // delete member
         case 3:
             removeMem(members_size, members);
             break;
         
         case 4:{
-            std::string displayName;
-            std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
-            std::cin >> displayName;
+            std::cout << "\nWhat is the name of the member you want the details to be displayed?: ";
+            std::cin.ignore();
+            getline(std::cin, displayName);
+
             for (int i = 0; i < *members_size; i++)
             {
                 if (members[i].check_memName(displayName))
                 {
-                    members[i].display_details(1, *members_size);
+                    members[i].display_details(1);
+                } else 
+                {
+                    std::cout << "\nMember not found. Returning to main menu...\n";
                     return;
                 }
             }
             break;
         }
+        // exit
+        case 0: 
+            std::cout << "\nAre you sure you want to exit? (Enter Y to continue) ";
+            std::cin >> exit;
 
-        case 5: return;
+            if (exit == 'Y') break;
+            
+            continue;
 
         default:
             break;
@@ -288,11 +332,15 @@ void case_one(int *members_size, Member *members){
 }
 
 void caseMenu(){
-    std::cout << "\n Case Menu:\n" << std::endl;
-    std::cout << "1. Sukli sa Kinsa" << std::endl;          
-    std::cout << "2. Utang Tracker" << std::endl;
-    std::cout << "3. Gasto Mo Ang Limit" << std::endl;
-    std::cout << "4. Exit" << std::endl;
+    std::cout << "\n\n=====GROUP MODE=====\n\n";
+    std::cout << "Pick a use case:\n\n";
+    std::cout << "1) Sukli sa Kinsa\n";
+    std::cout << "  - Manages change calculation\n\n";  
+    std::cout << "2) Utang Tracker\n";
+    std::cout << "  - Tracks of who paid\n\n";
+    std::cout << "3) Gasto Mo Ang Limit\n";
+    std::cout << "  - Limits spending\n\n";
+    std::cout << "4) Exit\n\n";
 }
 
 void case_two(int *members_size, Member *members){
@@ -340,7 +388,7 @@ void case_two(int *members_size, Member *members){
             {
                 if (members[i].check_memName(displayName))
                 {
-                    members[i].display_details(2, *members_size);
+                    members[i].display_details(2);
                     return;
                 }
             }
@@ -376,7 +424,7 @@ void case_three(Member *members, int *members_size, int option) {
 
     while (true) {
         for (int i = 0; i < *members_size; i++){
-            members[i].display_details(option, *members_size);
+            members[i].display_details(option);
         }
         case_threeMenu();
         std::cin >> member_choice;

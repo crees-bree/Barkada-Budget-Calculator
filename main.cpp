@@ -30,7 +30,7 @@ int main(){
 
         switch(option){
             case 0:
-                std::cout << "\n Are you sure you want to exit? (Enter Y to exit) ";
+                std::cout << "\nAre you sure you want to exit? (Enter Y to exit) ";
                 std::cin >> exit;
                 if (exit == 'Y') loop = false;
                 break;

@@ -17,18 +17,41 @@
 
 #define CURRENCY "Php"
 
+void Member::init_default_values(){
+    // CASE 1 Initialization
+    details.case1.expense = 0.0;
+    details.case1.bill = 0.0;
+    details.case1.change = 0.0;
+
+    // CASE 2 Initialization
+    details.case2.payment_date.day = 0;
+    details.case2.payment_date.day_name = "";
+    details.case2.payment_date.month = 0;
+    details.case2.payment_date.month_name = "";
+    details.case2.payment_date.year = 0;
+    details.case2.payment = 0.0;
+    details.case2.bill = 0.0;
+
+    // CASE 3 Initialization
+    details.case3.budget = 0.0;
+}
+
 void Member::create_member(){
-    std::cout<< "What is the name of the new member?: " << std::endl;
-    std::cin >> name;
+    // initialize values when creating a member
+    init_default_values();
+    
+    std::cout<< "\nWhat is the name of the new member?: ";
+    std::cin.ignore();
+    getline(std::cin, name);
 }
 
 void Member::initialize(int case_type){               
     switch (case_type){
     case 1: {
-        std::cout << "Hey " << name << ", what is your expense?: " << std::endl;
+        std::cout << "\nHey " << name << ", what is your bill?: ";
         std::cin >> details.case1.expense;
 
-        std::cout << "And how much money did you give?: " << std::endl;
+        std::cout << "\nAnd how much money did you give?: ";
         std::cin >> details.case1.bill;
 
         // calculate user change
@@ -85,7 +108,8 @@ void Member::setCase1(int editCase){
         {
         case 1:{
             std::cout << "Enter the new name: ";
-            std::cin >> name;
+            std::cin.ignore();
+            getline(std::cin, name);
             break;
         }
 
@@ -104,9 +128,9 @@ void Member::setCase1(int editCase){
         }
 
         case 4: return;
-        default:
-            break;
-        }
+
+        default: break;
+    }
 }
 
 void Member::setCase2(int editCase){
@@ -155,26 +179,21 @@ void Member::setCase2(int editCase){
 }
 
 
-void Member::display_details(int case_type, int members_size){
+void Member::display_details(int case_type){
     switch (case_type){
         case 1:
-            for (int i = 0; i < members_size; i++){
-                std::cout << "Name: " << name << std::endl; 
-                std::cout << "Bill: " << details.case1.bill << std::endl;
-                std::cout << "Expenses: " << details.case1.expense << std::endl;
-                std::cout << "Change: " << details.case1.change << std::endl;
-            }   
+            std::cout << "\nName: " << name << std::endl; 
+            std::cout << "Bill: " << details.case1.bill << std::endl;
+            std::cout << "Expenses: " << details.case1.expense << std::endl;
+            std::cout << "Change: " << details.case1.change << std::endl;
             break;
 
         case 2:
-            for (int i = 0; i < members_size; i++)
-            {
-                std::cout << "Name: " << name << std::endl; 
-                std::cout << "Payment so far: " << details.case2.payment << std::endl;
-                std::cout << "Bill: " << details.case2.bill << std::endl;
-                std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
-                std::cout << "Contributed: " << details.case2.contributed << std::endl;
-            }
+            std::cout << "\nName: " << name << std::endl; 
+            std::cout << "Payment so far: " << details.case2.payment << std::endl;
+            std::cout << "Bill: " << details.case2.bill << std::endl;
+            std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
+            std::cout << "Contributed: " << details.case2.contributed << std::endl;
             break;
 
         case 3:
@@ -289,8 +308,8 @@ void Member::serialize(std::string file_name){
     // buffers
     int name_size_b = name.size();
 
-    int day_name_size_b = details.case2.payment_date.day;
-    int month_name_size_b = details.case2.payment_date.month;
+    int day_name_size_b = details.case2.payment_date.day_name.size();
+    int month_name_size_b = details.case2.payment_date.month_name.size();
 
     int expenses_size_b = details.case3.expenses.size();
     int expense_note_size_b;
@@ -389,7 +408,7 @@ void Member::serialize(std::string file_name){
         exit(EXIT_FAILURE);
     }
 
-    if ( !(file.write( (char *) details.case2.payment_date.year, sizeof(int) ) ) ){
+    if ( !(file.write( (char *) &details.case2.payment_date.year, sizeof(int) ) ) ){
         file.close();
         
         perror("Serializing CASE 2 payment year failed"); // ERROR HANDLING (Data cannot be serialized)
@@ -581,7 +600,7 @@ void Member::deserialize(std::string file_name, long int* pos){
         exit(EXIT_FAILURE);
     }
 
-    if ( !(file.read( (char *) details.case2.payment_date.year, sizeof(int) ) ) ){
+    if ( !(file.read( (char *) &details.case2.payment_date.year, sizeof(int) ) ) ){
         file.close();
         
         perror("Serializing CASE 2 payment year failed"); // ERROR HANDLING (Data cannot be deserialized)

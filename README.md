@@ -1,6 +1,15 @@
 # Barkada-Budget-Calculator
 ## Announcements
-- disregard tung ver4.1 branch para pwede ta makarevert ani if need na irevise completely ang code
+
+### For Chad
+- In Case 1
+  - Display formatting adjusted
+  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
+  - Modified display_details() in Member to only print the details of THAT member
+    - u can't loop thru members array inside of a member, sa gawas ra na siya iloop (group mode)
+  - Clarify on initialize() in Member for case 1
+    - There appears to be inconsistencies with bill and expense
+  - Suggestion: Display only member name and change when displaying members in menu
 
 ## For Contributors:
 A few things to point out:  
