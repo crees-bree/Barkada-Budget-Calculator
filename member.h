@@ -75,10 +75,17 @@ class Member{
         //This is for accessing the values inside the class so we can edit
         void setCase1(int);
 
+        void setCase2(int);
+
+        void contributed();
+        void notContributed();
+
 
         // CASE 1
 
         // CASE 2
+
+        void updateCase2();
 
         // CASE 3
 

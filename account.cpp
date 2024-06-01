@@ -578,10 +578,17 @@ void Account::display_records(){
     }   
 }
 
+<<<<<<< HEAD
 void Account::filter_Percent_Records(Date start_date, Date end_date, int choice){
     std::vector<Record> filtered_records;
     for (size_t i = 0; i < records.size(); ++i) {
         const Record& record = records[i];
+=======
+void Account::filter_Percent_Records(Date start_date, Date end_date){
+    std::vector<Record> filtered_records;
+    for (size_t i = 0; i < filtered_records.size(); ++i) {
+        const Record& record = filtered_records[i];
+>>>>>>> 36030670966a5741a71d1db3ce29d6cb64f3f332
         if (record.date >= start_date && record.date <= end_date) {
             filtered_records.push_back(record);
         }

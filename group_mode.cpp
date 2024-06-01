@@ -14,9 +14,10 @@
 // MEMBER FUNCTIONS
 
 // edits a member
-void edit_member(int members_size, Member *members);
+void edit_member(int members_size, Member *members, int caseType);
 // edit member menu
 void edit_memberMenu();
+void edit_memberMenu2();
 // removes a member
 void removeMem(int *members_size, Member *members);
 
@@ -26,6 +27,8 @@ void removeMem(int *members_size, Member *members);
 void caseMenu();
 // case one menu prompt
 void case_oneMenu();
+//case two menu prompt
+void case_twoMenu();
 // case three menu prompt
 void case_threeMenu();
 
@@ -35,7 +38,7 @@ void case_threeMenu();
 // case one main menu
 void case_one(int *members_size, Member *members);
 // case two main menu
-void case_two();
+void case_two(int *members_size, Member *members);
 // case three main menu
 void case_three(Member *members, int *members_size, int option);
 
@@ -105,39 +108,76 @@ int group_mode(){
 }
 
 
-void edit_member(int members_size, Member *members){
+void edit_member(int members_size, Member *members, int caseType){
     std::string editName;
     int editCase;
     std::cout << "What is the name of the member you wish to edit?: " << std::endl;
     std::cin >> editName;
-    for (int i = 0; i < members_size; i++)
+    switch (caseType)
     {
-        if(members[i].check_memName(editName))
-        {
-            while(true) //continue until exit
+    case 1:{
+        for (int i = 0; i < members_size; i++)
             {
-                edit_memberMenu();
-                std::cin >> editCase;
-                members[i].setCase1(editCase);
-                if (editCase == 4)
+                if(members[i].check_memName(editName))
                 {
-                    break;
-                } 
+                    while(true) //continue until exit
+                    {
+                        edit_memberMenu();
+                        std::cin >> editCase;
+                        members[i].setCase1(editCase);
+                        if (editCase == 4)
+                        {
+                            break;
+                        } 
+                    }
+                }
             }
-        }
+        break;
     }
 
+    case 2:{
+        for (int i = 0; i < members_size; i++)
+        {
+            if(members[i].check_memName(editName))
+                {
+                    while(true) //continue until exit
+                    {
+                        edit_memberMenu2();
+                        std::cin >> editCase;
+                        members[i].setCase1(editCase);
+                        if (editCase == 5)
+                        {
+                            break;
+                        } 
+                    }
+                }
+        }
+        break;
+    }
+        
+    default:
+        break;
+    }
+}
+
+void edit_memberMenu2(){
+    std::cout << "What do you want to edit?: " << std::endl;
+    std::cout << "1. Name " << std::endl;
+    std::cout << "2. Payment " << std::endl;
+    std::cout << "3. Bill  " << std::endl;
+    std::cout << "4. Date" << std::endl;
+    std::cout << "5. Exit" << std::endl;
 }
 
 void edit_memberMenu(){
     std::cout << "What do you want to edit?: " << std::endl;
-    std::cout << "1. Name: " << std::endl;
-    std::cout << "2. Bill: " << std::endl;
-    std::cout << "3. Expense:  " << std::endl;
+    std::cout << "1. Name " << std::endl;
+    std::cout << "2. Bill " << std::endl;
+    std::cout << "3. Expense  " << std::endl;
     std::cout << "4. Exit" << std::endl;
 }
 
-void removeMem(int *members_size, Member *members){                 //have to debug for us to know for sure that it works
+void removeMem(int *members_size, Member *members){                 
     std::string removeName;
     std::cout << "What is the name of the member you want to remove?: " << std::endl;
     std::cin >> removeName;
@@ -162,6 +202,17 @@ void case_oneMenu(){
     std::cout << "3. Delete a member" << std::endl;
     std::cout << "4. Display each member details" << std::endl;
     std::cout << "5. Exit" << std::endl;
+}
+
+void case_twoMenu(){
+    std::cout << "Case 2 Menu:" << std::endl;
+    std::cout << "1. Add a new member" << std::endl;
+    std::cout << "2. Update if the member has paid" << std::endl;
+    std::cout << "3. Edit member details" << std::endl;
+    std::cout << "4. Delete a member" << std::endl;
+    std::cout << "5. Display all member details" << std::endl;
+    std::cout << "6. Display paid status" << std::endl;
+    std::cout << "7. Exit" << std::endl;
 }
 
 void case_threeMenu(){
@@ -204,7 +255,7 @@ void case_one(int *members_size, Member *members){
         }
         
         case 2: {
-            edit_member(*members_size, members);
+            edit_member(*members_size, members, 1);
             break;
         }
         
@@ -244,8 +295,78 @@ void caseMenu(){
     std::cout << "4. Exit" << std::endl;
 }
 
-void case_two(Member *members){
+void case_two(int *members_size, Member *members){
+    int caseTwoTask;
+    do
+    {
+        case_twoMenu();
+        std::cin >> caseTwoTask;
 
+        switch (caseTwoTask)
+        {
+        case 1:{
+            char verify;
+            do{
+                members[*members_size].create_member();
+                members[*members_size].initialize(2);
+                std::cout << "Are you sure you've entered the correct information? Enter Y if yes, N if no:" << std::endl;
+                std::cin >> verify;
+            }while(verify != 'Y' && verify != 'y');
+            
+            (*members_size)++;
+            break;
+        }
+
+        case 2:{
+            members[*members_size].updateCase2();
+            break;
+        }
+
+        case 3:{
+            edit_member(*members_size, members, 2);
+            break;
+        }
+
+        case 4:{
+            removeMem(members_size, members);
+            break;
+        }
+
+        case 5:{
+            std::string displayName;
+            std::cout << "What is the name of the member you want the details to be displayed?: " << std::endl;
+            std::cin >> displayName;
+            for (int i = 0; i < *members_size; i++)
+            {
+                if (members[i].check_memName(displayName))
+                {
+                    members[i].display_details(2, *members_size);
+                    return;
+                }
+            }
+            break;
+        }
+
+        case 6:{
+            std::cout << "Paid: " << std::endl;
+            for (int i = 0; i < *members_size; i++)
+            {
+                members[i].contributed();
+            }
+            std::cout << "Didn't pay yet: " << std::endl;
+            for (int i = 0; i < *members_size; i++)
+            {
+                members[i].notContributed();
+            }
+        }
+
+        case 7:return;
+
+        default:
+            break;
+        }
+    } while (caseTwoTask != 7);
+    
 }
 
 void case_three(Member *members, int *members_size, int option) {
@@ -371,6 +492,7 @@ void save(std::string file_name, Member members[], int* members_size){
 bool gmode_file_empty(std::ifstream& file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
+
 
 
 
