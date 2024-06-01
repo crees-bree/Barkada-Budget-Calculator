@@ -6,13 +6,7 @@
 
 #include <vector>
 
-// DATE STRUCTURE
-struct date{
-    int day;
-    int month;
-    int year;
-};
-typedef struct date Date;
+#include "date.h"
 
 // keeps track of expenses and income for each member in group mode
 class Member{
@@ -20,7 +14,6 @@ class Member{
         // EXPENSE STRUCTURE
         struct expense{
             double expense_payment;
-            double expense_bill;
             std::string note;
         };
         typedef struct expense Expense;

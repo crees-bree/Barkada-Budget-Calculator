@@ -735,8 +735,6 @@ void Account::serialize(std::string file_name){
         }
     }
 
-    std::cout << "\nData is serialized successfully.\n";
-
     file.close();
 }
 
@@ -949,8 +947,6 @@ void Account::deserialize(std::string file_name, long int* pos){
         // add read record to records
         records.push_back(buffer);
     }
-
-    std::cout << "\nData is deserialized successfully.\n";
 
     // update file ptr position to where the program last read file
     *pos = file.tellg();

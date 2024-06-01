@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "date.h"
 #include "member.h"
 
 #define CURRENCY "Php"
@@ -184,9 +185,347 @@ void Member::displayMember() {
 }
 
 void Member::serialize(std::string file_name){
+    std::fstream file;
 
+    // buffers
+    int name_size_b = name.size();
+
+    int day_name_size_b = details.case2.payment_date.day;
+    int month_name_size_b = details.case2.payment_date.month;
+
+    int expenses_size_b = details.case3.expenses.size();
+    int expense_note_size_b;
+
+    file.open(file_name, std::ios::app | std::ios::binary);
+
+    if ( file.fail() ){
+        perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
+        exit(EXIT_FAILURE);
+    } 
+
+    // serialize name size
+    if ( !(file.write( (char *) &name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing member name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize name 
+    if ( !(file.write( name.c_str(), sizeof(char) * name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing member name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // CASE 1
+
+    // serialize expense 
+    if ( !(file.write( (char *) &details.case1.expense, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 1 expense failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize bill 
+    if ( !(file.write( (char *) &details.case1.bill, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 1 bill failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // no need to serialize change as it can be calculated
+
+    // CASE 2
+
+    // serialize payment date
+    if ( !(file.write( (char *) &details.case2.payment_date.day, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &day_name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( details.case2.payment_date.day_name.c_str(), sizeof(char) * day_name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.payment_date.month, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &month_name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( details.case2.payment_date.month_name.c_str(), sizeof(char) * month_name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) details.case2.payment_date.year, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment year failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.payment, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.bill, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 bill failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // no need to save contributed as it can be determined
+
+    // CASE 3
+
+    // serialize expenses size
+    if ( !(file.write( (char *) &expenses_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 3 expenses size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize expenses
+    for (int i = 0; i < expenses_size_b; ++i){
+        expense_note_size_b = details.case3.expenses[i].note.size();
+        
+        // serialize expense payment
+        if ( !(file.write( (char *) &details.case3.expenses[i].expense_payment, sizeof(double) ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense payment failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        // serialize expense note size
+        if ( !(file.write( (char *) &expense_note_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense note size failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        // serialize expense note
+        if ( !(file.write( details.case3.expenses[i].note.c_str(), sizeof(char) * name_size_b ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense note failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    // serialize budget
+    if ( !(file.write( (char *) &details.case3.budget, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 3 budget failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    file.close();
 }
 
 void Member::deserialize(std::string file_name, long int* pos){
-    
+    std::fstream file;
+
+    // buffers
+    int name_size_b = name.size();
+
+    int day_name_size_b = details.case2.payment_date.day;
+    int month_name_size_b = details.case2.payment_date.month;
+
+    int expenses_size_b = details.case3.expenses.size();
+    int expense_note_size_b;
+
+    file.open(file_name, std::ios::app | std::ios::binary);
+
+    if ( file.fail() ){
+        perror("Initialization failed"); // ERROR HANDLING (File cannot be opened)
+        exit(EXIT_FAILURE);
+    } 
+
+    // serialize name size
+    if ( !(file.write( (char *) &name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing member name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize name 
+    if ( !(file.write( name.c_str(), sizeof(char) * name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing member name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // CASE 1
+
+    // serialize expense 
+    if ( !(file.write( (char *) &details.case1.expense, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 1 expense failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize bill 
+    if ( !(file.write( (char *) &details.case1.bill, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 1 bill failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // no need to serialize change as it can be calculated
+
+    // CASE 2
+
+    // serialize payment date
+    if ( !(file.write( (char *) &details.case2.payment_date.day, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &day_name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( details.case2.payment_date.day_name.c_str(), sizeof(char) * day_name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment day name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.payment_date.month, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &month_name_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month name size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( details.case2.payment_date.month_name.c_str(), sizeof(char) * month_name_size_b ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment month name failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) details.case2.payment_date.year, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment year failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.payment, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 payment failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    if ( !(file.write( (char *) &details.case2.bill, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 2 bill failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // no need to save contributed as it can be determined
+
+    // CASE 3
+
+    // serialize expenses size
+    if ( !(file.write( (char *) &expenses_size_b, sizeof(int) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 3 expenses size failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    // serialize expenses
+    for (int i = 0; i < expenses_size_b; ++i){
+        expense_note_size_b = details.case3.expenses[i].note.size();
+        
+        // serialize expense payment
+        if ( !(file.write( (char *) &details.case3.expenses[i].expense_payment, sizeof(double) ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense payment failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        // serialize expense note size
+        if ( !(file.write( (char *) &expense_note_size_b, sizeof(int) ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense note size failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+
+        // serialize expense note
+        if ( !(file.write( details.case3.expenses[i].note.c_str(), sizeof(char) * name_size_b ) ) ){
+            file.close();
+            
+            perror("Serializing CASE 3 expense note failed"); // ERROR HANDLING (Data cannot be serialized)
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    // serialize budget
+    if ( !(file.write( (char *) &details.case3.budget, sizeof(double) ) ) ){
+        file.close();
+        
+        perror("Serializing CASE 3 budget failed"); // ERROR HANDLING (Data cannot be serialized)
+        exit(EXIT_FAILURE);
+    }
+
+    file.close();
 }
