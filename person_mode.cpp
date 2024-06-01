@@ -162,6 +162,7 @@ int person_mode(){
             // display percentages of category occurrences
             case 9:
                 //display_category_percentages(details);
+                display_category_percentages(details);
                 break;
             // add new account
             case 10:
@@ -360,13 +361,13 @@ void display_category_percentages(ProfileDetails details) {
     Date today = get_current_date();
 
     int choice; //menu
-    std::cout << "Choose time frame:\n";
-    std::cout << "1. Today\n";
-    std::cout << "2. Past seven days\n";
-    std::cout << "3. Specific month\n";
+    std::cout << "-----Choose time frame-----:\n";
+    std::cout << "1) Today\n";
+    std::cout << "2) Past seven days\n";
+    std::cout << "3) Specific month\n";
     std::cin >> choice;
 
-    while (choice < 1 || choice > 3) {
+    while (choice < 1 || choice > 4) {
         std::cout << "Invalid choice. Please choose 1, 2, or 3.\n";
         std::cin >> choice;
     }
@@ -384,7 +385,7 @@ void display_category_percentages(ProfileDetails details) {
             start_date = today;
             start_date.day -= 6; // 7 days ago
             if (start_date.day < 1) {
-                // Adjust month and year if necessary
+
             }
             end_date = today;
             break;
@@ -406,44 +407,15 @@ void display_category_percentages(ProfileDetails details) {
             end_date.year = today.year; 
             break;
         }
-    // filter records based on time frame
-    std::vector<Record> filtered_records;
-    for (size_t i = 0; i < details.records.size(); ++i) {
-        const Record& record = details.records[i];
-        if (record.date >= start_date && record.date <= end_date) {
-            filtered_records.push_back(record);
-        }
-    }
+            int index = select_account(details, true);
 
-    // Calculate total expenses for each category
-    std::vector<std::pair<std::string, double>> category_expenses;
-    for (size_t i = 0; i < filtered_records.size(); ++i) {
-        if (filtered_records[i].record_type == 'e') {
-            bool found = false;
-            for (size_t j = 0; j < category_expenses.size(); ++j) {
-                if (category_expenses[j].first == filtered_records[i].category) {
-                    category_expenses[j].second += filtered_records[i].amount;
-                    found = true;
-                    break;
-                }
+            // return to main menu if account name isnt found
+            if (index == -1){
+                std::cout << "\nAccount not found. Returning to main menu...\n";
+                return;
             }
-            if (!found) {
-                category_expenses.push_back({filtered_records[i].category, filtered_records[i].amount});
-            }
-        }
-    }
+        details.accounts[index].filter_Percent_Records(start_date, end_date);
 
-    double total_expenses = 0.0;
-    for (int i = 0; i < category_expenses.size(); ++i) {
-        total_expenses += category_expenses[i].second;
-    }
-
-    // Calculate and display percentage of expenses for each category
-    std::cout << "Category\tPercentage\n";
-    for (int i = 0; i < category_expenses.size(); ++i) {
-        double percentage = (category_expenses[i].second / total_expenses) * 100.0;
-        std::cout << category_expenses[i].first << "\t\t" << percentage << "%\n";
-    }
 }
 
 void add_account(ProfileDetails* details){
