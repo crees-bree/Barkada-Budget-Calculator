@@ -187,6 +187,23 @@ void edit_member(int members_size, Member *members, int caseType){
     }
 }
 
+void edit_memberMenu2(){
+    std::cout << "What do you want to edit?: " << std::endl;
+    std::cout << "1. Name " << std::endl;
+    std::cout << "2. Payment " << std::endl;
+    std::cout << "3. Bill  " << std::endl;
+    std::cout << "4. Date" << std::endl;
+    std::cout << "5. Exit" << std::endl;
+}
+
+void edit_memberMenu(){
+    std::cout << "\nWhat do you want to edit?" << std::endl;
+    std::cout << "1) Name " << std::endl;
+    std::cout << "2) Bill " << std::endl;
+    std::cout << "3) Payment  " << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
+}
+
 void removeMem(int *members_size, Member *members){                 
     std::string removeName;
     char input;
