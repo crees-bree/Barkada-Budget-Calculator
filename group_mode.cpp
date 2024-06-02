@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <fstream>
 #include <string>
+#include <windows.h>
 
 #include "group_mode.h"
 #include "member.h"
@@ -16,32 +17,39 @@
 
 // edits a member
 void edit_member(int members_size, Member *members, int caseType);
-// edit member menu
-void edit_memberMenu();
-void edit_memberMenu2();
 // removes a member
 void removeMem(int *members_size, Member *members);
 
-// CASES MENU PROMPTS
+// CASES
 
 // menu prompt for cases selection
 void caseMenu();
-// case one menu prompt
-void case_oneMenu();
-//case two menu prompt
-void case_twoMenu();
-// case three menu prompt
-void case_threeMenu();
 
-
-// CASES MENU FUNCTIONS
+// CASE 1
 
 // case one main menu
 void case_one(int *members_size, Member *members);
+// case one menu prompt
+void case_oneMenu();
+// edit member menu for case 1
+void edit_memberMenu();
+
+// CASE 2
+
 // case two main menu
 void case_two(int *members_size, Member *members);
+//case two menu prompt
+void case_twoMenu();
+// edit member menu for case 2
+void edit_memberMenu2();
+
+// CASE 3
+
 // case three main menu
 void case_three(Member *members, int *members_size, int option);
+// case three menu prompt
+void case_threeMenu();
+
 
 // READING AND WRITING FUNCTIONS
 
@@ -65,11 +73,11 @@ int group_mode(){
     std::string file_name;
 
     open = profile_selection(MODE, &file_name);
+
     if (!open)
     {
         return 0;
     }
-    
 
     // read saved data from profile file
     init(file_name, members, &members_size);
@@ -100,6 +108,7 @@ int group_mode(){
                 break;
             default:
                 std::cout << "\nInvalid input. Please try again.\n" << std::endl;
+                Sleep(1500); // PAUSE WHEN INVALID INPUT
                 continue;
         }
     }
@@ -148,6 +157,7 @@ void edit_member(int members_size, Member *members, int caseType){
 
             if (!found){
                 std::cout << "\nMember not found. Returning to main menu...\n";
+                Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             }
         break;
     }
@@ -196,11 +206,22 @@ void edit_memberMenu(){
 
 void removeMem(int *members_size, Member *members){                 
     std::string removeName;
+    char input;
     bool found = false;
 
     std::cout << "\nWhat is the name of the member you want to remove: ";
     std::cin.ignore();
     getline(std::cin, removeName);
+
+    std::cout << "\nAre you sure you want to delete this member? (Enter Y to continue) ";
+    std::cin >> input;
+
+    if (input != 'Y'){
+        std::cout << "\nMember deletion cancelled. Returning to main menu...\n";
+        Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
+
+        return;
+    }
 
     for (int i = 0; i < *members_size; i++)
     {
@@ -217,36 +238,23 @@ void removeMem(int *members_size, Member *members){
         }
     }
 
-    if (!found) std::cout << "\nMember not found. Returning to main menu...\n";
+    if (!found)
+    {
+        std::cout << "\nMember not found. Returning to main menu...\n";
+        Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
+    }
 }
 
-void case_oneMenu(){
-    std::cout << "\nWhat would you like to do?" << std::endl;
-    std::cout << "1) Add a new member" << std::endl;
-    std::cout << "2) Edit a member" << std::endl;
-    std::cout << "3) Delete a member" << std::endl;
-    std::cout << "4) Display member details" << std::endl;
-    std::cout << "0) Exit" << std::endl << std::endl;
-}
-
-void case_twoMenu(){
-    std::cout << "\nCase 2 Menu:" << std::endl;
-    std::cout << "1. Add a new member" << std::endl;
-    std::cout << "2. Update if the member has paid" << std::endl;
-    std::cout << "3. Edit member details" << std::endl;
-    std::cout << "4. Delete a member" << std::endl;
-    std::cout << "5. Display all member details" << std::endl;
-    std::cout << "6. Display paid status" << std::endl;
-    std::cout << "7. Exit" << std::endl;
-}
-
-void case_threeMenu(){
-    std::cout << "\n Gasto Mo Ang Limit!\n";
-    std::cout << "1. Add Member.\n";
-    std::cout << "2. Delete Member. \n";
-    std::cout << "3. Add Expense for Member\n";
-    std::cout << "4. Display Member Details.\n";
-    std::cout << "5. Exit\n\n";
+void caseMenu(){
+    std::cout << "\n\n\n=====GROUP MODE=====\n\n";
+    std::cout << "Pick a use case:\n\n";
+    std::cout << "1) Sukli sa Kinsa\n";
+    std::cout << "  - Manages change calculation\n\n";  
+    std::cout << "2) Utang Tracker\n";
+    std::cout << "  - Tracks of who paid\n\n";
+    std::cout << "3) Gasto Mo Ang Limit\n";
+    std::cout << "  - Limits spending\n\n";
+    std::cout << "0) Exit\n\n";
 }
 
 void case_one(int *members_size, Member *members){
@@ -268,7 +276,7 @@ void case_one(int *members_size, Member *members){
             {
                 members[i].display_details(1);
             }
-        std::cout << "=================\n\n";
+        std::cout << "\n=================\n\n";
 
         // prompt menu
         case_oneMenu();
@@ -284,6 +292,7 @@ void case_one(int *members_size, Member *members){
             do{
                 members[*members_size].create_member();
                 members[*members_size].initialize(1);
+
                 std::cout << "\nAre you sure you've entered the correct information? (Enter Y to confirm) ";
                 std::cin >> verify;
             } while (verify != 'Y' && verify != 'y');
@@ -319,6 +328,7 @@ void case_one(int *members_size, Member *members){
             if (!found)
             {
                 std::cout << "\nMember not found. Returning to main menu...\n";
+                Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
                 continue;
             }
 
@@ -340,16 +350,21 @@ void case_one(int *members_size, Member *members){
     
 }
 
-void caseMenu(){
-    std::cout << "\n\n=====GROUP MODE=====\n\n";
-    std::cout << "Pick a use case:\n\n";
-    std::cout << "1) Sukli sa Kinsa\n";
-    std::cout << "  - Manages change calculation\n\n";  
-    std::cout << "2) Utang Tracker\n";
-    std::cout << "  - Tracks of who paid\n\n";
-    std::cout << "3) Gasto Mo Ang Limit\n";
-    std::cout << "  - Limits spending\n\n";
-    std::cout << "0) Exit\n\n";
+void case_oneMenu(){
+    std::cout << "\nWhat would you like to do?" << std::endl;
+    std::cout << "1) Add a new member" << std::endl;
+    std::cout << "2) Edit a member" << std::endl;
+    std::cout << "3) Delete a member" << std::endl;
+    std::cout << "4) Display member details" << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
+}
+
+void edit_memberMenu(){
+    std::cout << "\nWhat do you want to edit?" << std::endl;
+    std::cout << "1) Name " << std::endl;
+    std::cout << "2) Bill " << std::endl;
+    std::cout << "3) Expense  " << std::endl;
+    std::cout << "0) Exit" << std::endl << std::endl;
 }
 
 void case_two(int *members_size, Member *members){
@@ -366,6 +381,7 @@ void case_two(int *members_size, Member *members){
             do{
                 members[*members_size].create_member();
                 members[*members_size].initialize(2);
+
                 std::cout << "Are you sure you've entered the correct information? Enter Y if yes, N if no:" << std::endl;
                 std::cin >> verify;
             }while(verify != 'Y' && verify != 'y');
@@ -438,6 +454,26 @@ void case_two(int *members_size, Member *members){
     
 }
 
+void case_twoMenu(){
+    std::cout << "Case 2 Menu:" << std::endl;
+    std::cout << "1. Add a new member" << std::endl;
+    std::cout << "2. Update if the member has paid" << std::endl;
+    std::cout << "3. Edit member details" << std::endl;
+    std::cout << "4. Delete a member" << std::endl;
+    std::cout << "5. Display all member details" << std::endl;
+    std::cout << "6. Display paid status" << std::endl;
+    std::cout << "7. Exit" << std::endl;
+}
+
+void edit_memberMenu2(){
+    std::cout << "What do you want to edit?: " << std::endl;
+    std::cout << "1. Name " << std::endl;
+    std::cout << "2. Payment " << std::endl;
+    std::cout << "3. Bill  " << std::endl;
+    std::cout << "4. Date" << std::endl;
+    std::cout << "5. Exit" << std::endl;
+}
+
 void case_three(Member *members, int *members_size, int option) {
     int member_choice;
     std::string name, displayName;
@@ -496,15 +532,26 @@ void case_three(Member *members, int *members_size, int option) {
                 if (!found)
                 {
                     std::cout << "\nMember not found. Returning to main menu...\n";
+                    Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
                 }
                 break;
             case 5:
                 return;
             default:
                 std::cout << "Invalid choice. Please select again.\n";
+                Sleep(1500); // PAUSE WHEN INVALID INPUT
                 break;
         }
     }
+}
+
+void case_threeMenu(){
+    std::cout << "\n Gasto Mo Ang Limit!\n";
+    std::cout << "1. Add Member.\n";
+    std::cout << "2. Delete Member. \n";
+    std::cout << "3. Add Expense for Member\n";
+    std::cout << "4. Display Member Details.\n";
+    std::cout << "5. Exit\n\n";
 }
 
 void init(std::string file_name, Member members[], int* members_size){
@@ -573,17 +620,3 @@ void save(std::string file_name, Member members[], int* members_size){
 bool gmode_file_empty(std::ifstream& file){
     return file.peek() == std::ifstream::traits_type::eof();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
