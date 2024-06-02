@@ -3,6 +3,7 @@
 #include <iostream>
 #include <errno.h>
 #include <fstream>
+#include <string>
 
 #include "group_mode.h"
 #include "member.h"
@@ -92,6 +93,7 @@ int group_mode(){
                 case_one(&members_size, members);
                 break;
             case 2:
+                case_two(&members_size, members);
                 break;
             case 3:
                 case_three(members, &members_size, option);
@@ -159,7 +161,7 @@ void edit_member(int members_size, Member *members, int caseType){
                     {
                         edit_memberMenu2();
                         std::cin >> editCase;
-                        members[i].setCase1(editCase);
+                        members[i].setCase2(editCase);
                         if (editCase == 5)
                         {
                             break;
@@ -228,7 +230,7 @@ void case_oneMenu(){
 }
 
 void case_twoMenu(){
-    std::cout << "Case 2 Menu:" << std::endl;
+    std::cout << "\nCase 2 Menu:" << std::endl;
     std::cout << "1. Add a new member" << std::endl;
     std::cout << "2. Update if the member has paid" << std::endl;
     std::cout << "3. Edit member details" << std::endl;
@@ -373,7 +375,17 @@ void case_two(int *members_size, Member *members){
         }
 
         case 2:{
-            members[*members_size].updateCase2();
+            std::string updateName;
+            std::cout << "What is the name of the member you want the details to be updated?: " << std::endl;
+            std::cin >> updateName;
+            for (int i = 0; i < *members_size; i++)
+            {
+                if (members[i].check_memName(updateName))
+                {
+                    members[i].updateCase2();
+                    break;
+                }
+            }
             break;
         }
 
@@ -396,14 +408,15 @@ void case_two(int *members_size, Member *members){
                 if (members[i].check_memName(displayName))
                 {
                     members[i].display_details(2);
-                    return;
+                    break;
                 }
             }
+            std::cout << std::endl;
             break;
         }
 
         case 6:{
-            std::cout << "Paid: " << std::endl;
+            std::cout << "\nPaid: " << std::endl;
             for (int i = 0; i < *members_size; i++)
             {
                 members[i].contributed();
@@ -413,6 +426,7 @@ void case_two(int *members_size, Member *members){
             {
                 members[i].notContributed();
             }
+            break;
         }
 
         case 7:return;
@@ -481,7 +495,7 @@ void case_three(Member *members, int *members_size, int option) {
 
                 if (!found)
                 {
-                    std::cout << "\nMember not found. Returning to main menu...\n"
+                    std::cout << "\nMember not found. Returning to main menu...\n";
                 }
                 break;
             case 5:
