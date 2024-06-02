@@ -7,10 +7,10 @@
 #include <iostream>
 #include <cstdio>
 #include <cstring>
-#include <ctime>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <windows.h>
 
 #include "date.h"
 #include "member.h"
@@ -93,6 +93,7 @@ void Member::initialize(int case_type){
         
         default:
             std::cout<< "\nInvalid input. Returning to main menu...\n" << std::endl;
+            Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             break;
     }
 }
@@ -104,6 +105,7 @@ void Member::display_details(int case_type){
             std::cout << "Bill: " << details.case1.bill << std::endl;
             std::cout << "Expenses: " << details.case1.expense << std::endl;
             std::cout << "Change: " << details.case1.change << std::endl;
+            Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             break;
 
         case 2:
@@ -112,6 +114,7 @@ void Member::display_details(int case_type){
             std::cout << "Bill: " << details.case2.bill << std::endl;
             std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
             std::cout << "Contributed: " << details.case2.contributed << std::endl;
+            Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             break;
 
         case 3:
@@ -125,6 +128,7 @@ void Member::display_details(int case_type){
                 std::cout << "Budget: " << CURRENCY << " " << details.case3.budget << std::endl;
                 std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
             }
+            Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             break;
 
         default:
@@ -171,7 +175,11 @@ void Member::setCase1(int editCase){
             break;
         }
 
-        case 4: return;
+        case 4:{
+            std::cout << "\nReturning to main menu...\n";
+            Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
+            return;
+        }
 
         default: break;
     }
@@ -292,6 +300,7 @@ void Member::addExpense(){
         std::cout << "\nExpense added successfully.\n";
     } else {
         std::cout << "\nExpense not added. Returning to main menu...\n";
+        Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
     }
 }
 
