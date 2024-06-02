@@ -69,7 +69,7 @@ void Member::initialize(int case_type){
 
             details.case2.payment_date = get_current_date();
 
-            if (details.case2.bill >= details.case2.payment) details.case2.contributed = true;
+            if (details.case2.bill == details.case2.payment) details.case2.contributed = true;
             else details.case2.contributed = false;
 
             break;
@@ -112,7 +112,7 @@ void Member::display_details(int case_type){
             std::cout << "\nName: " << name << std::endl; 
             std::cout << "Payment so far: " << details.case2.payment << std::endl;
             std::cout << "Bill: " << details.case2.bill << std::endl;
-            std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
+            std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day<< " " << details.case2.payment_date.year << std::endl;
             std::cout << "Contributed: " << details.case2.contributed << std::endl;
             Sleep(2000); // PAUSE WHEN RETURNING TO MAIN MENU
             break;
@@ -191,6 +191,7 @@ void Member::setCase2(int editCase){
     switch (editCase)
         {
         case 1:{
+            std::cout << "Note that after editing the name, cannot edit further details since the name of the member is now different" << std::endl;
             std::cout << "Enter the new name: ";
             std::cin >> name;
             break;
@@ -246,7 +247,12 @@ void Member::updateCase2(){
 
         std::cout << "\nYou entered: " << paymentUpdate << CURRENCY << std::endl;
         std::cout << "Total paid so far: " << details.case2.payment << CURRENCY << std::endl;
-        std::cout << "Date today: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
+        std::cout << "Date today: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << " " << details.case2.payment_date.year << std::endl;
+
+        if (details.case2.bill == details.case2.payment)
+        {
+            details.case2.contributed = true;
+        } else details.case2.contributed = false;
         
         std::cout << "\nAre all of the information correct? (Enter Y to confirm) ";
         std::cin >> verify;
@@ -259,6 +265,7 @@ void Member::contributed(){
     {
         std::cout << name << std::endl;
     }
+    std::cout << std::endl;
 }
 
 void Member::notContributed(){
@@ -266,6 +273,7 @@ void Member::notContributed(){
     {
         std::cout << name << std::endl;
     }
+    std::cout << std::endl;
 }
 
 // specific to case 3
