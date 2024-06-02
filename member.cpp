@@ -19,7 +19,7 @@
 
 void Member::init_default_values(){
     // CASE 1 Initialization
-    details.case1.expense = 0.0;
+    details.case1.payment = 0.0;
     details.case1.bill = 0.0;
     details.case1.change = 0.0;
 
@@ -49,13 +49,13 @@ void Member::initialize(int case_type){
     switch (case_type){
         case 1: {
             std::cout << "\nHey " << name << ", what is your bill?: ";
-            std::cin >> details.case1.expense;
-
-            std::cout << "\nAnd how much money did you give?: ";
             std::cin >> details.case1.bill;
 
+            std::cout << "\nAnd how much money did you give?: ";
+            std::cin >> details.case1.payment;
+
             // calculate user change
-            details.case1.change = details.case1.bill - details.case1.expense;
+            details.case1.change = details.case1.payment - details.case1.bill;
 
             break;
         }
@@ -102,7 +102,7 @@ void Member::display_details(int case_type){
         case 1:
             std::cout << "\nName: " << name << std::endl; 
             std::cout << "Bill: " << details.case1.bill << std::endl;
-            std::cout << "Expenses: " << details.case1.expense << std::endl;
+            std::cout << "Payment: " << details.case1.payment << std::endl;
             std::cout << "Change: " << details.case1.change << std::endl;
             break;
 
@@ -156,17 +156,17 @@ void Member::setCase1(int editCase){
             std::cin >> details.case1.bill;
 
             // update change
-            details.case1.change = details.case1.bill - details.case1.expense;
+            details.case1.change = details.case1.payment - details.case1.bill;
 
             break;
         }
 
         case 3:{
-            std::cout << "\nEnter the new expense: ";
-            std::cin >> details.case1.expense;
+            std::cout << "\nEnter the new payment: ";
+            std::cin >> details.case1.payment;
 
             // update change
-            details.case1.change = details.case1.bill - details.case1.expense;
+            details.case1.change = details.case1.payment - details.case1.bill;
 
             break;
         }
@@ -359,10 +359,10 @@ void Member::serialize(std::string file_name){
     // CASE 1
 
     // serialize expense 
-    if ( !(file.write( (char *) &details.case1.expense, sizeof(double) ) ) ){
+    if ( !(file.write( (char *) &details.case1.payment, sizeof(double) ) ) ){
         file.close();
         
-        perror("Serializing CASE 1 expense failed"); // ERROR HANDLING (Data cannot be serialized)
+        perror("Serializing CASE 1 payment failed"); // ERROR HANDLING (Data cannot be serialized)
         exit(EXIT_FAILURE);
     }
 
@@ -547,7 +547,7 @@ void Member::deserialize(std::string file_name, long int* pos){
     // CASE 1
 
     // deserialize expense 
-    if ( !(file.read( (char *) &details.case1.expense, sizeof(double) ) ) ){
+    if ( !(file.read( (char *) &details.case1.payment, sizeof(double) ) ) ){
         file.close();
         
         perror("Serializing CASE 1 expense failed"); // ERROR HANDLING (Data cannot be deserialized)

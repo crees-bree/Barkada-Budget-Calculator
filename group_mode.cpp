@@ -190,7 +190,7 @@ void edit_memberMenu(){
     std::cout << "\nWhat do you want to edit?" << std::endl;
     std::cout << "1) Name " << std::endl;
     std::cout << "2) Bill " << std::endl;
-    std::cout << "3) Expense  " << std::endl;
+    std::cout << "3) Payment  " << std::endl;
     std::cout << "0) Exit" << std::endl << std::endl;
 }
 

@@ -20,7 +20,7 @@ class Member{
         
         // CASE 1 STRUCTURE
         struct case_one{
-            double expense;
+            double payment;
             double bill;
             double change;
         };
