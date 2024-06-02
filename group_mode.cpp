@@ -359,14 +359,6 @@ void case_oneMenu(){
     std::cout << "0) Exit" << std::endl << std::endl;
 }
 
-void edit_memberMenu(){
-    std::cout << "\nWhat do you want to edit?" << std::endl;
-    std::cout << "1) Name " << std::endl;
-    std::cout << "2) Bill " << std::endl;
-    std::cout << "3) Expense  " << std::endl;
-    std::cout << "0) Exit" << std::endl << std::endl;
-}
-
 void case_two(int *members_size, Member *members){
     int caseTwoTask;
     do
@@ -463,15 +455,6 @@ void case_twoMenu(){
     std::cout << "5. Display all member details" << std::endl;
     std::cout << "6. Display paid status" << std::endl;
     std::cout << "7. Exit" << std::endl;
-}
-
-void edit_memberMenu2(){
-    std::cout << "What do you want to edit?: " << std::endl;
-    std::cout << "1. Name " << std::endl;
-    std::cout << "2. Payment " << std::endl;
-    std::cout << "3. Bill  " << std::endl;
-    std::cout << "4. Date" << std::endl;
-    std::cout << "5. Exit" << std::endl;
 }
 
 void case_three(Member *members, int *members_size, int option) {
