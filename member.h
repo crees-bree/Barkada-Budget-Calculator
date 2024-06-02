@@ -57,6 +57,7 @@ class Member{
         
     public:
         // GENERAL USE
+        
         // initialize details to their default values (to prevent any errors in saving/display)
         void init_default_values();
 
@@ -69,23 +70,23 @@ class Member{
         // display member details
         void display_details(int);
 
-        //to iterate which member you want to edit
+        // to iterate which member you want to edit
         bool check_memName(std::string);  
-        
-        //This is for accessing the values inside the class so we can edit
-        void setCase1(int);
-
-        void setCase2(int);
-
-        void contributed();
-        void notContributed();
-
 
         // CASE 1
+
+        //This is for accessing the values inside the class so we can edit
+        void setCase1(int);
 
         // CASE 2
 
         void updateCase2();
+
+        void setCase2(int);
+
+        void contributed();
+
+        void notContributed();
 
         // CASE 3
 

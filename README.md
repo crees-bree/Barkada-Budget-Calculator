@@ -11,6 +11,17 @@
     - There appears to be inconsistencies with bill and expense
   - Suggestion: Display only member name and change when displaying members in menu
 
+- In Case 2
+  - Display formatting adjusted
+  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
+  - Clarify on the purpose of having contributed and notContributed functions in Member
+  - Suggestion: Allow the user to change payment date
+
+### For Jim
+- In Case 3
+  - Display formatting adjusted
+  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
+
 ## For Contributors:
 A few things to point out:  
 - Please refer to `updates.md` for code updates.  

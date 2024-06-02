@@ -79,7 +79,7 @@ int group_mode(){
         std::cin >> option;
         
         switch (option){
-            case 4:
+            case 0:
                 std::cout << "\nAre you sure you want to exit? (Enter Y to confirm) ";
                 std::cin >> exit;
 
@@ -239,30 +239,32 @@ void case_twoMenu(){
 }
 
 void case_threeMenu(){
-    std::cout << "\n Case 3 Menu: Gasto Mo Ang Limit!\n";
+    std::cout << "\n Gasto Mo Ang Limit!\n";
     std::cout << "1. Add Member.\n";
     std::cout << "2. Delete Member. \n";
     std::cout << "3. Add Expense for Member\n";
     std::cout << "4. Display Member Details.\n";
-    std::cout << "5. Exit\n";
+    std::cout << "5. Exit\n\n";
 }
 
 void case_one(int *members_size, Member *members){
     int caseOneTask;
     std::string displayName;
+    bool found;
     char exit;
 
     do
     {
+        found = false;
+        
         // case 1 title
         std::cout << "\nUTANG NI KINSA\n\n";
         
         // display member details
-        std::cout << "=====MEMBERS=====\n\n";
+        std::cout << "=====MEMBERS=====\n";
         for (int i = 0; i < *members_size; i++)
             {
                 members[i].display_details(1);
-                std::cout << std::endl;
             }
         std::cout << "=================\n\n";
 
@@ -306,13 +308,18 @@ void case_one(int *members_size, Member *members){
             {
                 if (members[i].check_memName(displayName))
                 {
+                    found = true;
+                    
                     members[i].display_details(1);
-                } else 
-                {
-                    std::cout << "\nMember not found. Returning to main menu...\n";
-                    return;
                 }
             }
+
+            if (!found)
+            {
+                std::cout << "\nMember not found. Returning to main menu...\n";
+                continue;
+            }
+
             break;
         }
         // exit
@@ -340,7 +347,7 @@ void caseMenu(){
     std::cout << "  - Tracks of who paid\n\n";
     std::cout << "3) Gasto Mo Ang Limit\n";
     std::cout << "  - Limits spending\n\n";
-    std::cout << "4) Exit\n\n";
+    std::cout << "0) Exit\n\n";
 }
 
 void case_two(int *members_size, Member *members){
@@ -419,18 +426,22 @@ void case_two(int *members_size, Member *members){
 
 void case_three(Member *members, int *members_size, int option) {
     int member_choice;
-    std::string name;
+    std::string name, displayName;
     double payment, bill;
+    bool found;
 
     while (true) {
+        found = false;
+        
         for (int i = 0; i < *members_size; i++){
             members[i].display_details(option);
         }
+
         case_threeMenu();
         std::cin >> member_choice;
-        std::string displayName;
 
         switch (member_choice) {
+            // add member
             case 1:
             
                 members[*members_size].create_member();
@@ -438,10 +449,11 @@ void case_three(Member *members, int *members_size, int option) {
 
                 (*members_size)++;
                 break;
-
-            case 2: //delete member
+            // delete member
+            case 2: 
                     removeMem(members_size, members);
                 break;
+            // add expense for member
             case 3:
                 std::cout << "Enter the name of member you want to add an expense to: " << std::endl;
                 std::cin >> displayName;
@@ -453,16 +465,24 @@ void case_three(Member *members, int *members_size, int option) {
                     }
                 }
                 break;
+            // display member details
             case 4:
-                std::cout << "Enter the name of member you want to display: " << std::endl;
+                std::cout << "\nEnter the name of member you want to display: ";
                 std::cin >> displayName;
+
                 for (int i = 0; i < *members_size; i++)
                 {
                     if (members[i].check_memName(displayName))
                     {
+                        found = true;
                         members[i].displayMember();
                     }
                 } 
+
+                if (!found)
+                {
+                    std::cout << "\nMember not found. Returning to main menu...\n"
+                }
                 break;
             case 5:
                 return;
@@ -472,7 +492,6 @@ void case_three(Member *members, int *members_size, int option) {
         }
     }
 }
-
 
 void init(std::string file_name, Member members[], int* members_size){
     std::ifstream file;

@@ -47,83 +47,127 @@ void Member::create_member(){
 
 void Member::initialize(int case_type){               
     switch (case_type){
-    case 1: {
-        std::cout << "\nHey " << name << ", what is your bill?: ";
-        std::cin >> details.case1.expense;
+        case 1: {
+            std::cout << "\nHey " << name << ", what is your bill?: ";
+            std::cin >> details.case1.expense;
 
-        std::cout << "\nAnd how much money did you give?: ";
-        std::cin >> details.case1.bill;
+            std::cout << "\nAnd how much money did you give?: ";
+            std::cin >> details.case1.bill;
 
-        // calculate user change
-        details.case1.change = details.case1.bill - details.case1.expense;
+            // calculate user change
+            details.case1.change = details.case1.bill - details.case1.expense;
 
-        break;
-    }
+            break;
+        }
 
-    case 2: {
-        std::cout << "Enter the amount paid: " << std::endl;
-        std::cin >> details.case2.payment;
-        std::cout << "Enter bill: " << std::endl;
-        std::cin >> details.case2.bill;
-        details.case2.payment_date = get_current_date();
-        if (details.case2.bill >= details.case2.payment)
-        {
-            details.case2.contributed = true;
-        }else details.case2.contributed = false;
-        break;
-    }
+        case 2: {
+            std::cout << "\nEnter the amount paid: ";
+            std::cin >> details.case2.payment;
 
-    case 3: {
-        char verify;
-        do {
-            std::cout << "How much is the budget you will allocate to " << name << "?" << std::endl;
-            std::cin >> details.case3.budget;
+            std::cout << "\nEnter bill: ";
+            std::cin >> details.case2.bill;
 
-            std::cout << "Are you sure with this budget? Enter Y if yes: ";
-            std::cin >> verify;
+            details.case2.payment_date = get_current_date();
 
-        } while(verify != 'Y' && verify != 'y');
+            if (details.case2.bill >= details.case2.payment) details.case2.contributed = true;
+            else details.case2.contributed = false;
 
-        std::cout << "Budget of " << CURRENCY << " " << details.case3.budget << " allocated to " << name << "." << std::endl;
-        break;
-    }
-    
-    default:
-        std::cout<< "Case Type Error!" << std::endl;
-        break;
+            break;
+        }
+
+        case 3: {
+            char verify;
+            do {
+                std::cout << "\nHow much is the budget you will allocate to " << name << "?";
+                std::cin >> details.case3.budget;
+
+                std::cout << "\nAre you sure with this budget? (Enter Y to confirm) ";
+                std::cin >> verify;
+
+            } while(verify != 'Y' && verify != 'y');
+
+            std::cout << "\nBudget of " << CURRENCY << " " << details.case3.budget << " allocated to " << name << "." << std::endl;
+
+            break;
+        }
+        
+        default:
+            std::cout<< "\nInvalid input. Returning to main menu...\n" << std::endl;
+            break;
     }
 }
 
+void Member::display_details(int case_type){
+    switch (case_type){
+        case 1:
+            std::cout << "\nName: " << name << std::endl; 
+            std::cout << "Bill: " << details.case1.bill << std::endl;
+            std::cout << "Expenses: " << details.case1.expense << std::endl;
+            std::cout << "Change: " << details.case1.change << std::endl;
+            break;
+
+        case 2:
+            std::cout << "\nName: " << name << std::endl; 
+            std::cout << "Payment so far: " << details.case2.payment << std::endl;
+            std::cout << "Bill: " << details.case2.bill << std::endl;
+            std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
+            std::cout << "Contributed: " << details.case2.contributed << std::endl;
+            break;
+
+        case 3:
+            if (details.case3.budget >= 0){
+                std::cout << " " << std::endl; 
+                std::cout << "Name: " << name << std::endl; 
+                std::cout << "Budget: " << CURRENCY << " " << details.case3.budget << std::endl;
+            } else {
+                std::cout << " " << std::endl; 
+                std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
+                std::cout << "Budget: " << CURRENCY << " " << details.case3.budget << std::endl;
+                std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
+            }
+            break;
+
+        default:
+            break;
+    }
+}
 
 bool Member::check_memName(std::string editName){
     int index;
-    if (editName == name)
-    {
-        return true;
-    }else return false;
+
+    if (editName == name) return true;
+    else return false;
 }
+
+// specific to case 1
 
 void Member::setCase1(int editCase){
     switch (editCase)
         {
         case 1:{
-            std::cout << "Enter the new name: ";
+            std::cout << "\nEnter the new name: ";
             std::cin.ignore();
             getline(std::cin, name);
             break;
         }
 
         case 2:{
-            std::cout << "Enter the new bill: ";
+            std::cout << "\nEnter the new bill: ";
             std::cin >> details.case1.bill;
+
+            // update change
             details.case1.change = details.case1.bill - details.case1.expense;
+
             break;
         }
 
         case 3:{
-            std::cout << "Enter the new expense: ";
+            std::cout << "\nEnter the new expense: ";
             std::cin >> details.case1.expense;
+
+            // update change
             details.case1.change = details.case1.bill - details.case1.expense;
+
             break;
         }
 
@@ -132,6 +176,8 @@ void Member::setCase1(int editCase){
         default: break;
     }
 }
+
+// specific to case 2
 
 void Member::setCase2(int editCase){
     switch (editCase)
@@ -178,55 +224,23 @@ void Member::setCase2(int editCase){
         }
 }
 
-
-void Member::display_details(int case_type){
-    switch (case_type){
-        case 1:
-            std::cout << "\nName: " << name << std::endl; 
-            std::cout << "Bill: " << details.case1.bill << std::endl;
-            std::cout << "Expenses: " << details.case1.expense << std::endl;
-            std::cout << "Change: " << details.case1.change << std::endl;
-            break;
-
-        case 2:
-            std::cout << "\nName: " << name << std::endl; 
-            std::cout << "Payment so far: " << details.case2.payment << std::endl;
-            std::cout << "Bill: " << details.case2.bill << std::endl;
-            std::cout << "Date: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
-            std::cout << "Contributed: " << details.case2.contributed << std::endl;
-            break;
-
-        case 3:
-                if (details.case3.budget >= 0){
-                    std::cout << " " << std::endl; 
-                    std::cout << "Name: " << name << std::endl; 
-                    std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
-                } else {
-                    std::cout << " " << std::endl; 
-                    std::cout << "Name: " << name << " !! ATTENTION NEEDED !! " << std::endl; 
-                    std::cout << "Budget: " << CURRENCY << details.case3.budget << std::endl;
-                    std::cout << "WARNING! " << name << " has went over the budget limit." << std::endl;
-                }
-        break;
-    default:
-        break;
-        }
-}
-
 void Member::updateCase2(){
     char verify;
+
     do
     {
         int paymentUpdate;
-        std::cout << "Enter the amount paid: " << std::endl;
+        std::cout << "\nEnter the amount paid: ";
         std::cin >> paymentUpdate;
+        
         details.case2.payment += paymentUpdate;
         details.case2.payment_date = get_current_date();
 
-        std::cout << "You entered: " << paymentUpdate << CURRENCY << std::endl;
+        std::cout << "\nYou entered: " << paymentUpdate << CURRENCY << std::endl;
         std::cout << "Total paid so far: " << details.case2.payment << CURRENCY << std::endl;
         std::cout << "Date today: " << details.case2.payment_date.month_name << " " << details.case2.payment_date.day << details.case2.payment_date.year << std::endl;
-        std::cout << "Are all of the information correct? Enter Y if yes, N if no: " << std::endl;
+        
+        std::cout << "\nAre all of the information correct? (Enter Y to confirm) ";
         std::cin >> verify;
     } while (verify != 'Y');
 
@@ -246,10 +260,6 @@ void Member::notContributed(){
     }
 }
 
-// specific to case 1
-
-// specific to case 2
-
 // specific to case 3
 
 void Member::addExpense(){
@@ -257,30 +267,31 @@ void Member::addExpense(){
     std::string note;
     char confirm;
 
-    std::cout << "Enter Expense Amount: ";
+    std::cout << "\nEnter Expense Amount: ";
     std::cin >> expenseAmount;
 
-    std::cout << "Enter a note for the expense: ";
+    std::cout << "\nEnter a note for the expense: ";
     std::cin.ignore(); // To ignore the newline character left in the buffer
     std::getline(std::cin, note);
 
-    std::cout << "You Entered:\n";
+    std::cout << "\nYou Entered:\n";
     std::cout << "Amount: " << expenseAmount << "\n";
     std::cout << "Note: " << note << "\n";
-    std::cout << "Are you sure you want to add this expense? (y/n): ";
+    std::cout << "\nAre you sure you want to add this expense? (Enter Y to confirm): ";
     std::cin >> confirm;
 
     if (confirm == 'y' || confirm == 'Y') {
         Expense newExpense;
+
         newExpense.expense_payment = expenseAmount;
         newExpense.note = note;
 
         details.case3.expenses.push_back(newExpense);
         details.case3.budget -= expenseAmount; 
 
-        std::cout << "Expense added successfully.\n";
+        std::cout << "\nExpense added successfully.\n";
     } else {
-        std::cout << "Expense not added.\n";
+        std::cout << "\nExpense not added. Returning to main menu...\n";
     }
 }
 
