@@ -5,6 +5,6 @@
 
 
 int main(){
-    group_mode();
+    person_mode();
     return 0;
 }
