@@ -1,6 +1,6 @@
 # Barkada-Budget-Calculator
 ## Announcements
-Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is already available! Refer to Releases to view this release.
+Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is released on June 4, 2024 and is already available! Refer to Releases to view this release.
 
 ## Description
 **Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** that aids in easy money tracking and management.
