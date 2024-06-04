@@ -1,74 +1,6 @@
 # Barkada-Budget-Calculator
 ## Announcements
-
-### For Chad
-- In Case 1
-  - Display formatting adjusted
-  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
-  - Modified display_details() in Member to only print the details of THAT member
-    - u can't loop thru members array inside of a member, sa gawas ra na siya iloop (group mode)
-  - Clarify on initialize() in Member for case 1
-    - There appears to be inconsistencies with bill and expense
-  - Suggestion: Display only member name and change when displaying members in menu
-
-- In Case 2
-  - Display formatting adjusted
-  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
-  - Clarify on the purpose of having contributed and notContributed functions in Member
-  - Suggestion: Allow the user to change payment date
-
-### For Jim
-- In Case 3
-  - Display formatting adjusted
-  - Added some user prompts (when returning to main menu, confirming exit, confirming deletion, etc.)
-
-## For Contributors:
-A few things to point out:  
-- Please refer to `updates.md` for code updates.  
-
-- `person_mode.cpp`, while not yet complete (still waiting for @mijimmi's category display), is ready for testing and bug fixing.
-  You can freely test profile selection functionalities with `pmode_test.cpp`. Modify the code as needed.
-  - To compile,
-    - MANUAL COMPILE
-      - Enter `g++ -o pmode_test pmode_test.cpp person_mode.cpp profile.cpp account.cpp date.cpp` on the terminal
-      - Enter `.\pmode_test` to run
-    - BUILD WITH VSCODE
-      - Open `tasks.json` under `.vscode` folder
-      - Locate `"${file}",` under `"args" :` and replace with:
-        ```
-        "pmode_test.cpp",
-        "person_mode.cpp".
-        "profile.cpp",
-        "account.cpp",
-        "date.cpp"
-        ```
-      - Click `Run C/C++ File` on run button in VSCode
-      - **NOTE:** Don't forget to replace what you just pasted back to `"${file}"` otherwise you're going to run into some problematic issues
-  - Add your results to your testings on **Test Person Mode** issue
-
-- `profile.cpp` is ready for testing and bug fixing. You can freely test profile selection functionalities with `profile_test.cpp`. Modify the code as needed.  
-  - To compile,
-    - (The tedious way that I recommend tbh):
-      - Enter `g++ -o profile_test profile_test.cpp profile.cpp` on terminal to compile
-      - Enter `.\profile_test` to run
-      - I recommend copy-pasting the compile command because it might delete your .cpp files
-        - e.g. `g++ -o profile_test.cpp profile.cpp` **THIS MIGHT DELETE `profile_test.cpp`. PROCEED WITH CAUTION**
-    - (The easy way I don't really recommend since it can mess with your VSCode):
-      - Open `tasks.json` under `.vscode` folder
-      - Add `"profile.cpp",` in between `"${file}",` and `"-o",`, just like this:
-        ```
-        ${file},
-        "profile.cpp",
-        "-o",
-        ```
-      - Click `Run C/C++ File` on run button in VSCode
-      - **NOTE:** Ensure that you're running `test.cpp` or `profile_test.cpp`, otherwise it would mess things up
-  - Add your results to your testings on **Profile Selection** issue
-
-- `account`, `person_mode.cpp`, `member.cpp`, and `group_mode.cpp` currently in development.
-
-- For more questions and suggestions, go to me na lang hehe
-
+Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is already released on . Refer to Releases to view this release.
 
 ## Description
 **Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** that aids in easy money tracking and management.
@@ -83,13 +15,62 @@ and App Store and subscribe to our YouTube channel (we are reaching 1 subscriber
 
 ## Features
 ### Main Functionalities:
-- The program can create 10 profiles at max
+- BBC features two mode: Person Mode and Group Mode.
+  - Person Mode is suitable for personal use. In person mode, the user can keep track of their daily income and expenses without hassle.
+  - Group Mode is suitable for small groups such as families, friend groups, and small businesses. In group mode, groups can keep track of their transaction changes, debt of their members, and expenses and budget.
+- The user can create profiles to separate accounting records between different people or groups of people.
+  - The user also has the option to remove profiles.
+  - Profiles created in Person Mode and Group Mode are separate.
+  - User data is stored in a .dat file because of its versatility.
 
 ### Person Mode Features and Functionalities:
-- A user can create a maximum of 10 accounts
+- In the Person Mode menu, the user is able to see five recent records added today and yesterday.
+- The user can keep track of their income and expenses with the use of records. A record details a certain transaction or transfer of money.
+  - A record consists of a date of transaction, record type, amount transferred, category, and a note.
+    - The date of transaction keeps track of on what day did that record get added to the program.
+    - The record type denotes the type of transaction, whether it is an expense, income, or transfer (transferring money from one account to another)
+    - The category aids in organizing records into a cluster of related records, whether it would be by purpose or circumstance
+    - The note helps the user specify the contextual and purposal details of that transaction
+  - The user has the ability to add, modify, delete, display, and filter records.
+    - Upon adding a record, the user has the option to modify that record to ensure that the user is able to enter the correct details of that record
+    - Records can be filter according to the account they belong to, their date, their record type, their amount (which can be filtered by a specific amount or a range of amounts), and their category.
+  - When there are no available accounts, the user is not permitted to add, modify, delete, display, or filter records.
+  - The user is able to see the percentage of their expenses by category.
+- The user can store their records in an account, which represents a money source or destination.
+  - The user can only create a maximum of ten accounts. When the number of accounts reaches its limit, the user is not permitted to add more accounts.
+  - The program automatically creates three default accounts for the user: Cash, Card, and Savings.
+  - The user can add, modify, delete, and display accounts.
+    - Whenever a user adds, modifies, or deletes an account, the user is prompted with an account names display tallying the available accounts.
+    - The user can modify the account's name and balance.
+      - When a user modifies an account's balance, the program will create a new record that updates the balance to the amount specified by the user.
+    - The user is able to see all the available accounts and their current balances with the displaying accounts feature.
+  - The user can transfer an amount from one account to the other. When performing a transfer, a transfer record is added to the current account destination and the new account destination to update the transfer.
 
 ### Group Mode Features and Functionalities:
-- 3 Cases
-- Case 1: Bill-Splitting Mode
-- Case 2: Group Payment Checker
-- Case 3: Group Budget Limiter
+- Group Mode has members that represents the members of a group. The user can add, modify, and delete members (if the user hates that specific member). This functionality is in general to all use cases. Speaking of use cases...
+  - The modify member feature depends on what use case the user is on (e.g. if the user is using Utang Tracker, the user can only modify details in Utang Tracker).
+  - The number of members is capped at 20. 
+- In Group Mode, the user is prompted with a use case selection menu. The user can select a use case depending on their purposes. The details for each use case is listed below:
+  - Use Case 1: Sukli sa Kinsa
+    - Sukli sa Kinsa allows the user to keep track of the bills, payments, and change of each member.
+    - The change of all members will be automatically displayed in the Sukli sa Kinsa menu.
+    - The user is able to display a member's bill, payment, and change.
+    - The user can display the total payment, bill, and change of the group.
+  - Use Case 2: Utang Tracker
+    - Utang Tracker allows the user to keep track of which members have pending debt and have paid their debt.
+    - The payment status of all members will be automatically displayed in the Utang Tracker menu.
+    - The user is able to display a member's bill, payment, and their recent payment date
+  - Use Case 3: Gasto Mo ang Limit!
+    - Gasto Mo ang Limit! allows the user to keep track of the members' current budget.
+    - The program will indicate which members exceeded their budget in cases wherein some members exceeded their budget.
+    - The budget of all members as well as their indicators (in case that they exceeded their budget) will be displayed automatically on the Gasto Mo ang Limit! menu.
+    - The user is able to display a member's current budget and their expenses.
+
+## For Contributors:
+A few things to point out:  
+- Please refer to `updates.md` for code updates.  
+
+### Recommendations
+- An actual GUI instead of a console-based UI
+- Create category options and default categories
+- Add a default case in Group Mode
