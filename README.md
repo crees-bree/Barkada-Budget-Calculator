@@ -3,7 +3,7 @@
 Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is released on June 4, 2024 and is already available! Refer to Releases to view this release.
 
 ## Description
-**Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** that aids in easy money tracking and management.
+**Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** on Windonws that aids in easy money tracking and management.
 This program is highly usable by friend groups with BBC's Group Mode, which allows friend groups to keep track of their respective changes
 when going out and keep track of your friends who didn't pay you back. The great thing about BBC is that it is not only highly usable
 by friend groups, it is also highly usable by people who just want to keep track of how much money is going in and out of their wallets
