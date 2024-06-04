@@ -2,6 +2,14 @@
 
 **Test Status**: *ERROR*, *empty*, *incomplete*, *not final*, *test pending*, *verify testing*, *done*
 
+## UPDATE VERSION 4.8
+
+- Finalized everything.
+
+## UPDATE VERSION 4.7 (May 31, 2024)
+
+- Basically finished everything that is needed to finish.
+
 ## UPDATE VERSION 4.6 (May 31, 2024)
 
 - In group_mode
