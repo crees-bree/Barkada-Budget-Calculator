@@ -1,15 +1,18 @@
 # Barkada-Budget-Calculator
 ## Announcements
-Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is released on June 4, 2024 and is already available! Refer to Releases to view this release.
+Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is currently on works! Please stay tuned for its release!
 
 ## Description
-**Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** on Windows that aids in easy money tracking and management.
-This program is highly usable by friend groups with BBC's Group Mode, which allows friend groups to keep track of their respective changes
+**Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** on Windows that aids in easy money tracking and management.  
+BBC is developed by The BLM Group: conxant0, crees-bree, and mijimmi.
+
+BBC is highly usable by friend groups with BBC's Group Mode, which allows friend groups to keep track of their respective changes
 when going out and keep track of your friends who didn't pay you back. The great thing about BBC is that it is not only highly usable
 by friend groups, it is also highly usable by people who just want to keep track of how much money is going in and out of their wallets
 thanks to BBC's Person Mode, wherein you can keep track of your incomes and expenses complete with dates, categories, and even some
 personal notes such as *"Income I received from daddy"* or _"Spent just a little on valo skins"_. And BBC can be used by students, families, and
-small companies in ensuring that no one overspends.  
+small companies in ensuring that no one overspends.   
+
 As you can see, BBC is multi-featured and can be used anytime and anywhere by anyone, that's why you should rate us 5 stars on Google Play Store 
 and App Store and subscribe to our YouTube channel (we are reaching 1 subscribers =>)
 
@@ -72,11 +75,15 @@ and App Store and subscribe to our YouTube channel (we are reaching 1 subscriber
     - The user is able to display a member's current budget and all their expenses.
     - In cases wherein a member is added on **Sukli sa Kinsa** or **Utang Tracker** or a member ran out of budget / exceeded their budget, the user can add a new budget to that member, given that the member ran out or exceeded their budget.
 
+## Installation Guide
+As of now, there is not an installation manual yet. It will be posted once the developers have released a release for the alpha version 0.1.0.
+
 ## For Contributors:
 A few things to point out:  
 - Please refer to `updates.md` for code updates.  
 
-### Recommendations
+### Recommendations (if a new version will be created by one of us)
 - An actual GUI instead of a console-based UI
 - Create category options and default categories
 - Add a default case in Group Mode
+- A mobile application for easy use
