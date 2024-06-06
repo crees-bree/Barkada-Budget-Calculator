@@ -1,6 +1,8 @@
 # Barkada-Budget-Calculator
 ## Announcements
-Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha is currently on works! Please stay tuned for its release!
+Barkada Budget Calculator Pre-Release Version 0.1.0-Alpha will not be released until further notice. This is due to the developers' struggle in packaging 
+the program into a Windows installer. Rest assured that this project will not be abandoned and will be picked up by one of us to package this version
+as well as contributing more developments into BBC some time in the future.
 
 ## Description
 **Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** on Windows that aids in easy money tracking and management.  
