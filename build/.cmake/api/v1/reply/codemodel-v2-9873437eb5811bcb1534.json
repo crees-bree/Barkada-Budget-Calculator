@@ -1,0 +1,118 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-aca3d603bebecc8e707b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "ascii",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-ascii-Debug-4882441f3fcd1b624556.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "ascii"
+				},
+				{
+					"build" : "profile",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-profile-Debug-e9900fc94a1fa3ebaf82.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "profile"
+				},
+				{
+					"build" : "lib",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib-Debug-96caa147e2effe79570e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"name" : "BBC",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "bbc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bbc-Debug-4cb164df9ca5c2f3920e.json",
+					"name" : "bbc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "bbclib::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-bbclib-Debug-9a332cc7695e135444b6.json",
+					"name" : "bbclib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
+		"source" : "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

@@ -66,7 +66,6 @@ void group_mode(){
     int members_size = 0;      
 
     int open, option;
-    char exit;
     bool loop = true;
     
     std::string file_name;
@@ -197,7 +196,6 @@ void edit_member(int members_size, Member *members, int caseType){
 
 void removeMem(int *members_size, Member *members){                 
     std::string removeName;
-    char input;
     bool found = false;
 
     std::cout << "\nWhat is the name of the member you want to remove: ";
@@ -255,7 +253,6 @@ void case_one(int *members_size, Member *members){
     int totalChange = 0;
     std::string displayName;
     bool found, verify;
-    char exit;
 
     do
     {
@@ -527,7 +524,6 @@ void edit_memberMenu2(){
 void case_three(Member *members, int *members_size, int option) {
     int member_choice;
     std::string name, displayName;
-    double payment, bill;
     bool found;
 
     while (true) {
@@ -605,9 +601,7 @@ void case_three(Member *members, int *members_size, int option) {
                 }
                 break;
             // add budget
-            case 5:
-                double new_budget;
-                
+            case 5:                
                 std::cout << "\nEnter the name of member to edit their budget: ";
                 std::cin.ignore();
                 getline(std::cin, displayName);

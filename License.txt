@@ -1,0 +1,3 @@
+BARKADA BUDGET CALCULATOR is a project in partial completion with the requirements of the course CMSC 21. 
+
+This project should not be commercially distributed.

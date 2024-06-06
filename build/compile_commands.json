@@ -1,50 +1,56 @@
 [
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\src\\main.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\src\\main.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -I\"D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/lib\" -g -o CMakeFiles\\bbc.dir\\src\\main.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\src\\main.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\src\\main.cpp",
   "output": "CMakeFiles\\bbc.dir\\src\\main.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\account.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\account.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\windres.exe -O coff -I \"D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/lib\" \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\assets\\BBCIcon.rc\" CMakeFiles\\bbc.dir\\assets\\BBCIcon.rc.obj",
+  "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\assets\\BBCIcon.rc",
+  "output": "CMakeFiles\\bbc.dir\\assets\\BBCIcon.rc.obj"
+},
+{
+  "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\account.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\account.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\account.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\account.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\account.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\date.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\date.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\date.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\date.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\date.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\date.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\date.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\group_mode.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\group_mode.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\group_mode.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\group_mode.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\group_mode.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\group_mode.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\group_mode.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\member.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\member.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\member.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\member.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\member.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\member.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\member.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\person_mode.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\person_mode.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\person_mode.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\person_mode.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\person_mode.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\person_mode.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\person_mode.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\profile.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\profile.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\profile.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\profile.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\profile.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\profile.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\profile.cpp.obj"
 },
 {
   "directory": "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build",
-  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o CMakeFiles\\bbc.dir\\lib\\screen_util.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\screen_util.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -o lib\\CMakeFiles\\bbclib.dir\\screen_util.cpp.obj -c \"D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\screen_util.cpp\"",
   "file": "D:\\IMPORTANT FILES DO NOT DELETE\\SCHOOL\\1st Year\\2nd Semester\\CMSC 21\\Barkada Budget Calculator\\Barkada-Budget-Calculator\\lib\\screen_util.cpp",
-  "output": "CMakeFiles\\bbc.dir\\lib\\screen_util.cpp.obj"
+  "output": "lib\\CMakeFiles\\bbclib.dir\\screen_util.cpp.obj"
 }
 ]

@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Barkada-Budget-Calculator
+# Project: BBC
 # Configurations: Debug
 # =============================================================================
 
@@ -47,55 +47,20 @@ cmake_ninja_workdir = D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd
 #############################################
 # Order-only phony target for bbc
 
-build cmake_object_order_depends_target_bbc: phony || CMakeFiles/bbc.dir
+build cmake_object_order_depends_target_bbc: phony || cmake_object_order_depends_target_bbclib
 
 build CMakeFiles/bbc.dir/src/main.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/src/main.cpp || cmake_object_order_depends_target_bbc
   DEP_FILE = CMakeFiles\bbc.dir\src\main.cpp.obj.d
   FLAGS = -g
+  INCLUDES = -I"D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/lib"
   OBJECT_DIR = CMakeFiles\bbc.dir
   OBJECT_FILE_DIR = CMakeFiles\bbc.dir\src
 
-build CMakeFiles/bbc.dir/lib/account.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/account.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\account.cpp.obj.d
-  FLAGS = -g
+build CMakeFiles/bbc.dir/assets/BBCIcon.rc.obj: RC_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/assets/BBCIcon.rc || cmake_object_order_depends_target_bbc
+  DEP_FILE = CMakeFiles\bbc.dir\assets\BBCIcon.rc.obj.d
+  INCLUDES = -I "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/lib"
   OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/date.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/date.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\date.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/group_mode.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/group_mode.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\group_mode.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/member.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/member.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\member.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/person_mode.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/person_mode.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\person_mode.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/profile.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/profile.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\profile.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
-
-build CMakeFiles/bbc.dir/lib/screen_util.cpp.obj: CXX_COMPILER__bbc_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/screen_util.cpp || cmake_object_order_depends_target_bbc
-  DEP_FILE = CMakeFiles\bbc.dir\lib\screen_util.cpp.obj.d
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles\bbc.dir
-  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\lib
+  OBJECT_FILE_DIR = CMakeFiles\bbc.dir\assets
 
 
 # =============================================================================
@@ -105,15 +70,40 @@ build CMakeFiles/bbc.dir/lib/screen_util.cpp.obj: CXX_COMPILER__bbc_unscanned_De
 #############################################
 # Link the executable bbc.exe
 
-build bbc.exe: CXX_EXECUTABLE_LINKER__bbc_Debug CMakeFiles/bbc.dir/src/main.cpp.obj CMakeFiles/bbc.dir/lib/account.cpp.obj CMakeFiles/bbc.dir/lib/date.cpp.obj CMakeFiles/bbc.dir/lib/group_mode.cpp.obj CMakeFiles/bbc.dir/lib/member.cpp.obj CMakeFiles/bbc.dir/lib/person_mode.cpp.obj CMakeFiles/bbc.dir/lib/profile.cpp.obj CMakeFiles/bbc.dir/lib/screen_util.cpp.obj
+build bbc.exe: CXX_EXECUTABLE_LINKER__bbc_Debug CMakeFiles/bbc.dir/src/main.cpp.obj CMakeFiles/bbc.dir/assets/BBCIcon.rc.obj | lib/libbbclib.a || lib/libbbclib.a
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = lib/libbbclib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_PATH = -L"D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/lib"
   OBJECT_DIR = CMakeFiles\bbc.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = bbc.exe
   TARGET_IMPLIB = libbbc.dll.a
   TARGET_PDB = bbc.exe.dbg
+
+
+#############################################
+# Utility command for package
+
+build CMakeFiles/package.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build package: phony CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackSourceConfig.cmake "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/CPackSourceConfig.cmake""
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build package_source: phony CMakeFiles/package_source.util
 
 
 #############################################
@@ -138,10 +128,405 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build CMakeFiles/install.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build install: phony CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build CMakeFiles/install/local.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build install/local: phony CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build install/strip: phony CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for package
+
+build ascii/CMakeFiles/package.util: CUSTOM_COMMAND ascii/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build ascii/package: phony ascii/CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build ascii/CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackSourceConfig.cmake "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/CPackSourceConfig.cmake""
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build ascii/package_source: phony ascii/CMakeFiles/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build ascii/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\ascii" && C:\Strawberry\c\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build ascii/edit_cache: phony ascii/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build ascii/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\ascii" && C:\Strawberry\c\bin\cmake.exe --regenerate-during-build -S"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator" -B"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build ascii/rebuild_cache: phony ascii/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build ascii/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build ascii/CMakeFiles/install.util: CUSTOM_COMMAND ascii/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\ascii" && C:\Strawberry\c\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build ascii/install: phony ascii/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build ascii/CMakeFiles/install/local.util: CUSTOM_COMMAND ascii/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\ascii" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build ascii/install/local: phony ascii/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build ascii/CMakeFiles/install/strip.util: CUSTOM_COMMAND ascii/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\ascii" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build ascii/install/strip: phony ascii/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for package
+
+build profile/CMakeFiles/package.util: CUSTOM_COMMAND profile/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build profile/package: phony profile/CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build profile/CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackSourceConfig.cmake "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/CPackSourceConfig.cmake""
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build profile/package_source: phony profile/CMakeFiles/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build profile/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\profile" && C:\Strawberry\c\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build profile/edit_cache: phony profile/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build profile/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\profile" && C:\Strawberry\c\bin\cmake.exe --regenerate-during-build -S"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator" -B"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build profile/rebuild_cache: phony profile/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build profile/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build profile/CMakeFiles/install.util: CUSTOM_COMMAND profile/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\profile" && C:\Strawberry\c\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build profile/install: phony profile/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build profile/CMakeFiles/install/local.util: CUSTOM_COMMAND profile/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\profile" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build profile/install/local: phony profile/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build profile/CMakeFiles/install/strip.util: CUSTOM_COMMAND profile/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\profile" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build profile/install/strip: phony profile/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target bbclib
+
+
+#############################################
+# Order-only phony target for bbclib
+
+build cmake_object_order_depends_target_bbclib: phony || lib/CMakeFiles/bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/account.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/account.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\account.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/date.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/date.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\date.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/group_mode.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/group_mode.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\group_mode.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/member.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/member.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\member.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/person_mode.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/person_mode.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\person_mode.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/profile.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/profile.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\profile.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+build lib/CMakeFiles/bbclib.dir/screen_util.cpp.obj: CXX_COMPILER__bbclib_unscanned_Debug D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/screen_util.cpp || cmake_object_order_depends_target_bbclib
+  DEP_FILE = lib\CMakeFiles\bbclib.dir\screen_util.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  OBJECT_FILE_DIR = lib\CMakeFiles\bbclib.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target bbclib
+
+
+#############################################
+# Link the static library lib\libbbclib.a
+
+build lib/libbbclib.a: CXX_STATIC_LIBRARY_LINKER__bbclib_Debug lib/CMakeFiles/bbclib.dir/account.cpp.obj lib/CMakeFiles/bbclib.dir/date.cpp.obj lib/CMakeFiles/bbclib.dir/group_mode.cpp.obj lib/CMakeFiles/bbclib.dir/member.cpp.obj lib/CMakeFiles/bbclib.dir/person_mode.cpp.obj lib/CMakeFiles/bbclib.dir/profile.cpp.obj lib/CMakeFiles/bbclib.dir/screen_util.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = lib\CMakeFiles\bbclib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lib\libbbclib.a
+  TARGET_PDB = bbclib.a.dbg
+
+
+#############################################
+# Utility command for package
+
+build lib/CMakeFiles/package.util: CUSTOM_COMMAND lib/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackConfig.cmake"
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build lib/package: phony lib/CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build lib/CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build" && C:\Strawberry\c\bin\cpack.exe --config ./CPackSourceConfig.cmake "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/CPackSourceConfig.cmake""
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build lib/package_source: phony lib/CMakeFiles/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build lib/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\lib" && C:\Strawberry\c\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build lib/edit_cache: phony lib/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build lib/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\lib" && C:\Strawberry\c\bin\cmake.exe --regenerate-during-build -S"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator" -B"D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build lib/rebuild_cache: phony lib/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build lib/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build lib/CMakeFiles/install.util: CUSTOM_COMMAND lib/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\lib" && C:\Strawberry\c\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build lib/install: phony lib/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build lib/CMakeFiles/install/local.util: CUSTOM_COMMAND lib/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\lib" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build lib/install/local: phony lib/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build lib/CMakeFiles/install/strip.util: CUSTOM_COMMAND lib/all
+  COMMAND = cmd.exe /C "cd /D "D:\IMPORTANT FILES DO NOT DELETE\SCHOOL\1st Year\2nd Semester\CMSC 21\Barkada Budget Calculator\Barkada-Budget-Calculator\build\lib" && C:\Strawberry\c\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build lib/install/strip: phony lib/CMakeFiles/install/strip.util
+
 # =============================================================================
 # Target aliases.
 
 build bbc: phony bbc.exe
+
+build bbclib: phony lib/libbbclib.a
+
+build libbbclib.a: phony lib/libbbclib.a
 
 # =============================================================================
 # Folder targets.
@@ -151,7 +536,28 @@ build bbc: phony bbc.exe
 #############################################
 # Folder: D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build
 
-build all: phony bbc.exe
+build all: phony bbc.exe ascii/all profile/all lib/all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/ascii
+
+build ascii/all: phony
+
+# =============================================================================
+
+#############################################
+# Folder: D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/lib
+
+build lib/all: phony lib/libbbclib.a
+
+# =============================================================================
+
+#############################################
+# Folder: D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/profile
+
+build profile/all: phony
 
 # =============================================================================
 # Unknown Build Time Dependencies.
@@ -165,14 +571,14 @@ build all: phony bbc.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CPack.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CPackComponent.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/InstallRequiredSystemLibraries.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Strawberry/c/share/cmake-3.26/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/BBCConfig.h.in D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/ascii/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/profile/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/CMakeLists.txt: phony
+build C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCXXInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeGenericSystem.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeRCInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CPack.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/CPackComponent.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Compiler/GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/InstallRequiredSystemLibraries.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-C.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU-CXX.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-GNU.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows-windres.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/Windows.cmake C$:/Strawberry/c/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake C$:/Strawberry/c/share/cmake-3.26/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeRCCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/BBCConfig.h.in D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/ascii/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/lib/CMakeLists.txt D$:/IMPORTANT$ FILES$ DO$ NOT$ DELETE/SCHOOL/1st$ Year/2nd$ Semester/CMSC$ 21/Barkada$ Budget$ Calculator/Barkada-Budget-Calculator/profile/CMakeLists.txt: phony
 
 
 #############################################

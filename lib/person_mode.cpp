@@ -90,7 +90,6 @@ void person_mode(){
     details.accounts_size = 0; 
 
     int open, empty, option;
-    char c_option;
     bool loop = true;
 
     std::string file_name;
@@ -435,7 +434,7 @@ void display_category_percentages(ProfileDetails details) {
 }
 
 void add_account(ProfileDetails* details){
-    if (details->accounts_size >= sizeof(details->accounts) / sizeof(Account)){
+    if ( ( (unsigned int) details->accounts_size) >= sizeof(details->accounts) / sizeof(Account)){
         loading("Maximum account limit reached. Returning to main menu");
         return;
     }
@@ -447,7 +446,7 @@ void add_account(ProfileDetails* details){
 void modify_account(ProfileDetails* details){
     std::string account_name;
     double balance;
-    int index, option, exit;
+    int index, option;
     bool loop = true;
 
     // returns to man menu if there are no accounts

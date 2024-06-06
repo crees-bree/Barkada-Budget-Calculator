@@ -300,9 +300,6 @@ void Account::transfer_balance(double amount, bool current){
 
 void Account::add_record(){
     Record record;
-    int selection;
-    char exit;
-    bool loop = true;
     
     // set date automatically to current date
     record.date = get_current_date();
@@ -340,7 +337,6 @@ void Account::modify_record(Record record, bool add_record = false){
     Record new_record = record;
     bool loop = true, loop2 = true;
     int selection;
-    bool inverse_update;
     char exit;
     
     while (loop){
@@ -603,7 +599,7 @@ void Account::filter_Percent_Records(Date start_date, Date end_date, int choice)
     }
 
     double total_expenses = 0.0;
-    for (int i = 0; i < category_expenses.size(); ++i) {
+    for (unsigned int i = 0; i < category_expenses.size(); ++i) {
         total_expenses += category_expenses[i].second;
     }
 
@@ -627,7 +623,7 @@ void Account::filter_Percent_Records(Date start_date, Date end_date, int choice)
         break;
     }
     std::cout << "=== CATEGORY || PERCENTAGE ===\n";
-    for (int i = 0; i < category_expenses.size(); ++i) {
+    for (unsigned int i = 0; i < category_expenses.size(); ++i) {
         double percentage = (category_expenses[i].second / total_expenses) * 100.0;
         std::cout << category_expenses[i].first << "\t\t" << std::setprecision(1) << std::fixed << percentage << "%\n";
         std::cout << " " <<std::endl;

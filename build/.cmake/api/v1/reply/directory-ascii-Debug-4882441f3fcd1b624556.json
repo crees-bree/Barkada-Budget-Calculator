@@ -1,0 +1,75 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"ascii/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 4,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "ascii",
+			"paths" : 
+			[
+				"ascii/gmode.txt"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "ascii",
+			"paths" : 
+			[
+				"ascii/main.txt"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "ascii",
+			"paths" : 
+			[
+				"ascii/pmode.txt"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "ascii",
+		"source" : "ascii"
+	}
+}

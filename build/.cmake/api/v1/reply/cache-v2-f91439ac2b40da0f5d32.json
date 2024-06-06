@@ -2,6 +2,42 @@
 	"entries" : 
 	[
 		{
+			"name" : "BBC_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build"
+		},
+		{
+			"name" : "BBC_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "BBC_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator"
+		},
+		{
 			"name" : "Barkada-Budget-Calculator_BINARY_DIR",
 			"properties" : 
 			[
@@ -819,7 +855,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -899,7 +935,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Barkada-Budget-Calculator"
+			"value" : "BBC"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",
@@ -911,7 +947,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "1.0.0"
+			"value" : "0.1.0"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION_MAJOR",
@@ -923,7 +959,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "1"
+			"value" : "0"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION_MINOR",
@@ -935,7 +971,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "0"
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION_PATCH",
@@ -1336,6 +1372,134 @@
 			],
 			"type" : "BOOL",
 			"value" : "FALSE"
+		},
+		{
+			"name" : "CPACK_BINARY_7Z",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build 7-Zip packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "CPACK_BINARY_IFW",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build IFW packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "CPACK_BINARY_NSIS",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build NSIS packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "CPACK_BINARY_NUGET",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build NuGet packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "CPACK_BINARY_WIX",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build WiX packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "CPACK_BINARY_ZIP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build ZIP packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "CPACK_SOURCE_7Z",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build 7-Zip source packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "CPACK_SOURCE_ZIP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable to build ZIP source packages"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
 		},
 		{
 			"name" : "CURSES_CURSES_LIBRARY",
@@ -1768,6 +1932,42 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "C:/msys64/mingw64/bin/pkg-config.exe"
+		},
+		{
+			"name" : "USE_BBCLIB",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Core library of BBC."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
+		},
+		{
+			"name" : "USE_NSIS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Use NSIS generator to produce installer"
+				}
+			],
+			"type" : "BOOL",
+			"value" : "OFF"
+		},
+		{
+			"name" : "VERSION_TYPE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "version type"
+				}
+			],
+			"type" : "STRING",
+			"value" : "alpha"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

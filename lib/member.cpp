@@ -151,8 +151,6 @@ void Member::display_details(int case_type){
 }
 
 bool Member::check_memName(std::string editName){
-    int index;
-
     if (editName == name) return true;
     else return false;
 }

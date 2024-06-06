@@ -1,0 +1,13 @@
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/BBCConfig.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/bin/bbc.exe
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/ascii/gmode.txt
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/ascii/main.txt
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/ascii/pmode.txt
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/lib/libbbclib.a
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/account.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/date.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/group_mode.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/member.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/person_mode.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/profile.h
+D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build/_CPack_Packages/win64/NSIS/Barkada Budget Calculator-0.1.0-win64/include/screen_util.h

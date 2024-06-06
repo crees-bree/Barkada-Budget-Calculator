@@ -15,6 +15,15 @@
 ########################
 
 //Value Computed by CMake
+BBC_BINARY_DIR:STATIC=D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build
+
+//Value Computed by CMake
+BBC_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+BBC_SOURCE_DIR:STATIC=D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator
+
+//Value Computed by CMake
 Barkada-Budget-Calculator_BINARY_DIR:STATIC=D:/IMPORTANT FILES DO NOT DELETE/SCHOOL/1st Year/2nd Semester/CMSC 21/Barkada Budget Calculator/Barkada-Budget-Calculator/build
 
 //Value Computed by CMake
@@ -162,16 +171,16 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Barkada-Budget-Calculator
+CMAKE_PROJECT_NAME:STATIC=BBC
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=1.0.0
+CMAKE_PROJECT_VERSION:STATIC=0.1.0
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=0
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=0
+CMAKE_PROJECT_VERSION_MINOR:STATIC=1
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_PATCH:STATIC=0
@@ -259,6 +268,30 @@ CMAKE_STRIP:FILEPATH=C:/msys64/mingw64/bin/strip.exe
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Enable to build 7-Zip packages
+CPACK_BINARY_7Z:BOOL=OFF
+
+//Enable to build IFW packages
+CPACK_BINARY_IFW:BOOL=OFF
+
+//Enable to build NSIS packages
+CPACK_BINARY_NSIS:BOOL=ON
+
+//Enable to build NuGet packages
+CPACK_BINARY_NUGET:BOOL=OFF
+
+//Enable to build WiX packages
+CPACK_BINARY_WIX:BOOL=OFF
+
+//Enable to build ZIP packages
+CPACK_BINARY_ZIP:BOOL=OFF
+
+//Enable to build 7-Zip source packages
+CPACK_SOURCE_7Z:BOOL=ON
+
+//Enable to build ZIP source packages
+CPACK_SOURCE_ZIP:BOOL=ON
+
 //Path to a library.
 CURSES_CURSES_LIBRARY:FILEPATH=CURSES_CURSES_LIBRARY-NOTFOUND
 
@@ -276,6 +309,15 @@ PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=C:/msys64/mingw64/bin/pkg-config.exe
+
+//Core library of BBC.
+USE_BBCLIB:BOOL=ON
+
+//Use NSIS generator to produce installer
+USE_NSIS:BOOL=OFF
+
+//version type
+VERSION_TYPE:STRING=alpha
 
 
 ########################
@@ -380,7 +422,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -434,6 +476,22 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_7Z
+CPACK_BINARY_7Z-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_IFW
+CPACK_BINARY_IFW-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_NSIS
+CPACK_BINARY_NSIS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_NUGET
+CPACK_BINARY_NUGET-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_WIX
+CPACK_BINARY_WIX-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_ZIP
+CPACK_BINARY_ZIP-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_7Z
+CPACK_SOURCE_7Z-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_ZIP
+CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CURSES_CURSES_LIBRARY
 CURSES_CURSES_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CURSES_FORM_LIBRARY

@@ -144,6 +144,41 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Strawberry/c/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"path" : "BBCConfig.h.in"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Strawberry/c/share/cmake-3.26/Modules/InstallRequiredSystemLibraries.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Strawberry/c/share/cmake-3.26/Modules/CPack.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Strawberry/c/share/cmake-3.26/Modules/CPackComponent.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Strawberry/c/share/cmake-3.26/Templates/CPackConfig.cmake.in"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Strawberry/c/share/cmake-3.26/Templates/CPackConfig.cmake.in"
+		},
+		{
+			"path" : "ascii/CMakeLists.txt"
+		},
+		{
+			"path" : "profile/CMakeLists.txt"
+		},
+		{
+			"path" : "lib/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

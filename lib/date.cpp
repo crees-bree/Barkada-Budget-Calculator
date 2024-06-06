@@ -146,13 +146,13 @@ bool date_is_valid(Date date){
     if ( !(date.month >= 1 && date.month <= 12) ) return false;
     
     // check if day is valid
-    for (int i = 0; i < thirty_one_size; ++i){
+    for (unsigned int i = 0; i < thirty_one_size; ++i){
         if (date.month == thirty_one[i]){
             if ( !(date.day >= 1 && date.day <= 31) ) return false;
         }
     }
 
-    for (int i = 0; i < thirty_size; ++i){
+    for (unsigned int i = 0; i < thirty_size; ++i){
         if (date.month == thirty[i]){
             if ( !(date.day >= 1 && date.day <= 30) ) return false;
         }

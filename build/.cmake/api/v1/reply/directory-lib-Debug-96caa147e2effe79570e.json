@@ -1,0 +1,67 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"lib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libbbclib.a"
+			],
+			"targetId" : "bbclib::@306ed2d68c6501e8728f",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				"lib/account.h",
+				"lib/date.h",
+				"lib/group_mode.h",
+				"lib/member.h",
+				"lib/person_mode.h",
+				"lib/profile.h",
+				"lib/screen_util.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "lib",
+		"source" : "lib"
+	}
+}

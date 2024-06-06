@@ -1,0 +1,59 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"profile/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 4,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "profile",
+			"paths" : 
+			[
+				"profile/Group"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "profile",
+			"paths" : 
+			[
+				"profile/Person"
+			],
+			"type" : "directory"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "profile",
+		"source" : "profile"
+	}
+}
