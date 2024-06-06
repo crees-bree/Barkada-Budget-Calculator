@@ -6,7 +6,8 @@ as well as contributing more developments into BBC some time in the future.
 
 ## Description
 **Barkada Budget Calculator (BBC)** is a **money- and budget- tracking console-based program** on Windows that aids in easy money tracking and management.  
-BBC is developed by The BLM Group: conxant0, crees-bree, and mijimmi.
+BBC is developed by The BLM Group: conxant0, crees-bree, and mijimmi. This project is developed for the partial completion of the course CMSC 21 - 
+Introduction to Programming.
 
 BBC is highly usable by friend groups with BBC's Group Mode, which allows friend groups to keep track of their respective changes
 when going out and keep track of your friends who didn't pay you back. The great thing about BBC is that it is not only highly usable
